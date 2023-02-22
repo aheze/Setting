@@ -8,24 +8,36 @@
 
 import SwiftUI
 
-struct SettingSearchResult {
-    var sections: [Section]
+public struct SettingSearchResult {
+    public var sections: [Section]
 
-    struct Section: Identifiable {
-        let id = UUID()
-        var icon: SettingIcon?
-        var header: String?
-        var paths: [SettingPath]
+    public struct Section: Identifiable {
+        public let id = UUID()
+        public var icon: SettingIcon?
+        public var header: String?
+        public var paths: [SettingPath]
     }
 }
 
-struct SettingSearchResultView: View {
-    var searchResult: SettingSearchResult
-    var spacing = CGFloat(20)
-    var verticalPadding = CGFloat(6)
-    var backgroundColor = Setting.secondaryBackgroundColor
+public struct SettingSearchResultView: View {
+    public var searchResult: SettingSearchResult
+    public var spacing = CGFloat(20)
+    public var verticalPadding = CGFloat(6)
+    public var backgroundColor = Setting.secondaryBackgroundColor
 
-    var body: some View {
+    public init(
+        searchResult: SettingSearchResult,
+        spacing: CGFloat = CGFloat(20),
+        verticalPadding: CGFloat = CGFloat(6),
+        backgroundColor: Color = Setting.secondaryBackgroundColor
+    ) {
+        self.searchResult = searchResult
+        self.spacing = spacing
+        self.verticalPadding = verticalPadding
+        self.backgroundColor = backgroundColor
+    }
+
+    public var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: spacing) {
                 ForEach(searchResult.sections) { section in

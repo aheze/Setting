@@ -8,9 +8,13 @@
 import SwiftUI
 
 public struct SettingStack: View {
-    var page: () -> SettingPage
+    public var page: () -> SettingPage
 
     @StateObject var settingViewModel = SettingViewModel()
+
+    public init(page: @escaping () -> SettingPage) {
+        self.page = page
+    }
 
     public var body: some View {
         if #available(iOS 16.0, macOS 13.0, *) {

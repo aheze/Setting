@@ -8,15 +8,31 @@
 
 import SwiftUI
 
-struct SettingToggle: View, SettingItem {
-    var id: AnyHashable?
-    var title: String
-    @Binding var isOn: Bool
-    var horizontalSpacing = CGFloat(12)
-    var verticalPadding = CGFloat(14)
-    var horizontalPadding = CGFloat(16)
-    
-    var body: some View {
+public struct SettingToggle: View, SettingItem {
+    public var id: AnyHashable?
+    public var title: String
+    @Binding public var isOn: Bool
+    public var horizontalSpacing = CGFloat(12)
+    public var verticalPadding = CGFloat(14)
+    public var horizontalPadding = CGFloat(16)
+
+    public init(
+        id: AnyHashable? = nil,
+        title: String,
+        isOn: Binding<Bool>,
+        horizontalSpacing: CGFloat = CGFloat(12),
+        verticalPadding: CGFloat = CGFloat(14),
+        horizontalPadding: CGFloat = CGFloat(16)
+    ) {
+        self.id = id
+        self.title = title
+        self._isOn = isOn
+        self.horizontalSpacing = horizontalSpacing
+        self.verticalPadding = verticalPadding
+        self.horizontalPadding = horizontalPadding
+    }
+
+    public var body: some View {
         SettingToggleView(
             title: title,
             isOn: $isOn,

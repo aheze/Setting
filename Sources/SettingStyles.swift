@@ -8,8 +8,8 @@
 
 import SwiftUI
 
-struct SettingRowButtonStyle: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
+public struct SettingRowButtonStyle: ButtonStyle {
+    public func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .contentShape(Rectangle())
             .background {
@@ -21,7 +21,7 @@ struct SettingRowButtonStyle: ButtonStyle {
     }
 }
 
-extension ButtonStyle where Self == SettingRowButtonStyle {
+public extension ButtonStyle where Self == SettingRowButtonStyle {
     static var row: SettingRowButtonStyle {
         SettingRowButtonStyle()
     }

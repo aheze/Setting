@@ -8,18 +8,34 @@
 
 import SwiftUI
 
-struct SettingJumpLink: View {
-    var path: SettingPath
-    var indicator = "chevron.forward"
-    var verticalSpacing = CGFloat(6)
-    var horizontalSpacing = CGFloat(12)
-    var verticalPadding = CGFloat(14)
-    var horizontalPadding = CGFloat(16)
+public struct SettingJumpLink: View {
+    public var path: SettingPath
+    public var indicator = "chevron.forward"
+    public var verticalSpacing = CGFloat(6)
+    public var horizontalSpacing = CGFloat(12)
+    public var verticalPadding = CGFloat(14)
+    public var horizontalPadding = CGFloat(16)
 
     @EnvironmentObject var settingsViewModel: SettingViewModel
     @State var isActive = false
 
-    var body: some View {
+    public init(
+        path: SettingPath,
+        indicator: String = "chevron.forward",
+        verticalSpacing: CGFloat = CGFloat(6),
+        horizontalSpacing: CGFloat = CGFloat(12),
+        verticalPadding: CGFloat = CGFloat(14),
+        horizontalPadding: CGFloat = CGFloat(16)
+    ) {
+        self.path = path
+        self.indicator = indicator
+        self.verticalSpacing = verticalSpacing
+        self.horizontalSpacing = horizontalSpacing
+        self.verticalPadding = verticalPadding
+        self.horizontalPadding = horizontalPadding
+    }
+
+    public var body: some View {
         let destinationPage = path.items.last(where: { $0 is SettingPage })
 
         Button {

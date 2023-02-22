@@ -8,15 +8,31 @@
 
 import SwiftUI
 
-struct SettingText: View, SettingItem {
-    var id: AnyHashable?
-    var title: String
-    var foregroundColor = Setting.labelColor
-    var horizontalSpacing = CGFloat(12)
-    var verticalPadding = CGFloat(14)
-    var horizontalPadding = CGFloat(16)
-    
-    var body: some View {
+public struct SettingText: View, SettingItem {
+    public var id: AnyHashable?
+    public var title: String
+    public var foregroundColor = Setting.labelColor
+    public var horizontalSpacing = CGFloat(12)
+    public var verticalPadding = CGFloat(14)
+    public var horizontalPadding = CGFloat(16)
+
+    public init(
+        id: AnyHashable? = nil,
+        title: String,
+        foregroundColor: Color = Setting.labelColor,
+        horizontalSpacing: CGFloat = CGFloat(12),
+        verticalPadding: CGFloat = CGFloat(14),
+        horizontalPadding: CGFloat = CGFloat(16)
+    ) {
+        self.id = id
+        self.title = title
+        self.foregroundColor = foregroundColor
+        self.horizontalSpacing = horizontalSpacing
+        self.verticalPadding = verticalPadding
+        self.horizontalPadding = horizontalPadding
+    }
+
+    public var body: some View {
         SettingTextView(
             title: title,
             foregroundColor: foregroundColor,

@@ -9,15 +9,15 @@
 import Combine
 import SwiftUI
 
-class SettingViewModel: ObservableObject {
-    @Published var searchText = ""
-    @Published var searchResult: SettingSearchResult?
+public class SettingViewModel: ObservableObject {
+    @Published public var searchText = ""
+    @Published public var searchResult: SettingSearchResult?
 
-    @Published var paths = [SettingPath]()
-    var regeneratePaths = PassthroughSubject<Void, Never>()
-    var cancellables = Set<AnyCancellable>()
+    @Published public var paths = [SettingPath]()
+    public var regeneratePaths = PassthroughSubject<Void, Never>()
+    public var cancellables = Set<AnyCancellable>()
 
-    init() {
+    public init() {
         $searchText.sink { [weak self] searchText in
             guard let self else { return }
             self.processSearch(searchText: searchText)
@@ -26,7 +26,7 @@ class SettingViewModel: ObservableObject {
     }
 }
 
-extension SettingViewModel {
+public extension SettingViewModel {
     func processSearch(searchText: String) {
         if searchText.isEmpty {
             searchResult = nil

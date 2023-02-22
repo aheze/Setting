@@ -39,7 +39,7 @@ public struct SettingTupleView: SettingItem {
     }
 }
 
-extension SettingTupleView {
+public extension SettingTupleView {
     /// flatten the tuple view and groups
     var flattened: [SettingItem] {
         var flattened = [SettingItem]()

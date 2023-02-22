@@ -8,17 +8,37 @@
 
 import SwiftUI
 
-struct SettingSlider: View, SettingItem {
-    var id: AnyHashable?
-    @Binding var value: Double
-    var range: ClosedRange<Double>
-    var step: Double.Stride = 1
-    var minimumImage: Image?
-    var maximumImage: Image?
-    var verticalPadding = CGFloat(8)
-    var horizontalPadding = CGFloat(16)
+public struct SettingSlider: View, SettingItem {
+    public var id: AnyHashable?
+    @Binding public var value: Double
+    public var range: ClosedRange<Double>
+    public var step: Double.Stride = 1
+    public var minimumImage: Image?
+    public var maximumImage: Image?
+    public var verticalPadding = CGFloat(8)
+    public var horizontalPadding = CGFloat(16)
 
-    var body: some View {
+    public init(
+        id: AnyHashable? = nil,
+        value: Binding<Double>,
+        range: ClosedRange<Double>,
+        step: Double.Stride = 1,
+        minimumImage: Image? = nil,
+        maximumImage: Image? = nil,
+        verticalPadding: CGFloat = CGFloat(8),
+        horizontalPadding: CGFloat = CGFloat(16)
+    ) {
+        self.id = id
+        self._value = value
+        self.range = range
+        self.step = step
+        self.minimumImage = minimumImage
+        self.maximumImage = maximumImage
+        self.verticalPadding = verticalPadding
+        self.horizontalPadding = horizontalPadding
+    }
+
+    public var body: some View {
         SettingSliderView(
             value: $value,
             range: range,

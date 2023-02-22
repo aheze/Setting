@@ -8,7 +8,11 @@
 
 import SwiftUI
 
-struct SettingPath: Identifiable {
-    let id = UUID()
-    var items: [SettingItem]
+public struct SettingPath: Identifiable {
+    public let id = UUID()
+    public var items: [SettingItem]
+
+    public init(items: [SettingItem]) {
+        self.items = items
+    }
 }

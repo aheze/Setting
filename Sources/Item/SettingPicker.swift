@@ -8,31 +8,77 @@
 
 import SwiftUI
 
-struct SettingPicker: View, SettingItem {
-    var id: AnyHashable?
-    var title: String
-    var choices: [String]
-    @Binding var selectedIndex: Int
-    var horizontalSpacing = CGFloat(12)
-    var verticalPadding = CGFloat(14)
-    var horizontalPadding = CGFloat(16)
-    var choicesConfiguration = ChoicesConfiguration()
+public struct SettingPicker: View, SettingItem {
+    public var id: AnyHashable?
+    public var title: String
+    public var choices: [String]
+    @Binding public var selectedIndex: Int
+    public var horizontalSpacing = CGFloat(12)
+    public var verticalPadding = CGFloat(14)
+    public var horizontalPadding = CGFloat(16)
+    public var choicesConfiguration = ChoicesConfiguration()
 
-    struct ChoicesConfiguration {
-        var verticalPadding = CGFloat(14)
-        var horizontalPadding = CGFloat(16)
-        var pageNavigationTitleDisplayMode = SettingPage.NavigationTitleDisplayMode.inline
-        var groupHeader: String?
-        var groupFooter: String?
-        var groupHorizontalPadding = CGFloat(16)
-        var groupBackgroundColor = Setting.backgroundColor
-        var groupBackgroundCornerRadius = CGFloat(12)
-        var groupDividerLeadingMargin = CGFloat(16)
-        var groupDividerTrailingMargin = CGFloat(0)
-        var groupDividerColor: Color?
+    public init(
+        id: AnyHashable? = nil,
+        title: String,
+        choices: [String],
+        selectedIndex: Binding<Int>,
+        horizontalSpacing: CGFloat = CGFloat(12),
+        verticalPadding: CGFloat = CGFloat(14),
+        horizontalPadding: CGFloat = CGFloat(16),
+        choicesConfiguration: SettingPicker.ChoicesConfiguration = ChoicesConfiguration()
+    ) {
+        self.id = id
+        self.title = title
+        self.choices = choices
+        self._selectedIndex = selectedIndex
+        self.horizontalSpacing = horizontalSpacing
+        self.verticalPadding = verticalPadding
+        self.horizontalPadding = horizontalPadding
+        self.choicesConfiguration = choicesConfiguration
     }
 
-    var body: some View {
+    public struct ChoicesConfiguration {
+        public var verticalPadding = CGFloat(14)
+        public var horizontalPadding = CGFloat(16)
+        public var pageNavigationTitleDisplayMode = SettingPage.NavigationTitleDisplayMode.inline
+        public var groupHeader: String?
+        public var groupFooter: String?
+        public var groupHorizontalPadding = CGFloat(16)
+        public var groupBackgroundColor = Setting.backgroundColor
+        public var groupBackgroundCornerRadius = CGFloat(12)
+        public var groupDividerLeadingMargin = CGFloat(16)
+        public var groupDividerTrailingMargin = CGFloat(0)
+        public var groupDividerColor: Color?
+
+        public init(
+            verticalPadding: CGFloat = CGFloat(14),
+            horizontalPadding: CGFloat = CGFloat(16),
+            pageNavigationTitleDisplayMode: SettingPage.NavigationTitleDisplayMode = SettingPage.NavigationTitleDisplayMode.inline,
+            groupHeader: String? = nil,
+            groupFooter: String? = nil,
+            groupHorizontalPadding: CGFloat = CGFloat(16),
+            groupBackgroundColor: Color = Setting.backgroundColor,
+            groupBackgroundCornerRadius: CGFloat = CGFloat(12),
+            groupDividerLeadingMargin: CGFloat = CGFloat(16),
+            groupDividerTrailingMargin: CGFloat = CGFloat(0),
+            groupDividerColor: Color? = nil
+        ) {
+            self.verticalPadding = verticalPadding
+            self.horizontalPadding = horizontalPadding
+            self.pageNavigationTitleDisplayMode = pageNavigationTitleDisplayMode
+            self.groupHeader = groupHeader
+            self.groupFooter = groupFooter
+            self.groupHorizontalPadding = groupHorizontalPadding
+            self.groupBackgroundColor = groupBackgroundColor
+            self.groupBackgroundCornerRadius = groupBackgroundCornerRadius
+            self.groupDividerLeadingMargin = groupDividerLeadingMargin
+            self.groupDividerTrailingMargin = groupDividerTrailingMargin
+            self.groupDividerColor = groupDividerColor
+        }
+    }
+
+    public var body: some View {
         SettingPickerView(
             title: title,
             choices: choices,

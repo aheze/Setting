@@ -10,13 +10,25 @@ import SwiftUI
 
 /// A vertical stack that adds separators
 /// From https://movingparts.io/variadic-views-in-swiftui
-struct SettingDividedVStack<Content>: View where Content: View {
-    var leadingMargin = CGFloat(0)
-    var trailingMargin = CGFloat(0)
-    var dividerColor: Color?
-    @ViewBuilder var content: Content
+public struct SettingDividedVStack<Content>: View where Content: View {
+    public var leadingMargin = CGFloat(0)
+    public var trailingMargin = CGFloat(0)
+    public var dividerColor: Color?
+    @ViewBuilder public var content: Content
 
-    var body: some View {
+    public init(
+        leadingMargin: CGFloat = CGFloat(0),
+        trailingMargin: CGFloat = CGFloat(0),
+        dividerColor: Color? = nil,
+        @ViewBuilder content: () -> Content
+    ) {
+        self.leadingMargin = leadingMargin
+        self.trailingMargin = trailingMargin
+        self.dividerColor = dividerColor
+        self.content = content()
+    }
+
+    public var body: some View {
         _VariadicView.Tree(
             SettingDividedVStackLayout(
                 leadingMargin: leadingMargin,
