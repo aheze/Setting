@@ -9,25 +9,59 @@
 import SwiftUI
 
 /// A Setting page
-struct SettingPage: SettingItem {
-    var id: AnyHashable?
-    var title: String
-    var spacing = CGFloat(20)
-    var verticalPadding = CGFloat(6)
-    var backgroundColor = Setting.secondaryBackgroundColor
-    var navigationTitleDisplayMode = NavigationTitleDisplayMode.inline
-    var previewConfiguration = PreviewConfiguration()
-    @SettingBuilder var tuple: SettingTupleView
+public struct SettingPage: SettingItem {
+    public var id: AnyHashable?
+    public var title: String
+    public var spacing = CGFloat(20)
+    public var verticalPadding = CGFloat(6)
+    public var backgroundColor = Setting.secondaryBackgroundColor
+    public var navigationTitleDisplayMode = NavigationTitleDisplayMode.inline
+    public var previewConfiguration = PreviewConfiguration()
+    @SettingBuilder public var tuple: SettingTupleView
 
-    struct PreviewConfiguration {
-        var icon: SettingIcon?
-        var indicator = "chevron.forward"
-        var horizontalSpacing = CGFloat(12)
-        var verticalPadding = CGFloat(14)
-        var horizontalPadding = CGFloat(16)
+    public init(
+        id: AnyHashable? = nil,
+        title: String,
+        spacing: CGFloat = CGFloat(20),
+        verticalPadding: CGFloat = CGFloat(6),
+        backgroundColor: Color = Setting.secondaryBackgroundColor,
+        navigationTitleDisplayMode: SettingPage.NavigationTitleDisplayMode = NavigationTitleDisplayMode.inline,
+        previewConfiguration: SettingPage.PreviewConfiguration = PreviewConfiguration(),
+        @SettingBuilder tuple: () -> SettingTupleView
+    ) {
+        self.id = id
+        self.title = title
+        self.spacing = spacing
+        self.verticalPadding = verticalPadding
+        self.backgroundColor = backgroundColor
+        self.navigationTitleDisplayMode = navigationTitleDisplayMode
+        self.previewConfiguration = previewConfiguration
+        self.tuple = tuple()
     }
 
-    enum NavigationTitleDisplayMode {
+    public struct PreviewConfiguration {
+        public var icon: SettingIcon?
+        public var indicator = "chevron.forward"
+        public var horizontalSpacing = CGFloat(12)
+        public var verticalPadding = CGFloat(14)
+        public var horizontalPadding = CGFloat(16)
+
+        public init(
+            icon: SettingIcon? = nil,
+            indicator: String = "chevron.forward",
+            horizontalSpacing: CGFloat = CGFloat(12),
+            verticalPadding: CGFloat = CGFloat(14),
+            horizontalPadding: CGFloat = CGFloat(16)
+        ) {
+            self.icon = icon
+            self.indicator = indicator
+            self.horizontalSpacing = horizontalSpacing
+            self.verticalPadding = verticalPadding
+            self.horizontalPadding = horizontalPadding
+        }
+    }
+
+    public enum NavigationTitleDisplayMode {
         case automatic
         case inline
         case large

@@ -8,12 +8,16 @@
 
 import SwiftUI
 
-struct SettingCustomView: SettingItem {
-    var id: AnyHashable?
-    var titleForSearch: String?
-    var view: AnyView
+public struct SettingCustomView: SettingItem {
+    public var id: AnyHashable?
+    public var titleForSearch: String?
+    public var view: AnyView
 
-    init<Content>(id: AnyHashable? = nil, titleForSearch: String? = nil, @ViewBuilder view: () -> Content) where Content: View {
+    public init<Content>(
+        id: AnyHashable? = nil,
+        titleForSearch: String? = nil,
+        @ViewBuilder view: () -> Content
+    ) where Content: View {
         self.id = id
         self.titleForSearch = titleForSearch
         self.view = AnyView(view())

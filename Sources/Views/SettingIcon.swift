@@ -8,16 +8,20 @@
 
 import SwiftUI
 
-enum SettingIcon {
+public enum SettingIcon {
     case system(icon: String, backgroundColor: Color)
     case image(name: String, inset: CGFloat, backgroundColor: Color)
     case custom(view: AnyView)
 }
 
-struct SettingIconView: View {
-    var icon: SettingIcon
-    
-    var body: some View {
+public struct SettingIconView: View {
+    public var icon: SettingIcon
+
+    public init(icon: SettingIcon) {
+        self.icon = icon
+    }
+
+    public var body: some View {
         switch icon {
         case .system(let icon, let backgroundColor):
             Image(systemName: icon)

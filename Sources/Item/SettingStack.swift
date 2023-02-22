@@ -12,7 +12,7 @@ public struct SettingStack: View {
 
     @StateObject var settingViewModel = SettingViewModel()
 
-    var body: some View {
+    public var body: some View {
         if #available(iOS 16.0, macOS 13.0, *) {
             NavigationStack {
                 main

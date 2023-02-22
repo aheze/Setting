@@ -8,11 +8,11 @@
 
 import SwiftUI
 
-protocol SettingItem {
+public protocol SettingItem {
     var id: AnyHashable? { get set }
 }
 
-extension SettingItem {
+public extension SettingItem {
     var identifier: AnyHashable {
         if let id {
             return id

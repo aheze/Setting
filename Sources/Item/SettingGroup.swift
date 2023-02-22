@@ -8,17 +8,41 @@
 
 import SwiftUI
 
-struct SettingGroup: SettingItem {
-    var id: AnyHashable?
-    var header: String?
-    var footer: String?
-    var horizontalPadding = CGFloat(16)
-    var backgroundColor = Setting.backgroundColor
-    var backgroundCornerRadius = CGFloat(12)
-    var dividerLeadingMargin = CGFloat(16)
-    var dividerTrailingMargin = CGFloat(0)
-    var dividerColor: Color?
-    @SettingBuilder var tuple: SettingTupleView
+public struct SettingGroup: SettingItem {
+    public var id: AnyHashable?
+    public var header: String?
+    public var footer: String?
+    public var horizontalPadding = CGFloat(16)
+    public var backgroundColor = Setting.backgroundColor
+    public var backgroundCornerRadius = CGFloat(12)
+    public var dividerLeadingMargin = CGFloat(16)
+    public var dividerTrailingMargin = CGFloat(0)
+    public var dividerColor: Color?
+    @SettingBuilder public var tuple: SettingTupleView
+
+    public init(
+        id: AnyHashable? = nil,
+        header: String? = nil,
+        footer: String? = nil,
+        horizontalPadding: CGFloat = CGFloat(16),
+        backgroundColor: Color = Setting.backgroundColor,
+        backgroundCornerRadius: CGFloat = CGFloat(12),
+        dividerLeadingMargin: CGFloat = CGFloat(16),
+        dividerTrailingMargin: CGFloat = CGFloat(0),
+        dividerColor: Color? = nil,
+        @SettingBuilder tuple: () -> SettingTupleView
+    ) {
+        self.id = id
+        self.header = header
+        self.footer = footer
+        self.horizontalPadding = horizontalPadding
+        self.backgroundColor = backgroundColor
+        self.backgroundCornerRadius = backgroundCornerRadius
+        self.dividerLeadingMargin = dividerLeadingMargin
+        self.dividerTrailingMargin = dividerTrailingMargin
+        self.dividerColor = dividerColor
+        self.tuple = tuple()
+    }
 }
 
 struct SettingGroupView<Content: View>: View {

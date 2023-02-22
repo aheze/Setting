@@ -8,8 +8,8 @@
 
 import SwiftUI
 
-enum Setting {
-    static var labelColor: Color = {
+public enum Setting {
+    public static var labelColor: Color = {
         #if os(iOS)
             return Color(uiColor: .label)
         #else
@@ -17,7 +17,7 @@ enum Setting {
         #endif
     }()
 
-    static var secondaryLabelColor: Color = {
+    public static var secondaryLabelColor: Color = {
         #if os(iOS)
             return Color(uiColor: .secondaryLabel)
         #else
@@ -25,7 +25,7 @@ enum Setting {
         #endif
     }()
 
-    static var backgroundColor: Color = {
+    public static var backgroundColor: Color = {
         #if os(iOS)
             return Color(uiColor: .systemBackground)
         #else
@@ -33,7 +33,7 @@ enum Setting {
         #endif
     }()
 
-    static var secondaryBackgroundColor: Color = {
+    public static var secondaryBackgroundColor: Color = {
         #if os(iOS)
             return Color(uiColor: .secondarySystemBackground)
         #else

@@ -8,13 +8,13 @@
 
 import SwiftUI
 
-struct SettingTupleView: SettingItem {
-    var id: AnyHashable?
-    var items: [SettingItem]
+public struct SettingTupleView: SettingItem {
+    public var id: AnyHashable?
+    public var items: [SettingItem]
 }
 
-@resultBuilder enum SettingBuilder {
-    static func buildOptional(_ component: SettingTupleView?) -> SettingTupleView {
+@resultBuilder public enum SettingBuilder {
+    public static func buildOptional(_ component: SettingTupleView?) -> SettingTupleView {
         if let component {
             return SettingTupleView(items: [component])
         } else {
@@ -22,19 +22,19 @@ struct SettingTupleView: SettingItem {
         }
     }
 
-    static func buildBlock(_ parts: SettingItem...) -> SettingTupleView {
+    public static func buildBlock(_ parts: SettingItem...) -> SettingTupleView {
         return SettingTupleView(items: parts)
     }
 
-    static func buildEither(first component: SettingItem) -> SettingTupleView {
+    public static func buildEither(first component: SettingItem) -> SettingTupleView {
         return SettingTupleView(items: [component])
     }
 
-    static func buildEither(second component: SettingItem) -> SettingTupleView {
+    public static func buildEither(second component: SettingItem) -> SettingTupleView {
         return SettingTupleView(items: [component])
     }
 
-    static func buildArray(_ components: [SettingItem]) -> SettingTupleView {
+    public static func buildArray(_ components: [SettingItem]) -> SettingTupleView {
         return SettingTupleView(items: components)
     }
 }
