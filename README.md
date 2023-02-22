@@ -1,3 +1,3 @@
-# Setting
+![Setting](Assets/Header.png)
 
-A description of this package.
+Compose beautiful preference panels.
