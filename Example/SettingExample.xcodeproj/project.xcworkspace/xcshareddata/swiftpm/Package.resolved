@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "setting",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/aheze/Setting.git",
+      "state" : {
+        "revision" : "70cd115b3c8d23312720dfeea7fab3cc120c35ee",
+        "version" : "0.0.1"
+      }
+    }
+  ],
+  "version" : 2
+}
