@@ -17,6 +17,24 @@ struct Settings: View {
                     SettingPage(title: "General") {}
                         .previewIcon("gearshape.fill")
                 }
+
+                SettingGroup {
+                    SettingPage(title: "Privacy") {}
+                        .previewIcon("hand.raised.fill", color: .green)
+
+                    SettingPage(title: "Notifications") {}
+                        .previewIcon("bell.badge.fill", color: .red)
+                }
+
+                SettingGroup {
+                    SettingPage(title: "Theme") {}
+                        .previewIcon("paintbrush.fill", color: .purple)
+
+                    SettingPage(title: "Widgets") {}
+                        .previewIcon("square.grid.2x2.fill", color: .orange)
+                    SettingPage(title: "About") {}
+                        .previewIcon("person.fill", color: .teal)
+                }
             }
         }
     }

@@ -13,7 +13,8 @@ class MainSettingViewModel: ObservableObject {
     @AppStorage("languageIndex") var languageIndex = 0
     @AppStorage("turboMode") var turboMode = true
     @AppStorage("brightness") var brightness = Double(50)
-    @AppStorage("themeIndex") var themeIndex = 0
+    @AppStorage("iconIndex") var iconIndex = 0
+    @AppStorage("modeIndex") var modeIndex = 0
     @AppStorage("enableNotifications") var enableNotifications = true
     @AppStorage("notificationIndex") var notificationIndex = 0
     @AppStorage("notificationPromo") var notificationPromo = true
@@ -24,10 +25,10 @@ class MainSettingViewModel: ObservableObject {
 
 struct MainSettingView: View {
     @StateObject var model = MainSettingViewModel()
-    
+
     var body: some View {
         SettingStack {
-            SettingPage(title: "Settings", spacing: 16, verticalPadding: 0) {
+            SettingPage(title: "Preferences") {
                 SettingGroup {
                     SettingPage(
                         title: "General",
@@ -88,6 +89,10 @@ struct MainSettingView: View {
                                 ],
                                 selectedIndex: $model.languageIndex
                             )
+                        }
+
+                        SettingGroup(header: "Brightness", footer: "Selected brightness: \(Int(model.brightness))") {
+                            SettingSlider(value: $model.brightness, range: 0 ... 100, minimumImage: Image(systemName: "sun.min"), maximumImage: Image(systemName: "sun.max"))
                         }
 
                         SettingGroup(header: "Super customizable!") {
@@ -200,23 +205,30 @@ struct MainSettingView: View {
                     }
                 }
 
-                SettingGroup(header: "Brightness", footer: "Selected brightness: \(Int(model.brightness))") {
-                    SettingSlider(value: $model.brightness, range: 0 ... 100, minimumImage: Image(systemName: "sun.min"), maximumImage: Image(systemName: "sun.max"))
+                SettingGroup {
+                    SettingPicker(
+                        title: "App Icon",
+                        choices: [
+                            "Classic",
+                            "Dark",
+                            "Neon",
+                        ],
+                        selectedIndex: $model.iconIndex
+                    )
 
                     SettingPicker(
                         title: "Mode",
                         choices: [
-                            "Classic",
+                            "Automatic",
+                            "Light",
                             "Dark",
-                            "Ultra Dark",
-                            "Super Bright",
                         ],
-                        selectedIndex: $model.themeIndex
+                        selectedIndex: $model.modeIndex
                     )
                 }
 
-                SettingCustomView(id: "Custom Footer", titleForSearch: "This is a custom view!") {
-                    Text("This is a custom view!")
+                SettingCustomView(id: "Custom Footer", titleForSearch: "Welcome to Setting!") {
+                    Text("Welcome to Setting!")
                         .foregroundColor(.white)
                         .font(.headline)
                         .shadow(color: .black.opacity(0.5), radius: 3, x: 0, y: 1)

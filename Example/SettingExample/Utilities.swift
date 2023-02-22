@@ -76,3 +76,20 @@ extension Comparable {
         return min(max(self, limits.lowerBound), limits.upperBound)
     }
 }
+
+public extension View {
+    @inlinable
+    func reverseMask<Mask: View>(
+        padding: CGFloat = 0, /// extra negative padding for shadows
+        @ViewBuilder _ mask: () -> Mask
+    ) -> some View {
+        self.mask(
+            Rectangle()
+                .padding(-padding)
+                .overlay(
+                    mask()
+                        .blendMode(.destinationOut)
+                )
+        )
+    }
+}

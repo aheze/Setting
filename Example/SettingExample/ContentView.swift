@@ -15,15 +15,21 @@ struct ContentView: View {
         TabView(selection: $selectedIndex) {
             MainSettingView()
                 .tabItem {
-                    Label("Main", systemImage: "gearshape")
+                    Label("Main", systemImage: "text.book.closed.fill")
                 }
                 .tag(0)
             
             Settings()
                 .tabItem {
-                    Label("Playground", systemImage: "gearshape")
+                    Label("Playground", systemImage: "gamecontroller.fill")
                 }
                 .tag(1)
+            
+            ControlPanelView()
+                .tabItem {
+                    Label("Control Panel", systemImage: "dial.high")
+                }
+                .tag(3)
         }
     }
 }
