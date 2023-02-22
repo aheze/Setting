@@ -27,7 +27,7 @@ struct MainSettingView: View {
     
     var body: some View {
         SettingStack {
-            SettingPage(title: "Settings", spacing: 16, verticalPadding: 0, navigationTitleDisplayMode: .large) {
+            SettingPage(title: "Settings", spacing: 16, verticalPadding: 0) {
                 SettingGroup {
                     SettingPage(
                         title: "General",

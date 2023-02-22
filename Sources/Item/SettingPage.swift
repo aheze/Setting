@@ -17,7 +17,7 @@ public struct SettingPage: SettingItem {
     public var spacing = CGFloat(20)
     public var verticalPadding = CGFloat(6)
     public var backgroundColor = Setting.secondaryBackgroundColor
-    public var navigationTitleDisplayMode = NavigationTitleDisplayMode.inline
+    public var navigationTitleDisplayMode = NavigationTitleDisplayMode.automatic
     public var previewConfiguration = PreviewConfiguration()
     @SettingBuilder public var tuple: SettingTupleView
 
@@ -27,7 +27,7 @@ public struct SettingPage: SettingItem {
         spacing: CGFloat = CGFloat(20),
         verticalPadding: CGFloat = CGFloat(6),
         backgroundColor: Color = Setting.secondaryBackgroundColor,
-        navigationTitleDisplayMode: SettingPage.NavigationTitleDisplayMode = NavigationTitleDisplayMode.inline,
+        navigationTitleDisplayMode: SettingPage.NavigationTitleDisplayMode = NavigationTitleDisplayMode.automatic,
         previewConfiguration: SettingPage.PreviewConfiguration = PreviewConfiguration(),
         @SettingBuilder tuple: () -> SettingTupleView
     ) {
@@ -76,6 +76,7 @@ struct SettingPageView<Content>: View where Content: View {
     var verticalPadding = CGFloat(6)
     var backgroundColor = Setting.secondaryBackgroundColor
     var navigationTitleDisplayMode = SettingPage.NavigationTitleDisplayMode.inline
+    var isInitialPage = false
     @ViewBuilder var content: Content
 
     var body: some View {
@@ -84,7 +85,11 @@ struct SettingPageView<Content>: View where Content: View {
         let navigationBarTitleDisplayMode: NavigationBarItem.TitleDisplayMode = {
             switch navigationTitleDisplayMode {
             case .automatic:
-                return .automatic
+                if isInitialPage {
+                    return .large
+                } else {
+                    return .inline
+                }
             case .inline:
                 return .inline
             case .large:

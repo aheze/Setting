@@ -87,6 +87,7 @@ public extension SettingItem {
 
 struct SettingItemView: View {
     var item: SettingItem
+    var isInitialPage = false
     var isPagePreview = true
 
     @State var isActive = false
@@ -134,7 +135,8 @@ struct SettingItemView: View {
                     spacing: page.spacing,
                     verticalPadding: page.verticalPadding,
                     backgroundColor: page.backgroundColor,
-                    navigationTitleDisplayMode: page.navigationTitleDisplayMode
+                    navigationTitleDisplayMode: page.navigationTitleDisplayMode,
+                    isInitialPage: isInitialPage
                 ) {
                     ForEach(page.tuple.items, id: \.identifier) { item in
                         SettingItemView(item: item, isPagePreview: true)

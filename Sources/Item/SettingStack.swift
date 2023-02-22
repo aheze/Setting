@@ -56,11 +56,11 @@ public struct SettingStack: View {
     }
 
     @ViewBuilder var main: some View {
-        let settingPage = page()
+        var settingPage = page()
 
         VStack {
             if settingViewModel.searchText.isEmpty {
-                SettingItemView(item: settingPage, isPagePreview: false)
+                SettingItemView(item: settingPage, isInitialPage: true, isPagePreview: false)
             } else if
                 let searchResult = settingViewModel.searchResult,
                 !searchResult.sections.isEmpty
