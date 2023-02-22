@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3CCFBA8229A68B2D00877BE9 /* Setting in Frameworks */ = {isa = PBXBuildFile; productRef = 3CCFBA8129A68B2D00877BE9 /* Setting */; };
+		3C25FE1929A696B900C11678 /* Setting in Frameworks */ = {isa = PBXBuildFile; productRef = 3C25FE1829A696B900C11678 /* Setting */; };
 		3CD8B78C29A683D100463C48 /* SettingExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD8B78B29A683D100463C48 /* SettingExampleApp.swift */; };
 		3CD8B78E29A683D100463C48 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD8B78D29A683D100463C48 /* ContentView.swift */; };
 		3CD8B79029A683D300463C48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CD8B78F29A683D300463C48 /* Assets.xcassets */; };
@@ -26,26 +26,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3CCFBA8229A68B2D00877BE9 /* Setting in Frameworks */,
+				3C25FE1929A696B900C11678 /* Setting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3CCFBA8029A68B2D00877BE9 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		3CD8B77F29A683D100463C48 = {
 			isa = PBXGroup;
 			children = (
 				3CD8B78A29A683D100463C48 /* SettingExample */,
 				3CD8B78929A683D100463C48 /* Products */,
-				3CCFBA8029A68B2D00877BE9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -85,7 +77,7 @@
 			);
 			name = SettingExample;
 			packageProductDependencies = (
-				3CCFBA8129A68B2D00877BE9 /* Setting */,
+				3C25FE1829A696B900C11678 /* Setting */,
 			);
 			productName = SettingExample;
 			productReference = 3CD8B78829A683D100463C48 /* SettingExample.app */;
@@ -115,6 +107,9 @@
 				Base,
 			);
 			mainGroup = 3CD8B77F29A683D100463C48;
+			packageReferences = (
+				3C25FE1729A696B900C11678 /* XCRemoteSwiftPackageReference "Setting" */,
+			);
 			productRefGroup = 3CD8B78929A683D100463C48 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -354,9 +349,21 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		3C25FE1729A696B900C11678 /* XCRemoteSwiftPackageReference "Setting" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/aheze/Setting.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
-		3CCFBA8129A68B2D00877BE9 /* Setting */ = {
+		3C25FE1829A696B900C11678 /* Setting */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 3C25FE1729A696B900C11678 /* XCRemoteSwiftPackageReference "Setting" */;
 			productName = Setting;
 		};
 /* End XCSwiftPackageProductDependency section */
