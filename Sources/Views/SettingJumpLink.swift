@@ -19,7 +19,7 @@ public struct SettingJumpLink: View {
     public var verticalPadding = CGFloat(14)
     public var horizontalPadding = CGFloat(16)
 
-    @EnvironmentObject var settingsViewModel: SettingViewModel
+    @EnvironmentObject var settingViewModel: SettingViewModel
     @State var isActive = false
 
     public init(
@@ -65,9 +65,17 @@ public struct SettingJumpLink: View {
 
         HStack(spacing: horizontalSpacing) {
             VStack(spacing: verticalSpacing) {
-                Text(title)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                if settingViewModel.highlightMatchingText {
+                    let highlightedText = highlightSearchText(searchText: settingViewModel.searchText, in: title)
+
+                    Text(highlightedText)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                } else {
+                    Text(title)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
 
                 /// only show titles if more than 1 (no need to say "General" underneath "General")
                 if titles.count > 1 {
@@ -111,5 +119,23 @@ public struct SettingJumpLink: View {
         }
 
         return ""
+    }
+
+    func highlightSearchText(searchText: String, in text: String) -> AttributedString {
+        var attributedString = AttributedString(text)
+        let ranges = text.ranges(of: searchText, options: [.caseInsensitive, .diacriticInsensitive])
+
+        if ranges.isEmpty {
+            attributedString.backgroundColor = .clear
+        } else {
+            attributedString.backgroundColor = .clear
+            for range in ranges {
+                if let attributedRange = range.attributedRange(for: attributedString) {
+                    attributedString[attributedRange].backgroundColor = .accentColor.opacity(0.2)
+                }
+            }
+        }
+
+        return attributedString
     }
 }

@@ -15,6 +15,7 @@ import SwiftUI
 public class SettingViewModel: ObservableObject {
     @Published public var searchText = ""
     @Published public var searchResult: SettingSearchResult?
+    @Published public var highlightMatchingText = true
 
     @Published public var paths = [SettingPath]()
     public var regeneratePaths = PassthroughSubject<Void, Never>()
