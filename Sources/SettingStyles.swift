@@ -21,7 +21,6 @@ struct SettingRowButtonStyle: ButtonStyle {
     }
 }
 
-
 extension ButtonStyle where Self == SettingRowButtonStyle {
     static var row: SettingRowButtonStyle {
         SettingRowButtonStyle()
