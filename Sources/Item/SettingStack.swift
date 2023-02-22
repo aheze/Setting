@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SettingStack: View {
+public struct SettingStack: View {
     var page: () -> SettingPage
 
     @StateObject var settingViewModel = SettingViewModel()
