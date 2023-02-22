@@ -1,5 +1,5 @@
 //
-//  MainSettingView.swift
+//  PreferencesView.swift
 //  SettingExample
 //
 //  Created by A. Zheng (github.com/aheze) on 2/22/23.
@@ -9,7 +9,7 @@
 import Setting
 import SwiftUI
 
-class MainSettingViewModel: ObservableObject {
+class PreferencesViewModel: ObservableObject {
     @AppStorage("languageIndex") var languageIndex = 0
     @AppStorage("turboMode") var turboMode = true
     @AppStorage("brightness") var brightness = Double(50)
@@ -23,8 +23,8 @@ class MainSettingViewModel: ObservableObject {
     @Published var showingAlert = false
 }
 
-struct MainSettingView: View {
-    @StateObject var model = MainSettingViewModel()
+struct PreferencesView: View {
+    @StateObject var model = PreferencesViewModel()
 
     var body: some View {
         SettingStack {

@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3C25FE1929A696B900C11678 /* Setting in Frameworks */ = {isa = PBXBuildFile; productRef = 3C25FE1829A696B900C11678 /* Setting */; };
-		3C25FE1B29A6B06C00C11678 /* MainSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C25FE1A29A6B06C00C11678 /* MainSettingView.swift */; };
+		3C25FE1B29A6B06C00C11678 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C25FE1A29A6B06C00C11678 /* PreferencesView.swift */; };
 		3C25FE1D29A6B0AF00C11678 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C25FE1C29A6B0AF00C11678 /* Utilities.swift */; };
-		3C25FE1F29A6B0D700C11678 /* PlaygroundSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C25FE1E29A6B0D700C11678 /* PlaygroundSettingView.swift */; };
+		3C25FE1F29A6B0D700C11678 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C25FE1E29A6B0D700C11678 /* SettingsView.swift */; };
 		3C25FE2229A6C24C00C11678 /* ControlPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C25FE2129A6C24C00C11678 /* ControlPanelView.swift */; };
 		3CD8B78C29A683D100463C48 /* SettingExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD8B78B29A683D100463C48 /* SettingExampleApp.swift */; };
 		3CD8B78E29A683D100463C48 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD8B78D29A683D100463C48 /* ContentView.swift */; };
@@ -18,9 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3C25FE1A29A6B06C00C11678 /* MainSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSettingView.swift; sourceTree = "<group>"; };
+		3C25FE1A29A6B06C00C11678 /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
 		3C25FE1C29A6B0AF00C11678 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
-		3C25FE1E29A6B0D700C11678 /* PlaygroundSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaygroundSettingView.swift; sourceTree = "<group>"; };
+		3C25FE1E29A6B0D700C11678 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		3C25FE2029A6B2FB00C11678 /* Setting */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Setting; path = ..; sourceTree = "<group>"; };
 		3C25FE2129A6C24C00C11678 /* ControlPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlPanelView.swift; sourceTree = "<group>"; };
 		3CD8B78829A683D100463C48 /* SettingExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SettingExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,8 +64,8 @@
 			children = (
 				3CD8B78B29A683D100463C48 /* SettingExampleApp.swift */,
 				3CD8B78D29A683D100463C48 /* ContentView.swift */,
-				3C25FE1A29A6B06C00C11678 /* MainSettingView.swift */,
-				3C25FE1E29A6B0D700C11678 /* PlaygroundSettingView.swift */,
+				3C25FE1A29A6B06C00C11678 /* PreferencesView.swift */,
+				3C25FE1E29A6B0D700C11678 /* SettingsView.swift */,
 				3C25FE2129A6C24C00C11678 /* ControlPanelView.swift */,
 				3C25FE1C29A6B0AF00C11678 /* Utilities.swift */,
 				3CD8B78F29A683D300463C48 /* Assets.xcassets */,
@@ -149,9 +149,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C25FE1B29A6B06C00C11678 /* MainSettingView.swift in Sources */,
+				3C25FE1B29A6B06C00C11678 /* PreferencesView.swift in Sources */,
 				3CD8B78E29A683D100463C48 /* ContentView.swift in Sources */,
-				3C25FE1F29A6B0D700C11678 /* PlaygroundSettingView.swift in Sources */,
+				3C25FE1F29A6B0D700C11678 /* SettingsView.swift in Sources */,
 				3C25FE2229A6C24C00C11678 /* ControlPanelView.swift in Sources */,
 				3C25FE1D29A6B0AF00C11678 /* Utilities.swift in Sources */,
 				3CD8B78C29A683D100463C48 /* SettingExampleApp.swift in Sources */,

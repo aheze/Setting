@@ -1,5 +1,5 @@
 //
-//  Settings.swift
+//  SettingsView.swift
 //  SettingExample
 //
 //  Created by A. Zheng (github.com/aheze) on 2/22/23.
@@ -9,7 +9,7 @@
 import Setting
 import SwiftUI
 
-struct Settings: View {
+struct SettingsView: View {
     var body: some View {
         SettingStack {
             SettingPage(title: "Settings") {
@@ -40,9 +40,9 @@ struct Settings: View {
     }
 }
 
-struct Settings_Previews: PreviewProvider {
+struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        Settings()
+        SettingsView()
     }
 }
 

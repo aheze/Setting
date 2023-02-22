@@ -13,18 +13,18 @@ struct ContentView: View {
     @AppStorage("selectedIndex") var selectedIndex = 1
     var body: some View {
         TabView(selection: $selectedIndex) {
-            MainSettingView()
+            PreferencesView()
                 .tabItem {
-                    Label("Main", systemImage: "text.book.closed.fill")
+                    Label("Preferences", systemImage: "text.book.closed")
                 }
                 .tag(0)
-            
-            Settings()
+
+            SettingsView()
                 .tabItem {
-                    Label("Playground", systemImage: "gamecontroller.fill")
+                    Label("Settings", systemImage: "gearshape")
                 }
                 .tag(1)
-            
+
             ControlPanelView()
                 .tabItem {
                     Label("Control Panel", systemImage: "dial.high")
