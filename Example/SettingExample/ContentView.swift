@@ -294,6 +294,10 @@ extension Color {
             let color = UIColor(self)
 
             if color.getRed(&fRed, green: &fGreen, blue: &fBlue, alpha: &fAlpha) {
+                fRed = fRed.clamped(to: 0 ... 1)
+                fGreen = fGreen.clamped(to: 0 ... 1)
+                fBlue = fBlue.clamped(to: 0 ... 1)
+
                 let iRed = UInt(fRed * 255.0)
                 let iGreen = UInt(fGreen * 255.0)
                 let iBlue = UInt(fBlue * 255.0)
@@ -309,6 +313,10 @@ extension Color {
             let color = NSColor(self)
 
             color.getRed(&fRed, green: &fGreen, blue: &fBlue, alpha: &fAlpha)
+            fRed = fRed.clamped(to: 0 ... 1)
+            fGreen = fGreen.clamped(to: 0 ... 1)
+            fBlue = fBlue.clamped(to: 0 ... 1)
+
             let iRed = UInt(fRed * 255.0)
             let iGreen = UInt(fGreen * 255.0)
             let iBlue = UInt(fBlue * 255.0)
@@ -318,5 +326,12 @@ extension Color {
             return hex
 
         #endif
+    }
+}
+
+extension Comparable {
+    /// used for the UIColor
+    func clamped(to limits: ClosedRange<Self>) -> Self {
+        return min(max(self, limits.lowerBound), limits.upperBound)
     }
 }
