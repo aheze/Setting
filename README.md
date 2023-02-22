@@ -1,6 +1,6 @@
 <img src="Assets/Top.png" width="300" alt="Header image">
 
-Compose beautiful preference panels.
+**Compose beautiful preference panels.**
 
 - Powerful but simple syntax, just like SwiftUI.
 - Create nested pages and groups.
