@@ -17,11 +17,6 @@ struct Settings: View {
                     SettingPage(title: "General") {}
                         .previewIcon("gearshape.fill")
                 }
-
-                SettingGroup {
-                    SettingPage(title: "Privacy") {}
-                        .previewIcon("hand.raised.fill", color: .green)
-                }
             }
         }
     }
@@ -32,3 +27,37 @@ struct Settings_Previews: PreviewProvider {
         Settings()
     }
 }
+
+// struct Settings: View {
+//    @State var isOn = false
+//    @State var value = Double(50)
+//
+//    var body: some View {
+//        SettingStack {
+//            SettingPage(title: "Settings") {
+//                SettingGroup {
+//                    SettingPage(title: "General") {}
+//                        .previewIcon("gearshape.fill")
+//                }
+//
+//                SettingGroup {
+//                    SettingPage(title: "Privacy") {}
+//                        .previewIcon("hand.raised.fill", color: .green)
+//
+//                    SettingPage(title: "Notifications") {}
+//                        .previewIcon("bell.badge.fill", color: .red)
+//                }
+//
+//                SettingGroup {
+//                    SettingToggle(title: "Advanced Settings", isOn: $isOn)
+//                }
+//
+//                if isOn {
+//                    SettingGroup(header: "Daily marketing emails") {
+//                        SettingSlider(value: $value, range: 0 ... 100)
+//                    }
+//                }
+//            }
+//        }
+//    }
+// }
