@@ -9,3 +9,5 @@ Compose beautiful preference panels.
 - Style components with native SwiftUI modifiers.
 - Show and hide components dynamically.
 - Add your own custom SwiftUI views.
+
+![Screenshots](Assets/Setting.png)
