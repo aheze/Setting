@@ -8,12 +8,18 @@
 
 import SwiftUI
 
+/**
+ An general purpose icon view.
+ */
 public enum SettingIcon {
     case system(icon: String, backgroundColor: Color)
     case image(name: String, inset: CGFloat, backgroundColor: Color)
     case custom(view: AnyView)
 }
 
+/**
+ A view for displaying a `SettingIcon`.
+ */
 public struct SettingIconView: View {
     public var icon: SettingIcon
 

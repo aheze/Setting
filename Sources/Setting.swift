@@ -8,6 +8,9 @@
 
 import SwiftUI
 
+/**
+ A collection of default color values.
+ */
 public enum Setting {
     public static var labelColor: Color = {
         #if os(iOS)

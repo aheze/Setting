@@ -8,6 +8,9 @@
 
 import SwiftUI
 
+/**
+ A simple text view.
+ */
 public struct SettingText: View, SettingItem {
     public var id: AnyHashable?
     public var title: String

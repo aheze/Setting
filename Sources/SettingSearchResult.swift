@@ -8,6 +8,9 @@
 
 import SwiftUI
 
+/**
+ A struct containing the search results.
+  */
 public struct SettingSearchResult {
     public var sections: [Section]
 

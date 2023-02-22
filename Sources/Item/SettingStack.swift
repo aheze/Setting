@@ -7,13 +7,40 @@
 
 import SwiftUI
 
+/**
+ The main view for settings. Everything else goes in here.
+ */
 public struct SettingStack: View {
+    /**
+     The main page to display.
+     */
     public var page: () -> SettingPage
+
+    /**
+     A custom view to display when a search doesn't produce results.
+
+     If this is nil, the default view will be used.
+     */
+    public var customNoResultsView: AnyView?
 
     @StateObject var settingViewModel = SettingViewModel()
 
+    /**
+     Create a new Settings view from a `SettingPage`. The default "no results" view will be used.
+     */
     public init(page: @escaping () -> SettingPage) {
         self.page = page
+    }
+
+    /**
+     Create a new Settings view from a `SettingPage`, with a custom "no results" view.
+     */
+    public init<Content>(
+        page: @escaping () -> SettingPage,
+        @ViewBuilder customNoResultsView: @escaping () -> Content
+    ) where Content: View {
+        self.page = page
+        self.customNoResultsView = AnyView(customNoResultsView())
     }
 
     public var body: some View {
@@ -40,10 +67,14 @@ public struct SettingStack: View {
             {
                 SettingSearchResultView(searchResult: searchResult)
             } else {
-                Text("No results for '\(settingViewModel.searchText)'")
-                    .foregroundColor(Setting.secondaryLabelColor)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(Setting.secondaryBackgroundColor)
+                if let customNoResultsView {
+                    customNoResultsView
+                } else {
+                    Text("No results for '\(settingViewModel.searchText)'")
+                        .foregroundColor(Setting.secondaryLabelColor)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(Setting.secondaryBackgroundColor)
+                }
             }
         }
         .searchable(text: $settingViewModel.searchText)

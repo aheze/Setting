@@ -8,6 +8,9 @@
 
 import SwiftUI
 
+/**
+ A slider.
+ */
 public struct SettingSlider: View, SettingItem {
     public var id: AnyHashable?
     @Binding public var value: Double

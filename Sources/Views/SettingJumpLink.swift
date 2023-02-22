@@ -8,6 +8,9 @@
 
 import SwiftUI
 
+/**
+ A link to show in the search results, for jumping to specific page.
+ */
 public struct SettingJumpLink: View {
     public var path: SettingPath
     public var indicator = "chevron.forward"

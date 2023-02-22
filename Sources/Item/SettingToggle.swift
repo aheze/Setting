@@ -8,6 +8,9 @@
 
 import SwiftUI
 
+/**
+ A simple toggle.
+ */
 public struct SettingToggle: View, SettingItem {
     public var id: AnyHashable?
     public var title: String

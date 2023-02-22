@@ -8,6 +8,9 @@
 
 import SwiftUI
 
+/**
+ A plain button.
+ */
 public struct SettingButton: View, SettingItem {
     public var id: AnyHashable?
     public var title: String

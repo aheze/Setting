@@ -8,11 +8,17 @@
 
 import SwiftUI
 
+/**
+ A `SettingItem` that can nest multiple sub-`SettingItem`s.
+ */
 public struct SettingTupleView: SettingItem {
     public var id: AnyHashable?
     public var items: [SettingItem]
 }
 
+/**
+ The result builder for constructing `SettingItem` views.
+ */
 @resultBuilder public enum SettingBuilder {
     public static func buildOptional(_ component: SettingTupleView?) -> SettingTupleView {
         if let component {
@@ -40,7 +46,8 @@ public struct SettingTupleView: SettingItem {
 }
 
 public extension SettingTupleView {
-    /// flatten the tuple view and groups
+    
+    /// Flatten the tuple view and subgroups.
     var flattened: [SettingItem] {
         var flattened = [SettingItem]()
 

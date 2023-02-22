@@ -8,7 +8,9 @@
 
 import SwiftUI
 
-/// A Setting page
+/**
+ A settings page.
+ */
 public struct SettingPage: SettingItem {
     public var id: AnyHashable?
     public var title: String

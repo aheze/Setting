@@ -8,6 +8,9 @@
 
 import SwiftUI
 
+/**
+ A button style that highlights the row when tapped.
+ */
 public struct SettingRowButtonStyle: ButtonStyle {
     public func makeBody(configuration: Configuration) -> some View {
         configuration.label

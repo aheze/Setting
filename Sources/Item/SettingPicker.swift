@@ -8,6 +8,9 @@
 
 import SwiftUI
 
+/**
+ A multi-choice picker.
+ */
 public struct SettingPicker: View, SettingItem {
     public var id: AnyHashable?
     public var title: String

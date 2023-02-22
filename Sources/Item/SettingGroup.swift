@@ -8,6 +8,9 @@
 
 import SwiftUI
 
+/**
+ A group of `SettingItem`s.
+ */
 public struct SettingGroup: SettingItem {
     public var id: AnyHashable?
     public var header: String?

@@ -8,11 +8,17 @@
 
 import SwiftUI
 
+/**
+ The base protocol for items shown in the `SettingBuilder`.
+ */
 public protocol SettingItem {
     var id: AnyHashable? { get set }
 }
 
 public extension SettingItem {
+    /**
+     A unique identifier for the view.
+     */
     var identifier: AnyHashable {
         if let id {
             return id
@@ -21,6 +27,9 @@ public extension SettingItem {
         return textIdentifier
     }
 
+    /**
+     The identifier generated from the item's title.
+     */
     var textIdentifier: String? {
         switch self {
         case let text as SettingText:
@@ -47,6 +56,9 @@ public extension SettingItem {
         }
     }
 
+    /**
+     Text for searching.
+     */
     var text: String? {
         switch self {
         case let text as SettingText:
