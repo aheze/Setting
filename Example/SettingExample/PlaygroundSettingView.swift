@@ -1,5 +1,5 @@
 //
-//  PlaygroundSettingView.swift
+//  Settings.swift
 //  SettingExample
 //
 //  Created by A. Zheng (github.com/aheze) on 2/22/23.
@@ -9,25 +9,26 @@
 import Setting
 import SwiftUI
 
-struct PlaygroundSettingView: View {
+struct Settings: View {
     var body: some View {
         SettingStack {
             SettingPage(title: "Settings") {
                 SettingGroup {
-                    SettingPage(title: "Subsettings") {
-                        SettingGroup {}
-                    }
-                    .previewIcon("star.fill")
+                    SettingPage(title: "General") {}
+                        .previewIcon("gearshape.fill")
+                }
+
+                SettingGroup {
+                    SettingPage(title: "Privacy") {}
+                        .previewIcon("hand.raised.fill", color: .green)
                 }
             }
         }
     }
 }
 
-struct PlaygroundSettingView_Previews: PreviewProvider {
+struct Settings_Previews: PreviewProvider {
     static var previews: some View {
-        PlaygroundSettingView()
+        Settings()
     }
 }
-
-class PlaygroundSettingViewModel: ObservableObject {}

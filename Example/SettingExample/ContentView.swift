@@ -19,7 +19,7 @@ struct ContentView: View {
                 }
                 .tag(0)
             
-            PlaygroundSettingView()
+            Settings()
                 .tabItem {
                     Label("Playground", systemImage: "gearshape")
                 }

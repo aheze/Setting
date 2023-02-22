@@ -72,9 +72,9 @@ public struct SettingPage: SettingItem {
 
 /// Convenience modifiers.
 public extension SettingPage {
-    func previewIcon(_ icon: String, backgroundColor: Color = .blue) -> SettingPage {
+    func previewIcon(_ icon: String, color: Color = .blue) -> SettingPage {
         var page = self
-        page.previewConfiguration.icon = .system(icon: icon, backgroundColor: backgroundColor)
+        page.previewConfiguration.icon = .system(icon: icon, backgroundColor: color)
         return page
     }
 
