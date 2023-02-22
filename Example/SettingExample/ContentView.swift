@@ -7,14 +7,7 @@
 //
 
 import Setting
-// import Setting
 import SwiftUI
-
-// struct ContentView: View {
-//    var body: some View {
-//        Text("Hi")
-//    }
-// }
 
 class ViewModel: ObservableObject {
     @AppStorage("languageIndex") var languageIndex = 0
@@ -25,9 +18,7 @@ class ViewModel: ObservableObject {
     @AppStorage("notificationIndex") var notificationIndex = 0
     @AppStorage("notificationPromo") var notificationPromo = true
     @AppStorage("notificationUpdates") var notificationUpdates = true
-
     @AppStorage("color") var color = 0xFF3100
-
     @Published var showingAlert = false
 }
 
