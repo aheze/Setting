@@ -70,10 +70,31 @@ public struct SettingPage: SettingItem {
     }
 }
 
+/// Convenience modifiers.
+public extension SettingPage {
+    func previewIcon(_ icon: String, backgroundColor: Color = .blue) -> SettingPage {
+        var page = self
+        page.previewConfiguration.icon = .system(icon: icon, backgroundColor: backgroundColor)
+        return page
+    }
+
+    func previewIcon(icon: SettingIcon) -> SettingPage {
+        var page = self
+        page.previewConfiguration.icon = icon
+        return page
+    }
+
+    func previewIndicator(_ indicator: String) -> SettingPage {
+        var page = self
+        page.previewConfiguration.indicator = indicator
+        return page
+    }
+}
+
 struct SettingPageView<Content>: View where Content: View {
     var title: String
     var spacing = CGFloat(20)
-    var verticalPadding = CGFloat(6)
+    var verticalPadding = CGFloat(12)
     var backgroundColor = Setting.secondaryBackgroundColor
     var navigationTitleDisplayMode = SettingPage.NavigationTitleDisplayMode.inline
     var isInitialPage = false

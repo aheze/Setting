@@ -9,25 +9,25 @@
 import Setting
 import SwiftUI
 
-class PlaygroundSettingViewModel: ObservableObject {}
-
 struct PlaygroundSettingView: View {
     var body: some View {
         SettingStack {
             SettingPage(title: "Settings") {
                 SettingGroup {
                     SettingPage(title: "Subsettings") {
-                        SettingGroup {
-                            
-                        }
+                        SettingGroup {}
                     }
+                    .previewIcon("star.fill")
                 }
             }
         }
     }
 }
+
 struct PlaygroundSettingView_Previews: PreviewProvider {
     static var previews: some View {
         PlaygroundSettingView()
     }
 }
+
+class PlaygroundSettingViewModel: ObservableObject {}
