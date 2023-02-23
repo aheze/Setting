@@ -28,7 +28,7 @@ https://github.com/aheze/Setting
 <table>
 <tr>
 <td>
-</td>
+
 
 
 ```swift
@@ -49,10 +49,12 @@ SettingStack {
     }
 }
 ```
-<td>
 </td>
+<td>
 
 ![](Assets/1.png)
+
+</td>
 </tr>
 </table>
 
