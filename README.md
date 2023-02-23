@@ -233,7 +233,7 @@ SettingStack {
 
 ### Notes
 
-- If multiple components have the same title, use the `id` parameter to distinguish identity.
+- If multiple components have the same title, use the `id` parameter to make sure everything gets rendered correctly.
 
 ```swift
 SettingText(id: "Announcement 1", title: "Hello!")
