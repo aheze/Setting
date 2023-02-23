@@ -2,10 +2,11 @@
 
 **Compose beautiful preference panels.**
 
-- Powerful but simple syntax, just like SwiftUI.
+- Simple but powerful syntax.
 - Create nested pages and groups.
 - Fully searchable.
-- Dozens of pre-made components: Toggle, Button, Slider, etc...
+- Native integration with SwiftUI and AppStorage.
+- Comes with pre-made components: Toggle, Button, Slider, etc...
 - Style components with native SwiftUI modifiers.
 - Show and hide components dynamically.
 - Add your own custom SwiftUI views.
@@ -13,7 +14,7 @@
 
 ![Screenshots of views created with Setting](Assets/Setting.png)
 
-![Screenshots of a nested page and search results](Assets/Search.png)
+![Screenshots of a nested page and search results](Assets/Details.png)
 
 ### Installation
 
@@ -25,6 +26,7 @@ https://github.com/aheze/Setting
 
 ### Examples
 
+View more examples in the [example app](https://github.com/aheze/Setting/tree/main/Example/SettingExample).
 
 <table>
 <tr>
