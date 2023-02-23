@@ -247,7 +247,7 @@ struct PlaygroundView: View {
 </td>
 <td>
 
-![Settings view rendered with "Put anything here!" label](Assets/5.png)
+![Settings view rendered with "Put anything here!" label](Assets/NoResults.png)
 
 </td>
 </tr>
