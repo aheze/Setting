@@ -23,6 +23,39 @@ Setting is available via the [Swift Package Manager](https://developer.apple.com
 https://github.com/aheze/Setting
 ```
 
+### Components
+
+<table>
+<tr>
+<td>
+</td>
+
+
+```swift
+SettingStack {
+    SettingPage(title: "Playground") {
+        SettingCustomView {
+            Color.blue
+                .opacity(0.1)
+                .cornerRadius(12)
+                .overlay {
+                    Text("Put anything here!")
+                        .foregroundColor(.blue)
+                        .font(.title.bold())
+                }
+                .frame(height: 150)
+                .padding(.horizontal, 16)
+        }
+    }
+}
+```
+<td>
+</td>
+
+![](Assets/1.png)
+</tr>
+</table>
+
 ### Community
 
 Author | Contributing | Need Help?
