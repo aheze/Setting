@@ -25,6 +25,71 @@ https://github.com/aheze/Setting
 
 ### Examples
 
+
+<table>
+<tr>
+<td>
+
+```swift
+import Setting
+import SwiftUI
+
+struct PlaygroundView: View {
+    var body: some View {
+        SettingStack {
+            SettingPage(title: "Playground") {
+                SettingGroup {
+                    SettingText(title: "Hello!")
+                }
+            }
+        }
+    }
+}
+```
+</td>
+<td>
+
+![Settings view rendered with "Hello!" label](Assets/1.png)
+
+</td>
+</tr>
+</table>
+
+
+<table>
+<tr>
+<td>
+
+```swift
+SettingStack {
+    SettingPage(title: "Playground") {
+        SettingGroup {
+            SettingText(title: "Hello!")
+        }
+
+        SettingGroup {
+            SettingPage(title: "First Page") {}
+                .previewIcon("star")
+
+            SettingPage(title: "Second Page") {}
+                .previewIcon("sparkles")
+
+            SettingPage(title: "Third Page") {}
+                .previewIcon("leaf.fill")
+        }
+    }
+}
+```
+</td>
+<td>
+
+![Settings view rendered with 3 row links](Assets/2.png)
+
+</td>
+</tr>
+</table>
+
+
 <table>
 <tr>
 <td>
