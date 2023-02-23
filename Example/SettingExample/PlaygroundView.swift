@@ -13,17 +13,8 @@ struct PlaygroundView: View {
     var body: some View {
         SettingStack {
             SettingPage(title: "Playground") {
-                SettingCustomView {
-                    Color.blue
-                        .opacity(0.1)
-                        .cornerRadius(12)
-                        .overlay {
-                            Text("Put anything here!")
-                                .foregroundColor(.blue)
-                                .font(.title.bold())
-                        }
-                        .frame(height: 150)
-                        .padding(.horizontal, 16)
+                SettingGroup {
+                    SettingText(title: "Hello!")
                 }
             }
         }
@@ -35,5 +26,3 @@ struct PlaygroundView_Previews: PreviewProvider {
         PlaygroundView()
     }
 }
-
-

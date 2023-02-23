@@ -23,13 +23,74 @@ Setting is available via the [Swift Package Manager](https://developer.apple.com
 https://github.com/aheze/Setting
 ```
 
-### Components
+### Examples
 
 <table>
 <tr>
 <td>
 
+```swift
+struct PlaygroundView: View {
+    @AppStorage("isOn") var isOn = true
+    @AppStorage("value") var value = Double(5)
 
+    var body: some View {
+        SettingStack {
+            SettingPage(title: "Playground") {
+                SettingGroup {
+                    SettingToggle(title: "On", isOn: $isOn)
+                }
+
+                SettingGroup(header: "Slider") {
+                    SettingSlider(
+                        value: $value,
+                        range: 0 ... 10
+                    )
+                }
+            }
+        }
+    }
+}
+```
+</td>
+<td>
+
+![Settings view rendered with toggle and slider](Assets/3.png)
+
+</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<td>
+
+```swift
+SettingStack {
+    SettingPage(title: "Playground") {
+        SettingGroup {
+            SettingPicker(
+                title: "Picker",
+                choices: ["A", "B", "C", "D"],
+                selectedIndex: $index
+            )
+        }
+    }
+}
+```
+</td>
+<td>
+
+![Settings view rendered with picker](Assets/4.png)
+
+</td>
+</tr>
+</table>
+
+
+<table>
+<tr>
+<td>
 
 ```swift
 SettingStack {
@@ -52,7 +113,7 @@ SettingStack {
 </td>
 <td>
 
-![](Assets/1.png)
+![Settings view rendered with "Put anything here!" label](Assets/5.png)
 
 </td>
 </tr>
