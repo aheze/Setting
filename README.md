@@ -24,6 +24,49 @@ Setting is available via the [Swift Package Manager](https://developer.apple.com
 https://github.com/aheze/Setting
 ```
 
+### Usage
+
+```swift
+import Setting
+import SwiftUI
+
+struct PlaygroundView: View {
+    /// Settings supports `@State`, `@AppStorage`, `@Published`, and more!
+    @AppStorage("isOn") var isOn = true
+
+    var body: some View {
+        /// Start things off with `SettingStack`.
+        SettingStack {
+            /// This is the main settings page.
+            SettingPage(title: "Playground") {
+                /// Use groups to group components together.
+                SettingGroup(header: "Main Group") {
+                    /// Use any of the pre-made components...
+                    SettingToggle(title: "This value is persisted!", isOn: $isOn)
+
+                    /// ...or define your own ones!
+
+                    SettingCustomView {
+                        Image("Logo")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 160)
+                            .padding(20)
+                    }
+
+                    /// Nest `SettingPage` inside other `SettingPage`s!
+                    SettingPage(title: "Advanced Settings") {
+                        SettingText(title: "I show up on the next page!")
+                    }
+                }
+            }
+        }
+    }
+}
+```
+![The result, a generated settings page. Clicking on "Advanced Settings" presents a new page.](Assets/Result.png)
+
+
 ### Examples
 
 View more examples in the [example app](https://github.com/aheze/Setting/tree/main/Example/SettingExample).
@@ -33,9 +76,6 @@ View more examples in the [example app](https://github.com/aheze/Setting/tree/ma
 <td>
 
 ```swift
-import Setting
-import SwiftUI
-
 struct PlaygroundView: View {
     var body: some View {
         SettingStack {
@@ -208,6 +248,15 @@ SettingToggle(title: "Turn on", isOn: $isOn)
 
 if isOn {
     SettingText("I'm turned on!")
+}
+```
+
+- Wrap components in `SettingCustomView` to style them.
+
+```swift
+SettingCustomView {
+    SettingText(title: "I'm bold!")
+        .bold()
 }
 ```
 

@@ -10,27 +10,35 @@ import Setting
 import SwiftUI
 
 struct PlaygroundView: View {
-    @StateObject var settingViewModel = SettingViewModel()
+    /// Settings supports `@State`, `@AppStorage`, `@Published`, and more!
+    @AppStorage("isOn") var isOn = true
 
     var body: some View {
-        SettingStack(settingViewModel: settingViewModel) {
+        /// Start things off with `SettingStack`.
+        SettingStack {
+            /// This is the main settings page.
             SettingPage(title: "Playground") {
-                SettingGroup {
-                    SettingPicker(
-                        title: "Picker",
-                        choices: ["A", "B", "C", "D"],
-                        selectedIndex: $index
-                    )
+                /// Use groups to group components together.
+                SettingGroup(header: "Main Group") {
+                    /// Use any of the pre-made components...
+                    SettingToggle(title: "This value is persisted!", isOn: $isOn)
+
+                    /// ...or define your own ones!
+
+                    SettingCustomView {
+                        Image("Logo")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 160)
+                            .padding(20)
+                    }
+
+                    /// Nest `SettingPage` inside other `SettingPage`s!
+                    SettingPage(title: "Advanced Settings") {
+                        SettingText(title: "I show up on the next page!")
+                    }
                 }
             }
-        } customNoResultsView: {
-            VStack(spacing: 20) {
-                Image(systemName: "xmark")
-                    .font(.largeTitle)
-
-                Text("No results for '\(settingViewModel.searchText)'")
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }
 }
