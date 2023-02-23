@@ -192,6 +192,73 @@ SettingStack {
 </tr>
 </table>
 
+### Notes
+
+- If multiple components have the same title, use the `id` parameter to distinguish identity.
+
+```swift
+SettingText(id: "Announcement 1", title: "Hello!")
+SettingText(id: "Announcement 2", title: "Hello!")
+```
+
+- Setting comes with `if-else` support!
+
+```swift
+SettingToggle(title: "Turn on", isOn: $isOn)
+
+if isOn {
+    SettingText("I'm turned on!")
+}
+```
+
+- You can pass in a custom `SettingViewModel` instance for finer control.
+
+<table>
+<tr>
+<td>
+
+```swift
+struct PlaygroundView: View {
+    @StateObject var settingViewModel = SettingViewModel()
+
+    var body: some View {
+        SettingStack(settingViewModel: settingViewModel) {
+            SettingPage(title: "Playground") {
+                SettingGroup {
+                    SettingPicker(
+                        title: "Picker",
+                        choices: ["A", "B", "C", "D"],
+                        selectedIndex: $index
+                    )
+                }
+            }
+        } customNoResultsView: {
+            VStack(spacing: 20) {
+                Image(systemName: "xmark")
+                    .font(.largeTitle)
+
+                Text("No results for '\(settingViewModel.searchText)'")
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+    }
+}
+```
+</td>
+<td>
+
+![Settings view rendered with "Put anything here!" label](Assets/5.png)
+
+</td>
+</tr>
+</table>
+
+
+
+
+
+---
+
 ### Community
 
 Author | Contributing | Need Help?

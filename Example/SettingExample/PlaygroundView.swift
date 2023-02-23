@@ -10,10 +10,10 @@ import Setting
 import SwiftUI
 
 struct PlaygroundView: View {
-    @AppStorage("index") var index = 0
+    @StateObject var settingViewModel = SettingViewModel()
 
     var body: some View {
-        SettingStack {
+        SettingStack(settingViewModel: settingViewModel) {
             SettingPage(title: "Playground") {
                 SettingGroup {
                     SettingPicker(
@@ -23,6 +23,14 @@ struct PlaygroundView: View {
                     )
                 }
             }
+        } customNoResultsView: {
+            VStack(spacing: 20) {
+                Image(systemName: "xmark")
+                    .font(.largeTitle)
+
+                Text("No results for '\(settingViewModel.searchText)'")
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }
 }

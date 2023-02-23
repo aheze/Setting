@@ -33,12 +33,14 @@ public struct SettingStack: View {
     }
 
     /**
-     Create a new Settings view from a `SettingPage`, with a custom "no results" view.
+     Create a new Settings view from a `SettingPage`, with a custom `SettingViewModel` and custom "no results" view.
      */
     public init<Content>(
+        settingViewModel: SettingViewModel,
         page: @escaping () -> SettingPage,
         @ViewBuilder customNoResultsView: @escaping () -> Content
     ) where Content: View {
+        self._settingViewModel = StateObject(wrappedValue: settingViewModel)
         self.page = page
         self.customNoResultsView = AnyView(customNoResultsView())
     }
@@ -56,7 +58,7 @@ public struct SettingStack: View {
     }
 
     @ViewBuilder var main: some View {
-        var settingPage = page()
+        let settingPage = page()
 
         VStack {
             if settingViewModel.searchText.isEmpty {
