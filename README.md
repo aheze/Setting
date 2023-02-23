@@ -63,7 +63,7 @@ struct PlaygroundView: View {
     }
 }
 ```
-![The result, a generated settings page. Clicking on "Advanced Settings" presents a new page.](Assets/Result.png)
+![The result, a generated settings page. Clicking on "Advanced Settings" presents a new page.](Assets/Customizable.png)
 
 
 ### Examples
