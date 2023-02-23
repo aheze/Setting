@@ -42,9 +42,3 @@ struct PlaygroundView: View {
         }
     }
 }
-
-struct PlaygroundView_Previews: PreviewProvider {
-    static var previews: some View {
-        PlaygroundView()
-    }
-}

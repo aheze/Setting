@@ -14,44 +14,7 @@ struct ControlPanelView: View {
         SettingStack {
             SettingPage(title: "Control Panel") {
                 SettingCustomView(id: "Controls") {
-                    VStack(spacing: 10) {
-                        ForEach(0..<2) { row in
-                            HStack(spacing: 10) {
-                                ForEach(0..<4) { column in
-                                    LinearGradient(
-                                        colors: [
-                                            Color.white.opacity(0.5),
-                                            Color.white.opacity(0.2),
-                                        ],
-                                        startPoint: .bottom,
-                                        endPoint: .top
-                                    )
-                                    .cornerRadius(8)
-                                    .aspectRatio(1, contentMode: .fill)
-                                    .reverseMask {
-                                        Text("\(row * 4 + column + 1)")
-                                            .foregroundColor(.black)
-                                            .font(.title)
-                                            .bold()
-                                    }
-                                    .shadow(color: .black.opacity(0.25), radius: 8, x: 0, y: 6)
-                                }
-                            }
-                        }
-                    }
-                    .padding(16)
-                    .background(
-                        LinearGradient(
-                            colors: [
-                                Color.orange,
-                                Color.pink,
-                            ],
-                            startPoint: .bottomLeading,
-                            endPoint: .topTrailing
-                        )
-                    )
-                    .cornerRadius(12)
-                    .padding(.horizontal, 16)
+                    controls
                 }
 
                 SettingGroup(header: "Volume") {
@@ -75,4 +38,47 @@ struct ControlPanelView: View {
             }
         }
     }
+
+    var controls: some View {
+        VStack(spacing: 10) {
+            ForEach(0..<2) { row in
+                HStack(spacing: 10) {
+                    ForEach(0..<4) { column in
+                        LinearGradient(
+                            colors: [
+                                Color.white.opacity(0.5),
+                                Color.white.opacity(0.2),
+                            ],
+                            startPoint: .bottom,
+                            endPoint: .top
+                        )
+                        .cornerRadius(8)
+                        .aspectRatio(1, contentMode: .fill)
+                        .reverseMask {
+                            Text("\(row * 4 + column + 1)")
+                                .foregroundColor(.black)
+                                .font(.title)
+                                .bold()
+                        }
+                        .shadow(color: .black.opacity(0.25), radius: 8, x: 0, y: 6)
+                    }
+                }
+            }
+        }
+        .padding(16)
+        .background(
+            LinearGradient(
+                colors: [
+                    Color.orange,
+                    Color.pink,
+                ],
+                startPoint: .bottomLeading,
+                endPoint: .topTrailing
+            )
+        )
+        .cornerRadius(12)
+        .padding(.horizontal, 16)
+    }
 }
+
+

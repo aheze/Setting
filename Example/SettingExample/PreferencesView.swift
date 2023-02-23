@@ -40,7 +40,7 @@ struct PreferencesView: View {
                             VStack(spacing: 10) {
                                 Image(systemName: "gearshape.fill")
                                     .font(.largeTitle)
-                                
+
                                 Text("Welcome to Setting!")
                                     .font(.headline)
                             }
@@ -120,6 +120,8 @@ struct PreferencesView: View {
                         SettingGroup(header: "You can't turn these off. HEHEHAHA!") {
                             SettingToggle(title: "Track Location", isOn: .constant(true))
                             SettingToggle(title: "Track Data", isOn: .constant(true))
+                            SettingToggle(title: "Track Browsing History", isOn: .constant(true))
+                            SettingToggle(title: "Track Battery Usage", isOn: .constant(true))
                             SettingToggle(title: "Record Audio in Background", isOn: .constant(true))
                             SettingToggle(title: "Download Ads", isOn: .constant(true))
                             SettingToggle(title: "Show Ads", isOn: .constant(true))
@@ -279,3 +281,4 @@ struct PreferencesView: View {
         }
     }
 }
+

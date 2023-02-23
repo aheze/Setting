@@ -125,16 +125,29 @@ struct SettingPageView<Content>: View where Content: View {
         #endif
     }
 
-    var main: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: spacing) {
-                content
+    @ViewBuilder var main: some View {
+        if #available(iOS 16.0, *) {
+            ScrollView {
+                VStack(alignment: .leading, spacing: spacing) {
+                    content
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.vertical, verticalPadding)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.vertical, verticalPadding)
+            .scrollDismissesKeyboard(.interactively)
+            .background(backgroundColor)
+            .navigationTitle(title)
+        } else {
+            ScrollView {
+                VStack(alignment: .leading, spacing: spacing) {
+                    content
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.vertical, verticalPadding)
+            }
+            .background(backgroundColor)
+            .navigationTitle(title)
         }
-        .background(backgroundColor)
-        .navigationTitle(title)
     }
 }
 
