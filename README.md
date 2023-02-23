@@ -273,11 +273,7 @@ struct PlaygroundView: View {
         SettingStack(settingViewModel: settingViewModel) {
             SettingPage(title: "Playground") {
                 SettingGroup {
-                    SettingPicker(
-                        title: "Picker",
-                        choices: ["A", "B", "C", "D"],
-                        selectedIndex: $index
-                    )
+                    SettingText(title: "Welcome to Setting!")
                 }
             }
         } customNoResultsView: {
