@@ -2,7 +2,7 @@
 
 **Compose beautiful preference panels.**
 
-- Simple but powerful syntax.
+- Simple but powerful syntax (powered by [result builders](https://www.hackingwithswift.com/swift/5.4/result-builders)).
 - Create nested pages and groups.
 - Fully searchable.
 - Native integration with SwiftUI and AppStorage.
