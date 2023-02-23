@@ -31,7 +31,7 @@ import Setting
 import SwiftUI
 
 struct PlaygroundView: View {
-    /// Settings supports `@State`, `@AppStorage`, `@Published`, and more!
+    /// Setting supports `@State`, `@AppStorage`, `@Published`, and more!
     @AppStorage("isOn") var isOn = true
 
     var body: some View {
@@ -45,7 +45,6 @@ struct PlaygroundView: View {
                     SettingToggle(title: "This value is persisted!", isOn: $isOn)
 
                     /// ...or define your own ones!
-
                     SettingCustomView {
                         Image("Logo")
                             .resizable()
