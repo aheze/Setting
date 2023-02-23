@@ -10,6 +10,11 @@ import Setting
 import SwiftUI
 
 struct ControlPanelView: View {
+    @State var volume = Double(8)
+    @State var airplane = false
+    @State var wifi = true
+    @State var bluetooth = true
+
     var body: some View {
         SettingStack {
             SettingPage(title: "Control Panel") {
@@ -19,7 +24,7 @@ struct ControlPanelView: View {
 
                 SettingGroup(header: "Volume") {
                     SettingSlider(
-                        value: .constant(8),
+                        value: $volume,
                         range: 0 ... 10,
                         minimumImage: Image(systemName: "speaker.fill"),
                         maximumImage: Image(systemName: "speaker.wave.3.fill")
@@ -30,10 +35,37 @@ struct ControlPanelView: View {
                     }
                 }
 
+                let a = Binding {
+                    airplane
+                } set: { newValue in
+                    airplane = newValue
+                    if newValue {
+                        wifi = false
+                        bluetooth = false
+                    }
+                }
+
+                let w = Binding {
+                    wifi
+                } set: { newValue in
+                    wifi = newValue
+                    if newValue {
+                        airplane = false
+                    }
+                }
+                let b = Binding {
+                    bluetooth
+                } set: { newValue in
+                    bluetooth = newValue
+                    if newValue {
+                        airplane = false
+                    }
+                }
+
                 SettingGroup {
-                    SettingToggle(title: "Airplane Mode", isOn: .constant(false))
-                    SettingToggle(title: "Wi-Fi", isOn: .constant(true))
-                    SettingToggle(title: "Bluetooth", isOn: .constant(true))
+                    SettingToggle(title: "Airplane Mode", isOn: a)
+                    SettingToggle(title: "Wi-Fi", isOn: w)
+                    SettingToggle(title: "Bluetooth", isOn: b)
                 }
             }
         }
@@ -80,5 +112,3 @@ struct ControlPanelView: View {
         .padding(.horizontal, 16)
     }
 }
-
-
