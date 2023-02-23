@@ -12,6 +12,7 @@
 		3C25FE1D29A6B0AF00C11678 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C25FE1C29A6B0AF00C11678 /* Utilities.swift */; };
 		3C25FE1F29A6B0D700C11678 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C25FE1E29A6B0D700C11678 /* SettingsView.swift */; };
 		3C25FE2229A6C24C00C11678 /* ControlPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C25FE2129A6C24C00C11678 /* ControlPanelView.swift */; };
+		3C25FE2429A6D2A300C11678 /* PlaygroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C25FE2329A6D2A300C11678 /* PlaygroundView.swift */; };
 		3CD8B78C29A683D100463C48 /* SettingExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD8B78B29A683D100463C48 /* SettingExampleApp.swift */; };
 		3CD8B78E29A683D100463C48 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD8B78D29A683D100463C48 /* ContentView.swift */; };
 		3CD8B79029A683D300463C48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CD8B78F29A683D300463C48 /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 		3C25FE1E29A6B0D700C11678 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		3C25FE2029A6B2FB00C11678 /* Setting */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Setting; path = ..; sourceTree = "<group>"; };
 		3C25FE2129A6C24C00C11678 /* ControlPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlPanelView.swift; sourceTree = "<group>"; };
+		3C25FE2329A6D2A300C11678 /* PlaygroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaygroundView.swift; sourceTree = "<group>"; };
 		3CD8B78829A683D100463C48 /* SettingExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SettingExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CD8B78B29A683D100463C48 /* SettingExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingExampleApp.swift; sourceTree = "<group>"; };
 		3CD8B78D29A683D100463C48 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 				3C25FE1A29A6B06C00C11678 /* PreferencesView.swift */,
 				3C25FE1E29A6B0D700C11678 /* SettingsView.swift */,
 				3C25FE2129A6C24C00C11678 /* ControlPanelView.swift */,
+				3C25FE2329A6D2A300C11678 /* PlaygroundView.swift */,
 				3C25FE1C29A6B0AF00C11678 /* Utilities.swift */,
 				3CD8B78F29A683D300463C48 /* Assets.xcassets */,
 				3CD8B79129A683D300463C48 /* SettingExample.entitlements */,
@@ -149,6 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C25FE2429A6D2A300C11678 /* PlaygroundView.swift in Sources */,
 				3C25FE1B29A6B06C00C11678 /* PreferencesView.swift in Sources */,
 				3CD8B78E29A683D100463C48 /* ContentView.swift in Sources */,
 				3C25FE1F29A6B0D700C11678 /* SettingsView.swift in Sources */,

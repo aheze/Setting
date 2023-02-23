@@ -29,6 +29,12 @@ struct ContentView: View {
                 .tabItem {
                     Label("Control Panel", systemImage: "dial.high")
                 }
+                .tag(2)
+            
+            PlaygroundView()
+                .tabItem {
+                    Label("Playground", systemImage: "gamecontroller")
+                }
                 .tag(3)
         }
     }

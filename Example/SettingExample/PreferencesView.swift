@@ -37,11 +37,12 @@ struct PreferencesView: View {
                         )
                     ) {
                         SettingCustomView(id: "Header View") {
-                            VStack(spacing: 8) {
+                            VStack(spacing: 10) {
+                                Image(systemName: "gearshape.fill")
+                                    .font(.largeTitle)
+                                
                                 Text("Welcome to Setting!")
                                     .font(.headline)
-
-                                Text("Feel free to play around with this example app.")
                             }
                             .multilineTextAlignment(.center)
                             .foregroundColor(Color(hex: 0x006DC1))
