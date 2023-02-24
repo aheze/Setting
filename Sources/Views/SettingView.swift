@@ -27,6 +27,8 @@ struct SettingView: View {
             slider
         case let picker as SettingPicker:
             picker
+        case let textField as SettingTextField:
+            textField
         case let page as SettingPage:
 
             if isPagePreview {

@@ -42,6 +42,8 @@ public extension Setting {
             return nil
         case let picker as SettingPicker:
             return picker.title
+        case let textField as SettingTextField:
+            return textField.placeholder
         case let page as SettingPage:
             return page.title
         case let group as SettingGroup:
@@ -51,7 +53,7 @@ public extension Setting {
         case let customView as SettingCustomView:
             return customView.titleForSearch ?? "Custom"
         default:
-            print("Nil! \(type(of: self))")
+            print("Text identifier was nil for: \(type(of: self))")
             return nil
         }
     }
@@ -71,6 +73,8 @@ public extension Setting {
             return nil
         case let picker as SettingPicker:
             return picker.title
+        case let textField as SettingTextField:
+            return textField.placeholder
         case let page as SettingPage:
             return page.title
         case let group as SettingGroup:

@@ -20,6 +20,7 @@ class PreferencesViewModel: ObservableObject {
     @AppStorage("notificationPromo") var notificationPromo = true
     @AppStorage("notificationUpdates") var notificationUpdates = true
     @AppStorage("color") var color = 0xFF3100
+    @AppStorage("text") var text = ""
     @Published var showingAlert = false
 }
 
@@ -228,6 +229,10 @@ struct PreferencesView: View {
                         ],
                         selectedIndex: $model.modeIndex
                     )
+                }
+                
+                SettingGroup {
+                    SettingTextField(placeholder: "Enter text here", text: $model.text)
                 }
 
                 SettingCustomView(id: "Custom Footer", titleForSearch: "Welcome to Setting!") {
