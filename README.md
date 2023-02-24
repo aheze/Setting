@@ -2,7 +2,7 @@
 
 **Compose beautiful preference panels.**
 
-- Simple but powerful syntax.
+- Simple but powerful syntax (powered by [result builders](https://www.hackingwithswift.com/swift/5.4/result-builders)).
 - Create nested pages and groups.
 - Fully searchable.
 - Native integration with SwiftUI and AppStorage.
@@ -259,6 +259,8 @@ SettingCustomView {
 }
 ```
 
+- Need to store custom structs in `AppStorage`? Check out @IanKeen's awesome [gist](https://gist.github.com/IanKeen/4d29b48519dca125b21675eeb7623d60)!
+
 - You can pass in a custom `SettingViewModel` instance for finer control.
 
 <table>
@@ -273,11 +275,7 @@ struct PlaygroundView: View {
         SettingStack(settingViewModel: settingViewModel) {
             SettingPage(title: "Playground") {
                 SettingGroup {
-                    SettingPicker(
-                        title: "Picker",
-                        choices: ["A", "B", "C", "D"],
-                        selectedIndex: $index
-                    )
+                    SettingText(title: "Welcome to Setting!")
                 }
             }
         } customNoResultsView: {
