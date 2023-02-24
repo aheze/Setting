@@ -259,6 +259,8 @@ SettingCustomView {
 }
 ```
 
+- Need to store custom structs in `AppStorage`? Check out @IanKeen's awesome [gist](https://gist.github.com/IanKeen/4d29b48519dca125b21675eeb7623d60)!
+
 - You can pass in a custom `SettingViewModel` instance for finer control.
 
 <table>
