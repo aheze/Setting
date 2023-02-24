@@ -9,15 +9,15 @@
 import SwiftUI
 
 /**
- A `SettingItem` that can nest multiple sub-`SettingItem`s.
+ A `Setting` that can nest multiple sub-`Setting`s.
  */
-public struct SettingTupleView: SettingItem {
+public struct SettingTupleView: Setting {
     public var id: AnyHashable?
-    public var items: [SettingItem]
+    public var items: [Setting]
 }
 
 /**
- The result builder for constructing `SettingItem` views.
+ The result builder for constructing `Setting` views.
  */
 @resultBuilder public enum SettingBuilder {
     public static func buildOptional(_ component: SettingTupleView?) -> SettingTupleView {
@@ -28,19 +28,19 @@ public struct SettingTupleView: SettingItem {
         }
     }
 
-    public static func buildBlock(_ parts: SettingItem...) -> SettingTupleView {
+    public static func buildBlock(_ parts: Setting...) -> SettingTupleView {
         return SettingTupleView(items: parts)
     }
 
-    public static func buildEither(first component: SettingItem) -> SettingTupleView {
+    public static func buildEither(first component: Setting) -> SettingTupleView {
         return SettingTupleView(items: [component])
     }
 
-    public static func buildEither(second component: SettingItem) -> SettingTupleView {
+    public static func buildEither(second component: Setting) -> SettingTupleView {
         return SettingTupleView(items: [component])
     }
 
-    public static func buildArray(_ components: [SettingItem]) -> SettingTupleView {
+    public static func buildArray(_ components: [Setting]) -> SettingTupleView {
         return SettingTupleView(items: components)
     }
 }
@@ -48,8 +48,8 @@ public struct SettingTupleView: SettingItem {
 public extension SettingTupleView {
     
     /// Flatten the tuple view and subgroups.
-    var flattened: [SettingItem] {
-        var flattened = [SettingItem]()
+    var flattened: [Setting] {
+        var flattened = [Setting]()
 
         for item in items {
             switch item {

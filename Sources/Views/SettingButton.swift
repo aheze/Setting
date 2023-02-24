@@ -11,7 +11,7 @@ import SwiftUI
 /**
  A plain button.
  */
-public struct SettingButton: View, SettingItem {
+public struct SettingButton: View, Setting {
     public var id: AnyHashable?
     public var title: String
     public var indicator: String? = "arrow.up.forward"
@@ -68,7 +68,7 @@ struct SettingButtonView: View {
 
                 if let indicator {
                     Image(systemName: indicator)
-                        .foregroundColor(Setting.secondaryLabelColor)
+                        .foregroundColor(SettingTheme.secondaryLabelColor)
                 }
             }
             .padding(.horizontal, horizontalPadding)

@@ -1,5 +1,5 @@
 //
-//  SettingItem.swift
+//  SettingTheme.swift
 //  Setting
 //
 //  Created by A. Zheng (github.com/aheze) on 2/21/23.
@@ -8,85 +8,8 @@
 
 import SwiftUI
 
-/**
- The base protocol for items shown in the `SettingBuilder`.
- */
-public protocol SettingItem {
-    var id: AnyHashable? { get set }
-}
-
-public extension SettingItem {
-    /**
-     A unique identifier for the view.
-     */
-    var identifier: AnyHashable {
-        if let id {
-            return id
-        }
-
-        return textIdentifier
-    }
-
-    /**
-     The identifier generated from the item's title.
-     */
-    var textIdentifier: String? {
-        switch self {
-        case let text as SettingText:
-            return text.title
-        case let button as SettingButton:
-            return button.title
-        case let toggle as SettingToggle:
-            return toggle.title
-        case is SettingSlider:
-            return nil
-        case let picker as SettingPicker:
-            return picker.title
-        case let page as SettingPage:
-            return page.title
-        case let group as SettingGroup:
-            return group.tuple.textIdentifier
-        case let tuple as SettingTupleView:
-            return tuple.flattened.compactMap { $0.textIdentifier }.joined()
-        case let customView as SettingCustomView:
-            return customView.titleForSearch ?? "Custom"
-        default:
-            print("Nil! \(type(of: self))")
-            return nil
-        }
-    }
-
-    /**
-     Text for searching.
-     */
-    var text: String? {
-        switch self {
-        case let text as SettingText:
-            return text.title
-        case let button as SettingButton:
-            return button.title
-        case let toggle as SettingToggle:
-            return toggle.title
-        case is SettingSlider:
-            return nil
-        case let picker as SettingPicker:
-            return picker.title
-        case let page as SettingPage:
-            return page.title
-        case let group as SettingGroup:
-            return group.header
-        case is SettingTupleView:
-            return nil
-        case let customView as SettingCustomView:
-            return customView.titleForSearch
-        default:
-            return nil
-        }
-    }
-}
-
-struct SettingItemView: View {
-    var item: SettingItem
+struct SettingView: View {
+    var item: Setting
     var isInitialPage = false
     var isPagePreview = true
 
@@ -122,7 +45,7 @@ struct SettingItemView: View {
                 .buttonStyle(.row)
                 .background {
                     NavigationLink(isActive: $isActive) {
-                        SettingItemView(item: page, isPagePreview: false)
+                        SettingView(item: page, isPagePreview: false)
                     } label: {
                         EmptyView()
                     }
@@ -139,7 +62,7 @@ struct SettingItemView: View {
                     isInitialPage: isInitialPage
                 ) {
                     ForEach(page.tuple.items, id: \.identifier) { item in
-                        SettingItemView(item: item, isPagePreview: true)
+                        SettingView(item: item, isPagePreview: true)
                     }
                 }
             }
@@ -155,12 +78,12 @@ struct SettingItemView: View {
                 dividerColor: group.dividerColor
             ) {
                 ForEach(group.tuple.items, id: \.identifier) { item in
-                    SettingItemView(item: item)
+                    SettingView(item: item)
                 }
             }
         case let tuple as SettingTupleView:
             ForEach(tuple.items, id: \.identifier) { item in
-                SettingItemView(item: item)
+                SettingView(item: item)
             }
 
         case let customView as SettingCustomView:

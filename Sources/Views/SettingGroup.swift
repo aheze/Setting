@@ -9,14 +9,14 @@
 import SwiftUI
 
 /**
- A group of `SettingItem`s.
+ A group of `Setting`s.
  */
-public struct SettingGroup: SettingItem {
+public struct SettingGroup: Setting {
     public var id: AnyHashable?
     public var header: String?
     public var footer: String?
     public var horizontalPadding = CGFloat(16)
-    public var backgroundColor = Setting.backgroundColor
+    public var backgroundColor = SettingTheme.backgroundColor
     public var backgroundCornerRadius = CGFloat(12)
     public var dividerLeadingMargin = CGFloat(16)
     public var dividerTrailingMargin = CGFloat(0)
@@ -28,7 +28,7 @@ public struct SettingGroup: SettingItem {
         header: String? = nil,
         footer: String? = nil,
         horizontalPadding: CGFloat = CGFloat(16),
-        backgroundColor: Color = Setting.backgroundColor,
+        backgroundColor: Color = SettingTheme.backgroundColor,
         backgroundCornerRadius: CGFloat = CGFloat(12),
         dividerLeadingMargin: CGFloat = CGFloat(16),
         dividerTrailingMargin: CGFloat = CGFloat(0),
@@ -53,7 +53,7 @@ struct SettingGroupView<Content: View>: View {
     var header: String?
     var footer: String?
     var horizontalPadding = CGFloat(16)
-    var backgroundColor = Setting.backgroundColor
+    var backgroundColor = SettingTheme.backgroundColor
     var backgroundCornerRadius = CGFloat(12)
     var dividerLeadingMargin = CGFloat(16)
     var dividerTrailingMargin = CGFloat(0)
@@ -73,7 +73,7 @@ struct SettingGroupView<Content: View>: View {
                         Text(header)
                             .textCase(.uppercase)
                             .font(.system(.subheadline))
-                            .foregroundColor(Setting.secondaryLabelColor)
+                            .foregroundColor(SettingTheme.secondaryLabelColor)
                     }
                 }
                 .padding(.horizontal, backgroundCornerRadius)
@@ -97,7 +97,7 @@ struct SettingGroupView<Content: View>: View {
             if let footer {
                 Text(footer)
                     .font(.system(.subheadline))
-                    .foregroundColor(Setting.secondaryLabelColor)
+                    .foregroundColor(SettingTheme.secondaryLabelColor)
                     .padding(.horizontal, backgroundCornerRadius)
                     .padding(.top, 8)
             }

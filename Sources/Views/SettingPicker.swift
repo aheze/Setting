@@ -11,7 +11,7 @@ import SwiftUI
 /**
  A multi-choice picker.
  */
-public struct SettingPicker: View, SettingItem {
+public struct SettingPicker: View, Setting {
     public var id: AnyHashable?
     public var title: String
     public var choices: [String]
@@ -48,7 +48,7 @@ public struct SettingPicker: View, SettingItem {
         public var groupHeader: String?
         public var groupFooter: String?
         public var groupHorizontalPadding = CGFloat(16)
-        public var groupBackgroundColor = Setting.backgroundColor
+        public var groupBackgroundColor = SettingTheme.backgroundColor
         public var groupBackgroundCornerRadius = CGFloat(12)
         public var groupDividerLeadingMargin = CGFloat(16)
         public var groupDividerTrailingMargin = CGFloat(0)
@@ -61,7 +61,7 @@ public struct SettingPicker: View, SettingItem {
             groupHeader: String? = nil,
             groupFooter: String? = nil,
             groupHorizontalPadding: CGFloat = CGFloat(16),
-            groupBackgroundColor: Color = Setting.backgroundColor,
+            groupBackgroundColor: Color = SettingTheme.backgroundColor,
             groupBackgroundCornerRadius: CGFloat = CGFloat(12),
             groupDividerLeadingMargin: CGFloat = CGFloat(16),
             groupDividerTrailingMargin: CGFloat = CGFloat(0),
@@ -119,11 +119,11 @@ struct SettingPickerView: View {
                     let selectedChoice = choices[selectedIndex]
 
                     Text(selectedChoice)
-                        .foregroundColor(Setting.secondaryLabelColor)
+                        .foregroundColor(SettingTheme.secondaryLabelColor)
                 }
 
                 Image(systemName: "chevron.forward")
-                    .foregroundColor(Setting.secondaryLabelColor)
+                    .foregroundColor(SettingTheme.secondaryLabelColor)
             }
             .padding(.horizontal, horizontalPadding)
             .accessibilityElement(children: .combine)

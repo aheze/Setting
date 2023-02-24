@@ -11,14 +11,14 @@ import SwiftUI
 /**
  A custom view for use inside `SettingPage` or `SettingGroup`.
 
- Tip: Wrap any `SettingItem` (such as `SettingText` or `SettingToggle`) inside here to further customize them.
+ Tip: Wrap any `Setting` (such as `SettingText` or `SettingToggle`) inside here to further customize them.
 
      SettingCustomView {
          SettingText(title: "I'm bold!")
              .bold()
      }
  */
-public struct SettingCustomView: SettingItem {
+public struct SettingCustomView: Setting {
     /**
      A unique ID for identifying this view.
 

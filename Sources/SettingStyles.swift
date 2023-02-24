@@ -17,7 +17,7 @@ public struct SettingRowButtonStyle: ButtonStyle {
             .contentShape(Rectangle())
             .background {
                 if configuration.isPressed {
-                    Setting.labelColor
+                    SettingTheme.labelColor
                         .opacity(0.1)
                 }
             }

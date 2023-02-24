@@ -100,7 +100,7 @@ struct PreferencesView: View {
                             SettingToggle(title: "Turbo Mode", isOn: $model.turboMode)
 
                             if model.turboMode {
-                                SettingText(title: "Turbo mode is on!", foregroundColor: Setting.secondaryLabelColor)
+                                SettingText(title: "Turbo mode is on!", foregroundColor: SettingTheme.secondaryLabelColor)
                             }
 
                             SettingButton(title: "Show Alert") {
@@ -266,7 +266,7 @@ struct PreferencesView: View {
                         Image("Twitter")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .foregroundColor(Setting.secondaryLabelColor)
+                            .foregroundColor(SettingTheme.secondaryLabelColor)
                             .frame(width: 30, height: 30)
                             .padding(6)
                             .contentShape(Rectangle())

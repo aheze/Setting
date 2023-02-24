@@ -11,12 +11,12 @@ import SwiftUI
 /**
  A settings page.
  */
-public struct SettingPage: SettingItem {
+public struct SettingPage: Setting {
     public var id: AnyHashable?
     public var title: String
     public var spacing = CGFloat(20)
     public var verticalPadding = CGFloat(6)
-    public var backgroundColor = Setting.secondaryBackgroundColor
+    public var backgroundColor = SettingTheme.secondaryBackgroundColor
     public var navigationTitleDisplayMode = NavigationTitleDisplayMode.automatic
     public var previewConfiguration = PreviewConfiguration()
     @SettingBuilder public var tuple: SettingTupleView
@@ -26,7 +26,7 @@ public struct SettingPage: SettingItem {
         title: String,
         spacing: CGFloat = CGFloat(20),
         verticalPadding: CGFloat = CGFloat(6),
-        backgroundColor: Color = Setting.secondaryBackgroundColor,
+        backgroundColor: Color = SettingTheme.secondaryBackgroundColor,
         navigationTitleDisplayMode: SettingPage.NavigationTitleDisplayMode = NavigationTitleDisplayMode.automatic,
         previewConfiguration: SettingPage.PreviewConfiguration = PreviewConfiguration(),
         @SettingBuilder tuple: () -> SettingTupleView
@@ -95,7 +95,7 @@ struct SettingPageView<Content>: View where Content: View {
     var title: String
     var spacing = CGFloat(20)
     var verticalPadding = CGFloat(12)
-    var backgroundColor = Setting.secondaryBackgroundColor
+    var backgroundColor = SettingTheme.secondaryBackgroundColor
     var navigationTitleDisplayMode = SettingPage.NavigationTitleDisplayMode.inline
     var isInitialPage = false
     @ViewBuilder var content: Content
@@ -171,7 +171,7 @@ struct SettingPagePreviewView: View {
                 .padding(.vertical, verticalPadding)
 
             Image(systemName: indicator)
-                .foregroundColor(Setting.secondaryLabelColor)
+                .foregroundColor(SettingTheme.secondaryLabelColor)
         }
         .padding(.horizontal, horizontalPadding)
         .accessibilityElement(children: .combine)

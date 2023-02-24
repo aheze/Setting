@@ -11,7 +11,7 @@ import SwiftUI
 /**
  A slider.
  */
-public struct SettingSlider: View, SettingItem {
+public struct SettingSlider: View, Setting {
     public var id: AnyHashable?
     @Binding public var value: Double
     public var range: ClosedRange<Double>

@@ -26,13 +26,13 @@ public struct SettingSearchResultView: View {
     public var searchResult: SettingSearchResult
     public var spacing = CGFloat(20)
     public var verticalPadding = CGFloat(6)
-    public var backgroundColor = Setting.secondaryBackgroundColor
+    public var backgroundColor = SettingTheme.secondaryBackgroundColor
 
     public init(
         searchResult: SettingSearchResult,
         spacing: CGFloat = CGFloat(20),
         verticalPadding: CGFloat = CGFloat(6),
-        backgroundColor: Color = Setting.secondaryBackgroundColor
+        backgroundColor: Color = SettingTheme.secondaryBackgroundColor
     ) {
         self.searchResult = searchResult
         self.spacing = spacing
@@ -61,7 +61,7 @@ public struct SettingSearchResultView: View {
             let firstItem = firstPath.items.first,
             firstItem is SettingCustomView
         {
-            SettingItemView(item: firstItem)
+            SettingView(item: firstItem)
         } else {
             VStack {
                 SettingGroupView(
@@ -72,7 +72,7 @@ public struct SettingSearchResultView: View {
                         /// If it's only 1 item, the item is on the main page - so just show it.
                         if path.items.count == 1 {
                             if let item = path.items.first {
-                                SettingItemView(item: item)
+                                SettingView(item: item)
                             }
                         } else {
                             SettingJumpLink(path: path)

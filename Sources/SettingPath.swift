@@ -13,9 +13,9 @@ import SwiftUI
  */
 public struct SettingPath: Identifiable {
     public let id = UUID()
-    public var items: [SettingItem]
+    public var items: [Setting]
 
-    public init(items: [SettingItem]) {
+    public init(items: [Setting]) {
         self.items = items
     }
 }

@@ -62,7 +62,7 @@ public struct SettingStack: View {
 
         VStack {
             if settingViewModel.searchText.isEmpty {
-                SettingItemView(item: settingPage, isInitialPage: true, isPagePreview: false)
+                SettingView(item: settingPage, isInitialPage: true, isPagePreview: false)
             } else if
                 let searchResult = settingViewModel.searchResult,
                 !searchResult.sections.isEmpty
@@ -73,9 +73,9 @@ public struct SettingStack: View {
                     customNoResultsView
                 } else {
                     Text("No results for '\(settingViewModel.searchText)'")
-                        .foregroundColor(Setting.secondaryLabelColor)
+                        .foregroundColor(SettingTheme.secondaryLabelColor)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .background(Setting.secondaryBackgroundColor)
+                        .background(SettingTheme.secondaryBackgroundColor)
                 }
             }
         }

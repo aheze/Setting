@@ -50,7 +50,7 @@ public struct SettingJumpLink: View {
         .background {
             if let destinationPage {
                 NavigationLink(isActive: $isActive) {
-                    SettingItemView(item: destinationPage, isPagePreview: false)
+                    SettingView(item: destinationPage, isPagePreview: false)
                 } label: {
                     EmptyView()
                 }
@@ -59,7 +59,7 @@ public struct SettingJumpLink: View {
         }
     }
 
-    @ViewBuilder func preview(destinationPage: SettingItem?) -> some View {
+    @ViewBuilder func preview(destinationPage: Setting?) -> some View {
         let title = getDestinationTitle()
         let titles = getPathTitles()
 
@@ -90,7 +90,7 @@ public struct SettingJumpLink: View {
                         }
                     }
                     .font(.footnote)
-                    .foregroundColor(Setting.secondaryLabelColor)
+                    .foregroundColor(SettingTheme.secondaryLabelColor)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
@@ -98,7 +98,7 @@ public struct SettingJumpLink: View {
 
             if destinationPage != nil {
                 Image(systemName: indicator)
-                    .foregroundColor(Setting.secondaryLabelColor)
+                    .foregroundColor(SettingTheme.secondaryLabelColor)
             }
         }
         .padding(.horizontal, horizontalPadding)
