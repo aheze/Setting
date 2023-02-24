@@ -45,4 +45,8 @@ public struct SettingCustomView: SettingItem {
         self.titleForSearch = titleForSearch
         self.view = AnyView(view())
     }
+
+    public var body: some View {
+        view
+    }
 }

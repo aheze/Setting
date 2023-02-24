@@ -40,6 +40,10 @@ public struct SettingPage: SettingItem {
         self.previewConfiguration = previewConfiguration
         self.tuple = tuple()
     }
+    
+    public var body: some View {
+        Text("Hi")
+    }
 
     public struct PreviewConfiguration {
         public var icon: SettingIcon?

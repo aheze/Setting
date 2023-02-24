@@ -11,8 +11,11 @@ import SwiftUI
 /**
  The base protocol for items shown in the `SettingBuilder`.
  */
-public protocol SettingItem {
+public protocol SettingItem: View {
     var id: AnyHashable? { get set }
+//    var content: Content { get }
+
+//    associatedtype Content: View
 }
 
 public extension SettingItem {
@@ -86,7 +89,7 @@ public extension SettingItem {
 }
 
 struct SettingItemView: View {
-    var item: SettingItem
+    var item: any SettingItem
     var isInitialPage = false
     var isPagePreview = true
 

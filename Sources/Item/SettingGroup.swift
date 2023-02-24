@@ -46,6 +46,27 @@ public struct SettingGroup: SettingItem {
         self.dividerColor = dividerColor
         self.tuple = tuple()
     }
+
+    public var body: some View {
+        SettingGroupView(
+            header: header,
+            footer: footer,
+            horizontalPadding: horizontalPadding,
+            backgroundColor: backgroundColor,
+            backgroundCornerRadius: backgroundCornerRadius,
+            dividerLeadingMargin: dividerLeadingMargin,
+            dividerTrailingMargin: dividerTrailingMargin,
+            dividerColor: dividerColor
+        ) {
+            ForEach(tuple.items, id: \.identifier) { item in
+//                AnyView(item)
+                item
+//                SettingItemView(item: item)
+//                item.body
+                Text("hi")
+            }
+        }
+    }
 }
 
 struct SettingGroupView<Content: View>: View {

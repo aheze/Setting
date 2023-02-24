@@ -59,7 +59,7 @@ public struct SettingJumpLink: View {
         }
     }
 
-    @ViewBuilder func preview(destinationPage: SettingItem?) -> some View {
+    @ViewBuilder func preview(destinationPage: (any SettingItem)?) -> some View {
         let title = getDestinationTitle()
         let titles = getPathTitles()
 

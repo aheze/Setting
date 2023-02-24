@@ -12,6 +12,7 @@ import SwiftUI
  A plain button.
  */
 public struct SettingButton: View, SettingItem {
+    
     public var id: AnyHashable?
     public var title: String
     public var indicator: String? = "arrow.up.forward"
@@ -48,6 +49,7 @@ public struct SettingButton: View, SettingItem {
             action: action
         )
     }
+    
 }
 
 struct SettingButtonView: View {

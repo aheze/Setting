@@ -13,7 +13,14 @@ import SwiftUI
  */
 public struct SettingTupleView: SettingItem {
     public var id: AnyHashable?
-    public var items: [SettingItem]
+    public var items: [any SettingItem]
+
+    public var body: some View {
+        ForEach(items, id: \.identifier) { item in
+//            item.body
+            Text("Hi")
+        }
+    }
 }
 
 /**
@@ -28,28 +35,27 @@ public struct SettingTupleView: SettingItem {
         }
     }
 
-    public static func buildBlock(_ parts: SettingItem...) -> SettingTupleView {
+    public static func buildBlock(_ parts: any SettingItem...) -> SettingTupleView {
         return SettingTupleView(items: parts)
     }
 
-    public static func buildEither(first component: SettingItem) -> SettingTupleView {
+    public static func buildEither(first component: any SettingItem) -> SettingTupleView {
         return SettingTupleView(items: [component])
     }
 
-    public static func buildEither(second component: SettingItem) -> SettingTupleView {
+    public static func buildEither(second component: any SettingItem) -> SettingTupleView {
         return SettingTupleView(items: [component])
     }
 
-    public static func buildArray(_ components: [SettingItem]) -> SettingTupleView {
+    public static func buildArray(_ components: [any SettingItem]) -> SettingTupleView {
         return SettingTupleView(items: components)
     }
 }
 
 public extension SettingTupleView {
-    
     /// Flatten the tuple view and subgroups.
-    var flattened: [SettingItem] {
-        var flattened = [SettingItem]()
+    var flattened: [any SettingItem] {
+        var flattened = [any SettingItem]()
 
         for item in items {
             switch item {
