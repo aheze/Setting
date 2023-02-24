@@ -12,8 +12,8 @@ import SwiftUI
  An general purpose icon view.
  */
 public enum SettingIcon {
-    case system(icon: String, backgroundColor: Color)
-    case image(name: String, inset: CGFloat, backgroundColor: Color)
+    case system(icon: String, foregroundColor: Color = .white, backgroundColor: Color)
+    case image(name: String, inset: CGFloat, foregroundColor: Color?, backgroundColor: Color)
     case custom(view: AnyView)
 }
 
@@ -29,22 +29,34 @@ public struct SettingIconView: View {
 
     public var body: some View {
         switch icon {
-        case .system(let icon, let backgroundColor):
+        case .system(let icon, let foregroundColor, let backgroundColor):
             Image(systemName: icon)
-                .foregroundColor(.white)
+                .foregroundColor(foregroundColor)
                 .font(.footnote)
                 .frame(width: 28, height: 28)
                 .background(backgroundColor)
                 .cornerRadius(6)
 
-        case .image(let name, let inset, let backgroundColor):
-            Image(name)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .padding(inset)
-                .frame(width: 28, height: 28)
-                .background(backgroundColor)
-                .cornerRadius(6)
+        case .image(let name, let inset, let foregroundColor, let backgroundColor):
+            if let foregroundColor {
+                Image(name)
+                    .resizable()
+                    .renderingMode(.template)
+                    .foregroundColor(foregroundColor)
+                    .aspectRatio(contentMode: .fit)
+                    .padding(inset)
+                    .frame(width: 28, height: 28)
+                    .background(backgroundColor)
+                    .cornerRadius(6)
+            } else {
+                Image(name)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .padding(inset)
+                    .frame(width: 28, height: 28)
+                    .background(backgroundColor)
+                    .cornerRadius(6)
+            }
 
         case .custom(let anyView):
             anyView
