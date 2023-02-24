@@ -58,10 +58,10 @@ public struct SettingSearchResultView: View {
         if
             section.header == nil,
             let firstPath = section.paths.first,
-            let firstItem = firstPath.items.first,
+            let firstItem = firstPath.settings.first,
             firstItem is SettingCustomView
         {
-            SettingView(item: firstItem)
+            SettingView(setting: firstItem)
         } else {
             VStack {
                 SettingGroupView(
@@ -69,10 +69,10 @@ public struct SettingSearchResultView: View {
                     header: section.header
                 ) {
                     ForEach(section.paths) { path in
-                        /// If it's only 1 item, the item is on the main page - so just show it.
-                        if path.items.count == 1 {
-                            if let item = path.items.first {
-                                SettingView(item: item)
+                        /// If it's only 1 setting, the setting is on the main page - so just show it.
+                        if path.settings.count == 1 {
+                            if let setting = path.settings.first {
+                                SettingView(setting: setting)
                             }
                         } else {
                             SettingJumpLink(path: path)

@@ -28,7 +28,7 @@ public extension Setting {
     }
 
     /**
-     The identifier generated from the item's title.
+     The identifier generated from the setting's title.
      */
     var textIdentifier: String? {
         switch self {

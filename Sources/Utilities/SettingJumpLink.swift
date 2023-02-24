@@ -39,7 +39,7 @@ public struct SettingJumpLink: View {
     }
 
     public var body: some View {
-        let destinationPage = path.items.last(where: { $0 is SettingPage })
+        let destinationPage = path.settings.last(where: { $0 is SettingPage })
 
         Button {
             isActive = true
@@ -50,7 +50,7 @@ public struct SettingJumpLink: View {
         .background {
             if let destinationPage {
                 NavigationLink(isActive: $isActive) {
-                    SettingView(item: destinationPage, isPagePreview: false)
+                    SettingView(setting: destinationPage, isPagePreview: false)
                 } label: {
                     EmptyView()
                 }
@@ -106,14 +106,14 @@ public struct SettingJumpLink: View {
     }
 
     func getPathTitles() -> [String] {
-        let titles = path.items.compactMap { $0.text }
+        let titles = path.settings.compactMap { $0.text }
         return titles
     }
 
     func getDestinationTitle() -> String {
         if
-            let item = path.items.last,
-            let title = item.text
+            let setting = path.settings.last,
+            let title = setting.text
         {
             return title
         }

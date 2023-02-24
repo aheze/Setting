@@ -1,5 +1,5 @@
 //
-//  SettingTheme.swift
+//  SettingView.swift
 //  Setting
 //
 //  Created by A. Zheng (github.com/aheze) on 2/21/23.
@@ -9,14 +9,14 @@
 import SwiftUI
 
 struct SettingView: View {
-    var item: Setting
+    var setting: Setting
     var isInitialPage = false
     var isPagePreview = true
 
     @State var isActive = false
 
     var body: some View {
-        switch item {
+        switch setting {
         case let text as SettingText:
             text
         case let button as SettingButton:
@@ -45,7 +45,7 @@ struct SettingView: View {
                 .buttonStyle(.row)
                 .background {
                     NavigationLink(isActive: $isActive) {
-                        SettingView(item: page, isPagePreview: false)
+                        SettingView(setting: page, isPagePreview: false)
                     } label: {
                         EmptyView()
                     }
@@ -61,8 +61,8 @@ struct SettingView: View {
                     navigationTitleDisplayMode: page.navigationTitleDisplayMode,
                     isInitialPage: isInitialPage
                 ) {
-                    ForEach(page.tuple.items, id: \.identifier) { item in
-                        SettingView(item: item, isPagePreview: true)
+                    ForEach(page.tuple.settings, id: \.identifier) { setting in
+                        SettingView(setting: setting, isPagePreview: true)
                     }
                 }
             }
@@ -77,19 +77,19 @@ struct SettingView: View {
                 dividerTrailingMargin: group.dividerTrailingMargin,
                 dividerColor: group.dividerColor
             ) {
-                ForEach(group.tuple.items, id: \.identifier) { item in
-                    SettingView(item: item)
+                ForEach(group.tuple.settings, id: \.identifier) { setting in
+                    SettingView(setting: setting)
                 }
             }
         case let tuple as SettingTupleView:
-            ForEach(tuple.items, id: \.identifier) { item in
-                SettingView(item: item)
+            ForEach(tuple.settings, id: \.identifier) { setting in
+                SettingView(setting: setting)
             }
 
         case let customView as SettingCustomView:
             customView.view
         default:
-            Text("Unsupported item, please file a bug report.")
+            Text("Unsupported setting, please file a bug report.")
         }
     }
 }

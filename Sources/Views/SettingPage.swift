@@ -183,8 +183,8 @@ extension SettingPage {
     func generatePaths() -> [SettingPath] {
         var paths = [SettingPath]()
 
-        for item in tuple.flattened {
-            let initialItemPath = SettingPath(items: [item])
+        for setting in tuple.flattened {
+            let initialItemPath = SettingPath(settings: [setting])
             let recursivePaths = generateRecursivePaths(for: initialItemPath)
             paths += recursivePaths
         }
@@ -194,23 +194,23 @@ extension SettingPage {
 
     /// `path` - a path of rows whose last element is the row to generate
     func generateRecursivePaths(for path: SettingPath) -> [SettingPath] {
-        /// include the current item as a path
+        /// include the current setting as a path
         var paths = [path]
 
-        /// get the last item, possibly a page
-        guard let lastItem = path.items.last else { return [] }
+        /// get the last setting, possibly a page
+        guard let lastItem = path.settings.last else { return [] }
 
-        /// If the last item is a page, travel through the page's subpages.
+        /// If the last setting is a page, travel through the page's subpages.
         if let page = lastItem as? SettingPage {
-            for item in page.tuple.flattened {
+            for setting in page.tuple.flattened {
                 /// If it's a subpage, generate paths for it.
-                if let page = item as? SettingPage {
-                    let currentPath = SettingPath(items: path.items + [page])
+                if let page = setting as? SettingPage {
+                    let currentPath = SettingPath(settings: path.settings + [page])
                     let recursivePaths = generateRecursivePaths(for: currentPath)
                     paths += recursivePaths
                 } else {
-                    /// If not, add the item as an endpoint.
-                    let currentPath = SettingPath(items: path.items + [item])
+                    /// If not, add the setting as an endpoint.
+                    let currentPath = SettingPath(settings: path.settings + [setting])
                     paths += [currentPath]
                 }
             }

@@ -13,7 +13,7 @@ import SwiftUI
  */
 public struct SettingTupleView: Setting {
     public var id: AnyHashable?
-    public var items: [Setting]
+    public var settings: [Setting]
 }
 
 /**
@@ -22,26 +22,26 @@ public struct SettingTupleView: Setting {
 @resultBuilder public enum SettingBuilder {
     public static func buildOptional(_ component: SettingTupleView?) -> SettingTupleView {
         if let component {
-            return SettingTupleView(items: [component])
+            return SettingTupleView(settings: [component])
         } else {
-            return SettingTupleView(items: [])
+            return SettingTupleView(settings: [])
         }
     }
 
     public static func buildBlock(_ parts: Setting...) -> SettingTupleView {
-        return SettingTupleView(items: parts)
+        return SettingTupleView(settings: parts)
     }
 
     public static func buildEither(first component: Setting) -> SettingTupleView {
-        return SettingTupleView(items: [component])
+        return SettingTupleView(settings: [component])
     }
 
     public static func buildEither(second component: Setting) -> SettingTupleView {
-        return SettingTupleView(items: [component])
+        return SettingTupleView(settings: [component])
     }
 
     public static func buildArray(_ components: [Setting]) -> SettingTupleView {
-        return SettingTupleView(items: components)
+        return SettingTupleView(settings: components)
     }
 }
 
@@ -51,14 +51,14 @@ public extension SettingTupleView {
     var flattened: [Setting] {
         var flattened = [Setting]()
 
-        for item in items {
-            switch item {
+        for setting in settings {
+            switch setting {
             case let group as SettingGroup:
                 flattened += group.tuple.flattened
             case let tuple as SettingTupleView:
                 flattened += tuple.flattened
             default:
-                flattened.append(item)
+                flattened.append(setting)
             }
         }
 

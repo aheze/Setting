@@ -44,7 +44,7 @@ public extension SettingViewModel {
             var matchingPaths = [SettingPath]()
 
             for path in paths {
-                guard let lastItem = path.items.last else { return }
+                guard let lastItem = path.settings.last else { return }
 
                 if let text = lastItem.text, text.localizedStandardContains(searchText) {
                     matchingPaths.append(path)
@@ -55,7 +55,7 @@ public extension SettingViewModel {
 
             for path in matchingPaths {
                 /// should be the row in the main page
-                guard let firstItem = path.items.first else { continue }
+                guard let firstItem = path.settings.first else { continue }
 
                 if let firstPage = firstItem as? SettingPage {
                     if let firstIndex = sections.firstIndex(where: { $0.header == firstPage.title }) {
@@ -69,7 +69,7 @@ public extension SettingViewModel {
                         sections.append(section)
                     }
                 } else {
-                    let path = SettingPath(items: [firstItem])
+                    let path = SettingPath(settings: [firstItem])
                     let section = SettingSearchResult.Section(paths: [path])
                     sections.append(section)
                 }
