@@ -126,7 +126,7 @@ struct SettingPageView<Content>: View where Content: View {
     }
 
     @ViewBuilder var main: some View {
-        if #available(iOS 16.0, *) {
+        if #available(iOS 16.0, macOS 13.0, *) {
             ScrollView {
                 VStack(alignment: .leading, spacing: spacing) {
                     content
