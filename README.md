@@ -12,7 +12,7 @@
 - Add your own custom SwiftUI views.
 - Works on iOS and macOS.
 
-![Screenshots of views created with Setting](Assets/SettingTheme.png)
+![Screenshots of views created with Setting](Assets/Setting.png)
 
 ![Screenshots of a nested page and search results](Assets/Details.png)
 
