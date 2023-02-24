@@ -174,7 +174,7 @@ struct PreferencesView: View {
                     ) {
                         SettingCustomView(id: "Color Picker Preview") {
                             VStack {
-                                if #available(iOS 16.0, macOS 12.0, *) {
+                                if #available(iOS 16.0, macOS 13.0, *) {
                                     Rectangle()
                                         .fill(Color(hex: model.color).gradient)
                                 } else {
