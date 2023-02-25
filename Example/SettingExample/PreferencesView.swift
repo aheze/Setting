@@ -158,11 +158,11 @@ struct PreferencesView: View {
                                         "Every Day",
                                         "Every Week"
                                     ],
-                                    selectedIndex: $model.notificationIndex,
-                                    choicesConfiguration: .init(pickerDisplayMode: .navigation)
+                                    selectedIndex: $model.notificationIndex
                                 )
+                                .pickerDisplayMode(.navigation)
                             }
-                            
+
                             SettingGroup {
                                 SettingPicker(
                                     title: "Frequency (Menu)",
@@ -171,11 +171,11 @@ struct PreferencesView: View {
                                         "Every Day",
                                         "Every Week"
                                     ],
-                                    selectedIndex: $model.notificationIndex,
-                                    choicesConfiguration: .init(pickerDisplayMode: .menu)
+                                    selectedIndex: $model.notificationIndex
                                 )
+                                .pickerDisplayMode(.menu)
                             }
-                            
+
                             SettingGroup(header: "Frequency (Inline)") {
                                 SettingPicker(
                                     title: "Frequency (Inline)",
@@ -184,9 +184,9 @@ struct PreferencesView: View {
                                         "Every Day",
                                         "Every Week"
                                     ],
-                                    selectedIndex: $model.notificationIndex,
-                                    choicesConfiguration: .init(pickerDisplayMode: .inline)
+                                    selectedIndex: $model.notificationIndex
                                 )
+                                .pickerDisplayMode(.inline)
                             }
 
                             SettingGroup(header: "You can't turn these off. HEHEHAHA!") {
@@ -257,7 +257,7 @@ struct PreferencesView: View {
                         selectedIndex: $model.modeIndex
                     )
                 }
-                
+
                 SettingGroup {
                     SettingTextField(placeholder: "Enter text here", text: $model.text)
                 }
@@ -313,4 +313,3 @@ struct PreferencesView: View {
         }
     }
 }
-

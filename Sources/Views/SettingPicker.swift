@@ -103,6 +103,15 @@ public struct SettingPicker: View, Setting {
     }
 }
 
+/// Convenience modifiers.
+public extension SettingPicker {
+    func pickerDisplayMode(_ pickerDisplayMode: PickerDisplayMode) -> SettingPicker {
+        var picker = self
+        picker.choicesConfiguration.pickerDisplayMode = pickerDisplayMode
+        return picker
+    }
+}
+
 struct SettingPickerView: View {
     let title: String
     var choices: [String]
