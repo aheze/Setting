@@ -152,7 +152,20 @@ struct PreferencesView: View {
                         if model.enableNotifications {
                             SettingGroup {
                                 SettingPicker(
-                                    title: "Frequency",
+                                    title: "Frequency (Navigation)",
+                                    choices: [
+                                        "Every Hour",
+                                        "Every Day",
+                                        "Every Week"
+                                    ],
+                                    selectedIndex: $model.notificationIndex,
+                                    choicesConfiguration: .init(pickerDisplayMode: .navigation)
+                                )
+                            }
+                            
+                            SettingGroup {
+                                SettingPicker(
+                                    title: "Frequency (Menu)",
                                     choices: [
                                         "Every Hour",
                                         "Every Day",
@@ -160,6 +173,19 @@ struct PreferencesView: View {
                                     ],
                                     selectedIndex: $model.notificationIndex,
                                     choicesConfiguration: .init(pickerDisplayMode: .menu)
+                                )
+                            }
+                            
+                            SettingGroup(header: "Frequency (Inline)") {
+                                SettingPicker(
+                                    title: "Frequency (Inline)",
+                                    choices: [
+                                        "Every Hour",
+                                        "Every Day",
+                                        "Every Week"
+                                    ],
+                                    selectedIndex: $model.notificationIndex,
+                                    choicesConfiguration: .init(pickerDisplayMode: .inline)
                                 )
                             }
 

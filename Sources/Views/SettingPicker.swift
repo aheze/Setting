@@ -44,6 +44,7 @@ public struct SettingPicker: View, Setting {
     public enum PickerDisplayMode {
         case navigation
         case menu
+        case inline
     }
 
     public struct ChoicesConfiguration {
@@ -175,6 +176,25 @@ struct SettingPickerView: View {
             }
             .padding(.horizontal, horizontalPadding)
             .accessibilityElement(children: .combine)
+        case .inline:
+            ForEach(Array(zip(choices.indices, choices)), id: \.1) { index, choice in
+                Button {
+                    selectedIndex = index
+                } label: {
+                    HStack {
+                        Text(choice)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.vertical, choicesConfiguration.verticalPadding)
+
+                        if index == selectedIndex {
+                            Image(systemName: "checkmark")
+                                .foregroundColor(.accentColor)
+                        }
+                    }
+                    .padding(.horizontal, choicesConfiguration.horizontalPadding)
+                }
+                .buttonStyle(.row)
+            }
         }
     }
 }
