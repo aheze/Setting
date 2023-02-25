@@ -184,6 +184,14 @@ struct PlaygroundView: View {
                         choices: ["A", "B", "C", "D"],
                         selectedIndex: $index
                     )
+                    SettingPicker(
+                        title: "Picker with menu",
+                        choices: ["A", "B", "C", "D"],
+                        selectedIndex: $index,
+                        choicesConfiguration: .init(
+                            pickerDisplayMode: .menu
+                        )
+                    )
                 }
             }
         }

@@ -29,7 +29,7 @@ public struct SettingPicker: View, Setting {
         horizontalSpacing: CGFloat = CGFloat(12),
         verticalPadding: CGFloat = CGFloat(14),
         horizontalPadding: CGFloat = CGFloat(16),
-        choicesConfiguration: SettingPicker.ChoicesConfiguration = ChoicesConfiguration()
+        choicesConfiguration: ChoicesConfiguration = ChoicesConfiguration()
     ) {
         self.id = id
         self.title = title
@@ -41,10 +41,17 @@ public struct SettingPicker: View, Setting {
         self.choicesConfiguration = choicesConfiguration
     }
 
+    public enum PickerDisplayMode {
+        case navigation
+        case menu
+        case inline
+    }
+
     public struct ChoicesConfiguration {
         public var verticalPadding = CGFloat(14)
         public var horizontalPadding = CGFloat(16)
         public var pageNavigationTitleDisplayMode = SettingPage.NavigationTitleDisplayMode.inline
+        public var pickerDisplayMode = PickerDisplayMode.navigation
         public var groupHeader: String?
         public var groupFooter: String?
         public var groupHorizontalPadding = CGFloat(16)
@@ -58,6 +65,7 @@ public struct SettingPicker: View, Setting {
             verticalPadding: CGFloat = CGFloat(14),
             horizontalPadding: CGFloat = CGFloat(16),
             pageNavigationTitleDisplayMode: SettingPage.NavigationTitleDisplayMode = SettingPage.NavigationTitleDisplayMode.inline,
+            pickerDisplayMode: PickerDisplayMode = PickerDisplayMode.navigation,
             groupHeader: String? = nil,
             groupFooter: String? = nil,
             groupHorizontalPadding: CGFloat = CGFloat(16),
@@ -70,6 +78,7 @@ public struct SettingPicker: View, Setting {
             self.verticalPadding = verticalPadding
             self.horizontalPadding = horizontalPadding
             self.pageNavigationTitleDisplayMode = pageNavigationTitleDisplayMode
+            self.pickerDisplayMode = pickerDisplayMode
             self.groupHeader = groupHeader
             self.groupFooter = groupFooter
             self.groupHorizontalPadding = groupHorizontalPadding
@@ -106,41 +115,86 @@ struct SettingPickerView: View {
     @State var isActive = false
 
     var body: some View {
-        Button {
-            isActive = true
-        } label: {
+        switch choicesConfiguration.pickerDisplayMode {
+        case .navigation:
+            Button {
+                isActive = true
+            } label: {
+                HStack(spacing: horizontalSpacing) {
+                    Text(title)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.vertical, verticalPadding)
+
+                    if choices.indices.contains(selectedIndex) {
+                        let selectedChoice = choices[selectedIndex]
+
+                        Text(selectedChoice)
+                            .foregroundColor(SettingTheme.secondaryLabelColor)
+                    }
+
+                    Image(systemName: "chevron.forward")
+                        .foregroundColor(SettingTheme.secondaryLabelColor)
+                }
+                .padding(.horizontal, horizontalPadding)
+                .accessibilityElement(children: .combine)
+            }
+            .buttonStyle(.row)
+            .background {
+                NavigationLink(isActive: $isActive) {
+                    SettingPickerChoicesView(
+                        title: title,
+                        choices: choices,
+                        selectedIndex: $selectedIndex,
+                        choicesConfiguration: choicesConfiguration
+                    )
+                } label: {
+                    EmptyView()
+                }
+                .opacity(0)
+            }
+
+        case .menu:
             HStack(spacing: horizontalSpacing) {
                 Text(title)
                     .fixedSize(horizontal: false, vertical: true)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.vertical, verticalPadding)
 
-                if choices.indices.contains(selectedIndex) {
-                    let selectedChoice = choices[selectedIndex]
-
-                    Text(selectedChoice)
-                        .foregroundColor(SettingTheme.secondaryLabelColor)
+                Picker("", selection: $selectedIndex) {
+                    ForEach(Array(zip(choices.indices, choices)), id: \.1) { index, choice in
+                        Text(choice).tag(index)
+                    }
                 }
-
-                Image(systemName: "chevron.forward")
-                    .foregroundColor(SettingTheme.secondaryLabelColor)
+                .pickerStyle(.menu)
+                #if os(iOS)
+                    .padding(.trailing, -horizontalPadding + 2)
+                #else
+                    .padding(.trailing, -2)
+                #endif
+                    .tint(SettingTheme.secondaryLabelColor)
             }
             .padding(.horizontal, horizontalPadding)
             .accessibilityElement(children: .combine)
-        }
-        .buttonStyle(.row)
-        .background {
-            NavigationLink(isActive: $isActive) {
-                SettingPickerChoicesView(
-                    title: title,
-                    choices: choices,
-                    selectedIndex: $selectedIndex,
-                    choicesConfiguration: choicesConfiguration
-                )
-            } label: {
-                EmptyView()
+        case .inline:
+            ForEach(Array(zip(choices.indices, choices)), id: \.1) { index, choice in
+                Button {
+                    selectedIndex = index
+                } label: {
+                    HStack {
+                        Text(choice)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.vertical, choicesConfiguration.verticalPadding)
+
+                        if index == selectedIndex {
+                            Image(systemName: "checkmark")
+                                .foregroundColor(.accentColor)
+                        }
+                    }
+                    .padding(.horizontal, choicesConfiguration.horizontalPadding)
+                }
+                .buttonStyle(.row)
             }
-            .opacity(0)
         }
     }
 }
