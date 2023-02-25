@@ -68,11 +68,6 @@ public struct SettingPage: Setting {
         case inline
         case large
     }
-    
-    public enum PickerDisplayMode {
-        case navigation
-        case menu
-    }
 }
 
 /// Convenience modifiers.
