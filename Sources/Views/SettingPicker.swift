@@ -29,7 +29,7 @@ public struct SettingPicker: View, Setting {
         horizontalSpacing: CGFloat = CGFloat(12),
         verticalPadding: CGFloat = CGFloat(14),
         horizontalPadding: CGFloat = CGFloat(16),
-        choicesConfiguration: SettingPicker.ChoicesConfiguration = ChoicesConfiguration()
+        choicesConfiguration: ChoicesConfiguration = ChoicesConfiguration()
     ) {
         self.id = id
         self.title = title
@@ -41,11 +41,16 @@ public struct SettingPicker: View, Setting {
         self.choicesConfiguration = choicesConfiguration
     }
 
+    public enum PickerDisplayMode {
+        case navigation
+        case menu
+    }
+
     public struct ChoicesConfiguration {
         public var verticalPadding = CGFloat(14)
         public var horizontalPadding = CGFloat(16)
         public var pageNavigationTitleDisplayMode = SettingPage.NavigationTitleDisplayMode.inline
-        public var pickerDisplayMode = SettingPage.PickerDisplayMode.navigation
+        public var pickerDisplayMode = PickerDisplayMode.navigation
         public var groupHeader: String?
         public var groupFooter: String?
         public var groupHorizontalPadding = CGFloat(16)
@@ -59,7 +64,7 @@ public struct SettingPicker: View, Setting {
             verticalPadding: CGFloat = CGFloat(14),
             horizontalPadding: CGFloat = CGFloat(16),
             pageNavigationTitleDisplayMode: SettingPage.NavigationTitleDisplayMode = SettingPage.NavigationTitleDisplayMode.inline,
-            pickerDisplayMode: SettingPage.PickerDisplayMode = SettingPage.PickerDisplayMode.navigation,
+            pickerDisplayMode: PickerDisplayMode = PickerDisplayMode.navigation,
             groupHeader: String? = nil,
             groupFooter: String? = nil,
             groupHorizontalPadding: CGFloat = CGFloat(16),
@@ -147,7 +152,7 @@ struct SettingPickerView: View {
                 }
                 .opacity(0)
             }
-            
+
         case .menu:
             HStack(spacing: horizontalSpacing) {
                 Text(title)
@@ -162,11 +167,11 @@ struct SettingPickerView: View {
                 }
                 .pickerStyle(.menu)
                 #if os(iOS)
-                .padding(.trailing, -horizontalPadding + 2)
+                    .padding(.trailing, -horizontalPadding + 2)
                 #else
-                .padding(.trailing, -2)
+                    .padding(.trailing, -2)
                 #endif
-                .tint(SettingTheme.secondaryLabelColor)
+                    .tint(SettingTheme.secondaryLabelColor)
             }
             .padding(.horizontal, horizontalPadding)
             .accessibilityElement(children: .combine)
