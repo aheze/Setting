@@ -158,7 +158,8 @@ struct PreferencesView: View {
                                         "Every Day",
                                         "Every Week"
                                     ],
-                                    selectedIndex: $model.notificationIndex
+                                    selectedIndex: $model.notificationIndex,
+                                    choicesConfiguration: .init(pickerDisplayMode: .menu)
                                 )
                             }
 
