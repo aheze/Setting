@@ -87,11 +87,7 @@ struct SettingGroupView<Content: View>: View {
             ) {
                 content
             }
-            .background {
-                if let backgroundColor {
-                    backgroundColor
-                }
-            }
+            .background(backgroundColor)
             .cornerRadius(backgroundCornerRadius)
 
             if let footer {
