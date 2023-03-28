@@ -189,7 +189,7 @@ struct PreferencesView: View {
                                 .pickerDisplayMode(.inline)
                             }
 
-                            SettingGroup(header: "You can't turn these off. HEHEHAHA!") {
+                            SettingGroup {
                                 SettingToggle(title: "Send Promotional Emails", isOn: $model.notificationPromo)
                                 SettingToggle(title: "Send Product Updates", isOn: $model.notificationUpdates)
                             }
