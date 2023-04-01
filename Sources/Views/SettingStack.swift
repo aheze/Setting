@@ -26,27 +26,49 @@ public struct SettingStack: View {
     @StateObject var settingViewModel = SettingViewModel()
 
     /**
-     Create a new Settings view from a `SettingPage`. The default "no results" view will be used.
+     Whether the ``SettingStack`` should automatically embed in a ``NavigationStack`` / ``NavigationView``, or assume the view exists higher up
+     in the hierarchy.
      */
-    public init(page: @escaping () -> SettingPage) {
+    private let embedInNavigationStack: Bool
+
+    /**
+     Create a new Settings view from a `SettingPage`. The default "no results" view will be used.
+     - parameters:
+        - embedInNavigationStack: Whether to embed the Settings views in a ``NavigationStack`` / ``NavigationView`` or not. If this is `false`, you will be responsible for providing the ``NavigationStack`` / ``NavigationView``.
+        - page:A closure to provide a ``SettingPage`` to the ``SettingStack``.
+     */
+    public init(
+        embedInNavigationStack: Bool = true,
+        page: @escaping () -> SettingPage
+    ) {
+        self.embedInNavigationStack = embedInNavigationStack
         self.page = page
     }
 
     /**
      Create a new Settings view from a `SettingPage`, with a custom `SettingViewModel` and custom "no results" view.
+     - parameters:
+        - settingViewModel: A custom view model to use for the ``SettingStack``.
+        - embedInNavigationStack: Whether to embed the Settings views in a ``NavigationStack`` / ``NavigationView`` or not. If this is `false`, you will be responsible for providing the ``NavigationStack`` / ``NavigationView``.
+        - page:A closure to provide a ``SettingPage`` to the ``SettingStack``.
+        - customNoResultsView: A view builder to provide the view to use when there's no results.
      */
     public init<Content>(
         settingViewModel: SettingViewModel,
+        embedInNavigationStack: Bool = true,
         page: @escaping () -> SettingPage,
         @ViewBuilder customNoResultsView: @escaping () -> Content
     ) where Content: View {
         self._settingViewModel = StateObject(wrappedValue: settingViewModel)
+        self.embedInNavigationStack = embedInNavigationStack
         self.page = page
         self.customNoResultsView = AnyView(customNoResultsView())
     }
 
     public var body: some View {
-        if #available(iOS 16.0, macOS 13.0, *) {
+        if !embedInNavigationStack {
+            main
+        } else if #available(iOS 16.0, macOS 13.0, *) {
             NavigationStack {
                 main
             }
