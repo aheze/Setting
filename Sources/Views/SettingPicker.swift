@@ -13,6 +13,7 @@ import SwiftUI
  */
 public struct SettingPicker: View, Setting {
     public var id: AnyHashable?
+    public var icon: SettingIcon?
     public var title: String
     public var choices: [String]
     @Binding public var selectedIndex: Int
@@ -23,6 +24,7 @@ public struct SettingPicker: View, Setting {
 
     public init(
         id: AnyHashable? = nil,
+        icon: SettingIcon? = nil,
         title: String,
         choices: [String],
         selectedIndex: Binding<Int>,
@@ -32,6 +34,7 @@ public struct SettingPicker: View, Setting {
         choicesConfiguration: ChoicesConfiguration = ChoicesConfiguration()
     ) {
         self.id = id
+        self.icon = icon
         self.title = title
         self.choices = choices
         self._selectedIndex = selectedIndex
@@ -92,6 +95,7 @@ public struct SettingPicker: View, Setting {
 
     public var body: some View {
         SettingPickerView(
+            icon: icon,
             title: title,
             choices: choices,
             selectedIndex: $selectedIndex,
@@ -113,6 +117,7 @@ public extension SettingPicker {
 }
 
 struct SettingPickerView: View {
+    var icon: SettingIcon?
     let title: String
     var choices: [String]
     @Binding var selectedIndex: Int
@@ -130,6 +135,10 @@ struct SettingPickerView: View {
                 isActive = true
             } label: {
                 HStack(spacing: horizontalSpacing) {
+                    if let icon {
+                        SettingIconView(icon: icon)
+                    }
+
                     Text(title)
                         .fixedSize(horizontal: false, vertical: true)
                         .frame(maxWidth: .infinity, alignment: .leading)
