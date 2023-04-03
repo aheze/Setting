@@ -14,6 +14,7 @@ import SwiftUI
 public struct SettingPage: Setting {
     public var id: AnyHashable?
     public var title: String
+    public var selectedChoice: String?
     public var spacing = CGFloat(20)
     public var verticalPadding = CGFloat(6)
     public var backgroundColor = SettingTheme.secondaryBackgroundColor
@@ -24,6 +25,7 @@ public struct SettingPage: Setting {
     public init(
         id: AnyHashable? = nil,
         title: String,
+        selectedChoice: String? = nil,
         spacing: CGFloat = CGFloat(20),
         verticalPadding: CGFloat = CGFloat(6),
         backgroundColor: Color = SettingTheme.secondaryBackgroundColor,
@@ -33,6 +35,7 @@ public struct SettingPage: Setting {
     ) {
         self.id = id
         self.title = title
+        self.selectedChoice = selectedChoice
         self.spacing = spacing
         self.verticalPadding = verticalPadding
         self.backgroundColor = backgroundColor
@@ -159,6 +162,7 @@ struct SettingPageView<Content>: View where Content: View {
 
 struct SettingPagePreviewView: View {
     let title: String
+    var selectedChoice: String?
     var icon: SettingIcon?
     var indicator = "chevron.forward"
     var horizontalSpacing = CGFloat(12)
@@ -175,6 +179,11 @@ struct SettingPagePreviewView: View {
                 .fixedSize(horizontal: false, vertical: true)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.vertical, verticalPadding)
+
+            if let selectedChoice {
+                Text(selectedChoice)
+                    .foregroundColor(SettingTheme.secondaryLabelColor)
+            }
 
             Image(systemName: indicator)
                 .foregroundColor(SettingTheme.secondaryLabelColor)
