@@ -30,6 +30,9 @@ public struct SettingStack: View {
      in the hierarchy.
      */
     private let embedInNavigationStack: Bool
+    
+    
+    private let isSearchable: Bool
 
     /**
      Create a new Settings view from a `SettingPage`. The default "no results" view will be used.
@@ -38,9 +41,11 @@ public struct SettingStack: View {
         - page:A closure to provide a ``SettingPage`` to the ``SettingStack``.
      */
     public init(
+        isSearchable: Bool = true,
         embedInNavigationStack: Bool = true,
         page: @escaping () -> SettingPage
     ) {
+        self.isSearchable = isSearchable
         self.embedInNavigationStack = embedInNavigationStack
         self.page = page
     }
@@ -54,6 +59,7 @@ public struct SettingStack: View {
         - customNoResultsView: A view builder to provide the view to use when there's no results.
      */
     public init<Content>(
+        isSearchable: Bool,
         settingViewModel: SettingViewModel,
         embedInNavigationStack: Bool = true,
         page: @escaping () -> SettingPage,
@@ -61,6 +67,7 @@ public struct SettingStack: View {
     ) where Content: View {
         self._settingViewModel = StateObject(wrappedValue: settingViewModel)
         self.embedInNavigationStack = embedInNavigationStack
+        self.isSearchable = isSearchable
         self.page = page
         self.customNoResultsView = AnyView(customNoResultsView())
     }
@@ -101,7 +108,9 @@ public struct SettingStack: View {
                 }
             }
         }
-        .searchable(text: $settingViewModel.searchText)
+        .if (isSearchable) { view in
+            view.searchable(text: $settingViewModel.searchText)
+        }
         .environmentObject(settingViewModel)
         .onAppear {
             let paths = settingPage.generatePaths()
@@ -110,6 +119,21 @@ public struct SettingStack: View {
         .onReceive(settingViewModel.regeneratePaths) { _ in
             let paths = settingPage.generatePaths()
             settingViewModel.paths = paths
+        }
+    }
+}
+
+extension View {
+    /// Applies the given transform if the given condition evaluates to `true`.
+    /// - Parameters:
+    ///   - condition: The condition to evaluate.
+    ///   - transform: The transform to apply to the source `View`.
+    /// - Returns: Either the original `View` or the modified `View` if the condition is `true`.
+    @ViewBuilder func `if`<Content: View>(_ condition: Bool, transform: (Self) -> Content) -> some View {
+        if condition {
+            transform(self)
+        } else {
+            self
         }
     }
 }

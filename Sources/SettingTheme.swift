@@ -30,7 +30,7 @@ public enum SettingTheme {
 
     public static var backgroundColor: Color = {
         #if os(iOS)
-            return Color(uiColor: .systemBackground)
+            return Color(uiColor: .secondarySystemGroupedBackground)
         #else
             return Color(nsColor: .textBackgroundColor)
         #endif
@@ -38,7 +38,7 @@ public enum SettingTheme {
 
     public static var secondaryBackgroundColor: Color = {
         #if os(iOS)
-            return Color(uiColor: .secondarySystemBackground)
+            return Color(uiColor: .systemGroupedBackground)
         #else
             return Color(nsColor: .windowBackgroundColor)
         #endif
