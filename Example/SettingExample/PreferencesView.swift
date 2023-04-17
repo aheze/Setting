@@ -28,7 +28,7 @@ struct PreferencesView: View {
     @StateObject var model = PreferencesViewModel()
 
     var body: some View {
-        SettingStack {
+        SettingStack(isSearchable: false) { // if you want to show the searchbar just change the condition to true
             SettingPage(title: "Preferences") {
                 SettingGroup {
                     SettingPage(
