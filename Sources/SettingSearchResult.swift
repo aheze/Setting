@@ -59,7 +59,8 @@ public struct SettingSearchResultView: View {
             section.header == nil,
             let firstPath = section.paths.first,
             let firstItem = firstPath.settings.first,
-            firstItem is SettingCustomView
+            let setting = firstItem as? SettingCustomView,
+            setting.displayIndependentlyInSearch
         {
             SettingView(setting: firstItem)
         } else {

@@ -32,6 +32,11 @@ public struct SettingCustomView: Setting {
     public var titleForSearch: String?
 
     /**
+     Set to `false` to keep a grouped background.
+     */
+    public var displayIndependentlyInSearch = true
+
+    /**
      The view to display.
      */
     public var view: AnyView
@@ -39,10 +44,12 @@ public struct SettingCustomView: Setting {
     public init<Content>(
         id: AnyHashable? = nil,
         titleForSearch: String? = nil,
+        displayIndependentlyInSearch: Bool = true,
         @ViewBuilder view: () -> Content
     ) where Content: View {
         self.id = id
         self.titleForSearch = titleForSearch
+        self.displayIndependentlyInSearch = displayIndependentlyInSearch
         self.view = AnyView(view())
     }
 }

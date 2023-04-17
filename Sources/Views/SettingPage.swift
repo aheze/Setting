@@ -157,15 +157,31 @@ struct SettingPageView<Content>: View where Content: View {
     }
 }
 
-struct SettingPagePreviewView: View {
-    let title: String
-    var icon: SettingIcon?
-    var indicator = "chevron.forward"
-    var horizontalSpacing = CGFloat(12)
-    var verticalPadding = CGFloat(14)
-    var horizontalPadding = CGFloat(16)
+public struct SettingPagePreviewView: View {
+    public let title: String
+    public var icon: SettingIcon?
+    public var indicator = "chevron.forward"
+    public var horizontalSpacing = CGFloat(12)
+    public var verticalPadding = CGFloat(14)
+    public var horizontalPadding = CGFloat(16)
 
-    var body: some View {
+    public init(
+        title: String,
+        icon: SettingIcon? = nil,
+        indicator: String = "chevron.forward",
+        horizontalSpacing: CGFloat = CGFloat(12),
+        verticalPadding: CGFloat = CGFloat(14),
+        horizontalPadding: CGFloat = CGFloat(16)
+    ) {
+        self.title = title
+        self.icon = icon
+        self.indicator = indicator
+        self.horizontalSpacing = horizontalSpacing
+        self.verticalPadding = verticalPadding
+        self.horizontalPadding = horizontalPadding
+    }
+
+    public var body: some View {
         HStack(spacing: horizontalSpacing) {
             if let icon {
                 SettingIconView(icon: icon)
