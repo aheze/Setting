@@ -48,17 +48,41 @@ public struct SettingGroup: Setting {
     }
 }
 
-struct SettingGroupView<Content: View>: View {
-    var icon: SettingIcon?
-    var header: String?
-    var footer: String?
-    var horizontalPadding = CGFloat(16)
-    var backgroundColor = SettingTheme.backgroundColor
-    var backgroundCornerRadius = CGFloat(12)
-    var dividerLeadingMargin = CGFloat(16)
-    var dividerTrailingMargin = CGFloat(0)
-    var dividerColor: Color?
-    @ViewBuilder var content: Content
+public struct SettingGroupView<Content: View>: View {
+    public var icon: SettingIcon?
+    public var header: String?
+    public var footer: String?
+    public var horizontalPadding = CGFloat(16)
+    public var backgroundColor = SettingTheme.backgroundColor
+    public var backgroundCornerRadius = CGFloat(12)
+    public var dividerLeadingMargin = CGFloat(16)
+    public var dividerTrailingMargin = CGFloat(0)
+    public var dividerColor: Color?
+    @ViewBuilder public var content: () -> Content
+
+    public init(
+        icon: SettingIcon? = nil,
+        header: String? = nil,
+        footer: String? = nil,
+        horizontalPadding: CGFloat = CGFloat(16),
+        backgroundColor: Color = SettingTheme.backgroundColor,
+        backgroundCornerRadius: CGFloat = CGFloat(12),
+        dividerLeadingMargin: CGFloat = CGFloat(16),
+        dividerTrailingMargin: CGFloat = CGFloat(0),
+        dividerColor: Color? = nil,
+        @ViewBuilder content: @escaping () -> Content
+    ) {
+        self.icon = icon
+        self.header = header
+        self.footer = footer
+        self.horizontalPadding = horizontalPadding
+        self.backgroundColor = backgroundColor
+        self.backgroundCornerRadius = backgroundCornerRadius
+        self.dividerLeadingMargin = dividerLeadingMargin
+        self.dividerTrailingMargin = dividerTrailingMargin
+        self.dividerColor = dividerColor
+        self.content = content
+    }
 
     public var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -85,7 +109,7 @@ struct SettingGroupView<Content: View>: View {
                 trailingMargin: dividerTrailingMargin,
                 dividerColor: dividerColor
             ) {
-                content
+                content()
             }
             .background(backgroundColor)
             .cornerRadius(backgroundCornerRadius)
