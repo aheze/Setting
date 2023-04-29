@@ -232,7 +232,7 @@ struct PreferencesView: View {
                             }
                             .icon(icon: .system(icon: "ellipsis", backgroundColor: Color.teal))
                         }
-                        
+
                         SettingGroup {
                             SettingButton(title: ":)") {
                                 print(":) pressed!")
