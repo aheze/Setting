@@ -55,7 +55,6 @@ public struct SettingButton: View, Setting {
 }
 
 struct SettingButtonView: View {
-
     @Environment(\.settingSecondaryColor) var settingSecondaryColor
 
     var icon: SettingIcon?
