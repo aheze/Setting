@@ -40,7 +40,7 @@ private struct SecondaryBackgroundColorKey: EnvironmentKey {
     }()
 }
 
-extension EnvironmentValues {
+public extension EnvironmentValues {
     /// For text.
     var settingPrimaryColor: Color {
         get { self[PrimaryColorKey.self] }
