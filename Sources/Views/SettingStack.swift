@@ -13,7 +13,18 @@ import SwiftUI
 public struct SettingStack: View {
     @Environment(\.settingSecondaryColor) var settingSecondaryColor
     @Environment(\.settingSecondaryBackgroundColor) var settingSecondaryBackgroundColor
-    
+
+    /**
+     Whether the ``SettingStack`` should automatically embed in a ``NavigationStack`` / ``NavigationView``, or assume the view exists higher up
+     in the hierarchy.
+     */
+    private let embedInNavigationStack: Bool
+
+    /**
+     Whether to show a search bar or not.
+     */
+    private let isSearchable: Bool
+
     /**
      The main page to display.
      */
@@ -30,15 +41,6 @@ public struct SettingStack: View {
      For handling internal state.
      */
     @StateObject var settingViewModel = SettingViewModel()
-
-    /**
-     Whether the ``SettingStack`` should automatically embed in a ``NavigationStack`` / ``NavigationView``, or assume the view exists higher up
-     in the hierarchy.
-     */
-    private let embedInNavigationStack: Bool
-    
-    
-    private let isSearchable: Bool
 
     /**
      Create a new Settings view from a `SettingPage`. The default "no results" view will be used.
@@ -114,7 +116,7 @@ public struct SettingStack: View {
                 }
             }
         }
-        .if (isSearchable) { view in
+        .if(isSearchable) { view in
             view.searchable(text: $settingViewModel.searchText)
         }
         .environmentObject(settingViewModel)

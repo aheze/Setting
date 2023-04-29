@@ -28,15 +28,12 @@ struct PreferencesView: View {
     @StateObject var model = PreferencesViewModel()
 
     var body: some View {
-        SettingStack(isSearchable: false) { // if you want to show the searchbar just change the condition to true
+        /// Ff you want to show the search bar, just change `isSearchable` to true.
+
+        SettingStack(isSearchable: false) {
             SettingPage(title: "Preferences") {
                 SettingGroup {
-                    SettingPage(
-                        title: "General",
-                        previewConfiguration: .init(
-                            icon: .system(icon: "gear", backgroundColor: Color(hex: 0x006DC1))
-                        )
-                    ) {
+                    SettingPage(title: "General") {
                         SettingCustomView(id: "Header View") {
                             VStack(spacing: 10) {
                                 Image(systemName: "gearshape.fill")
@@ -109,6 +106,7 @@ struct PreferencesView: View {
                             }
                         }
                     }
+                    .previewIcon(icon: .system(icon: "gear", backgroundColor: Color(hex: 0x006DC1)))
                 }
 
                 SettingGroup {
@@ -139,12 +137,7 @@ struct PreferencesView: View {
                         }
                     }
 
-                    SettingPage(
-                        title: "Notifications",
-                        previewConfiguration: .init(
-                            icon: .system(icon: "bell.badge.fill", backgroundColor: Color(hex: 0xFF2300))
-                        )
-                    ) {
+                    SettingPage(title: "Notifications") {
                         SettingGroup(footer: model.enableNotifications ? nil : "Turn on to see more settings.") {
                             SettingToggle(title: "Enable Notifications", isOn: $model.enableNotifications)
                         }
@@ -195,9 +188,46 @@ struct PreferencesView: View {
                             }
                         }
                     }
+                    .previewIcon(icon: .system(icon: "bell.badge.fill", backgroundColor: Color(hex: 0xFF2300)))
+
+                    SettingPage(title: "Themes") {
+                        SettingCustomView(id: "Color Picker Preview") {
+                            VStack {
+                                if #available(iOS 16.0, macOS 13.0, *) {
+                                    Rectangle()
+                                        .fill(Color(hex: model.color).gradient)
+                                } else {
+                                    Rectangle()
+                                        .fill(Color(hex: model.color))
+                                }
+                            }
+                            .frame(height: 100)
+                            .cornerRadius(12)
+                            .shadow(color: .black.opacity(0.25), radius: 12, x: 0, y: 6)
+                            .padding(.horizontal, 16)
+                        }
+
+                        SettingGroup {
+                            SettingText(title: "Choose a Color")
+
+                            SettingCustomView(id: "Color Picker") {
+                                let binding = Binding {
+                                    Color(hex: model.color)
+                                } set: { newValue in
+                                    model.color = Int(newValue.hex)
+                                }
+
+                                ColorPicker("Color", selection: binding)
+                                    .padding(.horizontal, 16)
+                                    .padding(.vertical, 10)
+                            }
+                        }
+                    }
+                    .previewIcon(icon: .system(icon: "paintbrush.fill", backgroundColor: Color(hex: model.color)))
 
                     SettingPage(
-                        title: "Themes",
+                        title: "Mode",
+                        selectedChoice: "Normal",
                         previewConfiguration: .init(
                             icon: .system(icon: "paintbrush.fill", backgroundColor: Color(hex: model.color))
                         )
