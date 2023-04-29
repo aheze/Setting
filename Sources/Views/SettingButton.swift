@@ -13,6 +13,7 @@ import SwiftUI
  */
 public struct SettingButton: View, Setting {
     public var id: AnyHashable?
+    public var icon: SettingIcon?
     public var title: String
     public var indicator: String? = "arrow.up.forward"
     public var horizontalSpacing = CGFloat(12)
@@ -22,6 +23,7 @@ public struct SettingButton: View, Setting {
 
     public init(
         id: AnyHashable? = nil,
+        icon: SettingIcon? = nil,
         title: String,
         indicator: String? = "arrow.up.forward",
         horizontalSpacing: CGFloat = CGFloat(12),
@@ -30,6 +32,7 @@ public struct SettingButton: View, Setting {
         action: @escaping () -> Void
     ) {
         self.id = id
+        self.icon = icon
         self.title = title
         self.indicator = indicator
         self.horizontalSpacing = horizontalSpacing
@@ -40,6 +43,7 @@ public struct SettingButton: View, Setting {
 
     public var body: some View {
         SettingButtonView(
+            icon: icon,
             title: title,
             indicator: indicator,
             horizontalSpacing: horizontalSpacing,
@@ -51,8 +55,10 @@ public struct SettingButton: View, Setting {
 }
 
 struct SettingButtonView: View {
+
     @Environment(\.settingSecondaryColor) var settingSecondaryColor
-    
+
+    var icon: SettingIcon?
     let title: String
     var indicator: String? = "arrow.up.forward"
     var horizontalSpacing = CGFloat(12)
@@ -63,6 +69,10 @@ struct SettingButtonView: View {
     var body: some View {
         Button(action: action) {
             HStack(spacing: horizontalSpacing) {
+                if let icon {
+                    SettingIconView(icon: icon)
+                }
+
                 Text(title)
                     .fixedSize(horizontal: false, vertical: true)
                     .frame(maxWidth: .infinity, alignment: .leading)

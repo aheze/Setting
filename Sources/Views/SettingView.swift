@@ -37,6 +37,7 @@ struct SettingView: View {
                 } label: {
                     SettingPagePreviewView(
                         title: page.title,
+                        selectedChoice: page.selectedChoice,
                         icon: page.previewConfiguration.icon,
                         indicator: page.previewConfiguration.indicator,
                         horizontalSpacing: page.previewConfiguration.horizontalSpacing,

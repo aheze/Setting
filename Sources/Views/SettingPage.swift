@@ -14,6 +14,7 @@ import SwiftUI
 public struct SettingPage: Setting {
     public var id: AnyHashable?
     public var title: String
+    public var selectedChoice: String?
     public var spacing = CGFloat(20)
     public var verticalPadding = CGFloat(6)
     public var backgroundColor: Color?
@@ -24,6 +25,7 @@ public struct SettingPage: Setting {
     public init(
         id: AnyHashable? = nil,
         title: String,
+        selectedChoice: String? = nil,
         spacing: CGFloat = CGFloat(20),
         verticalPadding: CGFloat = CGFloat(6),
         backgroundColor: Color? = nil,
@@ -33,6 +35,7 @@ public struct SettingPage: Setting {
     ) {
         self.id = id
         self.title = title
+        self.selectedChoice = selectedChoice
         self.spacing = spacing
         self.verticalPadding = verticalPadding
         self.backgroundColor = backgroundColor
@@ -159,19 +162,20 @@ struct SettingPageView<Content>: View where Content: View {
     }
 }
 
-public struct SettingPagePreviewView: View {
+struct SettingPagePreviewView: View {
     @Environment(\.settingSecondaryColor) var settingSecondaryColor
 
-    public let title: String
-    public var icon: SettingIcon?
-    public var indicator = "chevron.forward"
-    public var iconForegroundColor: Color?
-    public var horizontalSpacing = CGFloat(12)
-    public var verticalPadding = CGFloat(14)
-    public var horizontalPadding = CGFloat(16)
+    let title: String
+    var selectedChoice: String?
+    var icon: SettingIcon?
+    var indicator = "chevron.forward"
+    var horizontalSpacing = CGFloat(12)
+    var verticalPadding = CGFloat(14)
+    var horizontalPadding = CGFloat(16)
 
     public init(
         title: String,
+        selectedChoice: String?,
         icon: SettingIcon? = nil,
         indicator: String = "chevron.forward",
         iconForegroundColor: Color? = nil,
@@ -180,6 +184,7 @@ public struct SettingPagePreviewView: View {
         horizontalPadding: CGFloat = CGFloat(16)
     ) {
         self.title = title
+        self.selectedChoice = selectedChoice
         self.icon = icon
         self.indicator = indicator
         self.horizontalSpacing = horizontalSpacing
@@ -198,8 +203,13 @@ public struct SettingPagePreviewView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.vertical, verticalPadding)
 
+            if let selectedChoice {
+                Text(selectedChoice)
+                    .foregroundColor(settingSecondaryColor)
+            }
+
             Image(systemName: indicator)
-                .foregroundColor(iconForegroundColor ?? settingSecondaryColor)
+                .foregroundColor(settingSecondaryColor)
         }
         .padding(.horizontal, horizontalPadding)
         .accessibilityElement(children: .combine)
