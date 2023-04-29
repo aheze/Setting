@@ -12,12 +12,14 @@ import SwiftUI
  A button style that highlights the row when tapped.
  */
 public struct SettingRowButtonStyle: ButtonStyle {
+    @Environment(\.settingPrimaryColor) var settingPrimaryColor
+    
     public func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .contentShape(Rectangle())
             .background {
                 if configuration.isPressed {
-                    SettingTheme.labelColor
+                    settingPrimaryColor
                         .opacity(0.1)
                 }
             }

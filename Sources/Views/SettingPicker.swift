@@ -16,6 +16,7 @@ public struct SettingPicker: View, Setting {
     public var title: String
     public var choices: [String]
     @Binding public var selectedIndex: Int
+    public var foregroundColor: Color?
     public var horizontalSpacing = CGFloat(12)
     public var verticalPadding = CGFloat(14)
     public var horizontalPadding = CGFloat(16)
@@ -26,6 +27,7 @@ public struct SettingPicker: View, Setting {
         title: String,
         choices: [String],
         selectedIndex: Binding<Int>,
+        foregroundColor: Color? = nil,
         horizontalSpacing: CGFloat = CGFloat(12),
         verticalPadding: CGFloat = CGFloat(14),
         horizontalPadding: CGFloat = CGFloat(16),
@@ -35,6 +37,7 @@ public struct SettingPicker: View, Setting {
         self.title = title
         self.choices = choices
         self._selectedIndex = selectedIndex
+        self.foregroundColor = foregroundColor
         self.horizontalSpacing = horizontalSpacing
         self.verticalPadding = verticalPadding
         self.horizontalPadding = horizontalPadding
@@ -55,7 +58,7 @@ public struct SettingPicker: View, Setting {
         public var groupHeader: String?
         public var groupFooter: String?
         public var groupHorizontalPadding = CGFloat(16)
-        public var groupBackgroundColor = SettingTheme.backgroundColor
+        public var groupBackgroundColor: Color?
         public var groupBackgroundCornerRadius = CGFloat(12)
         public var groupDividerLeadingMargin = CGFloat(16)
         public var groupDividerTrailingMargin = CGFloat(0)
@@ -69,7 +72,7 @@ public struct SettingPicker: View, Setting {
             groupHeader: String? = nil,
             groupFooter: String? = nil,
             groupHorizontalPadding: CGFloat = CGFloat(16),
-            groupBackgroundColor: Color = SettingTheme.backgroundColor,
+            groupBackgroundColor: Color? = nil,
             groupBackgroundCornerRadius: CGFloat = CGFloat(12),
             groupDividerLeadingMargin: CGFloat = CGFloat(16),
             groupDividerTrailingMargin: CGFloat = CGFloat(0),
@@ -95,6 +98,7 @@ public struct SettingPicker: View, Setting {
             title: title,
             choices: choices,
             selectedIndex: $selectedIndex,
+            foregroundColor: foregroundColor,
             horizontalSpacing: horizontalSpacing,
             verticalPadding: verticalPadding,
             horizontalPadding: horizontalPadding,
@@ -113,9 +117,12 @@ public extension SettingPicker {
 }
 
 struct SettingPickerView: View {
+    @Environment(\.settingSecondaryColor) var settingSecondaryColor
+
     let title: String
     var choices: [String]
     @Binding var selectedIndex: Int
+    var foregroundColor: Color?
     var horizontalSpacing = CGFloat(12)
     var verticalPadding = CGFloat(14)
     var horizontalPadding = CGFloat(16)
@@ -139,11 +146,11 @@ struct SettingPickerView: View {
                         let selectedChoice = choices[selectedIndex]
 
                         Text(selectedChoice)
-                            .foregroundColor(SettingTheme.secondaryLabelColor)
+                            .foregroundColor(foregroundColor ?? settingSecondaryColor)
                     }
 
                     Image(systemName: "chevron.forward")
-                        .foregroundColor(SettingTheme.secondaryLabelColor)
+                        .foregroundColor(foregroundColor ?? settingSecondaryColor)
                 }
                 .padding(.horizontal, horizontalPadding)
                 .accessibilityElement(children: .combine)
@@ -181,7 +188,7 @@ struct SettingPickerView: View {
                 #else
                     .padding(.trailing, -2)
                 #endif
-                    .tint(SettingTheme.secondaryLabelColor)
+                    .tint(foregroundColor ?? settingSecondaryColor)
             }
             .padding(.horizontal, horizontalPadding)
             .accessibilityElement(children: .combine)

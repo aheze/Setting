@@ -14,7 +14,7 @@ import SwiftUI
 public struct SettingText: View, Setting {
     public var id: AnyHashable?
     public var title: String
-    public var foregroundColor = SettingTheme.labelColor
+    public var foregroundColor: Color?
     public var horizontalSpacing = CGFloat(12)
     public var verticalPadding = CGFloat(14)
     public var horizontalPadding = CGFloat(16)
@@ -22,7 +22,7 @@ public struct SettingText: View, Setting {
     public init(
         id: AnyHashable? = nil,
         title: String,
-        foregroundColor: Color = SettingTheme.labelColor,
+        foregroundColor: Color? = nil,
         horizontalSpacing: CGFloat = CGFloat(12),
         verticalPadding: CGFloat = CGFloat(14),
         horizontalPadding: CGFloat = CGFloat(16)
@@ -47,15 +47,17 @@ public struct SettingText: View, Setting {
 }
 
 struct SettingTextView: View {
+    @Environment(\.settingPrimaryColor) var settingPrimaryColor
+
     let title: String
-    var foregroundColor = SettingTheme.labelColor
+    var foregroundColor: Color?
     var horizontalSpacing = CGFloat(12)
     var verticalPadding = CGFloat(14)
     var horizontalPadding = CGFloat(16)
 
     var body: some View {
         Text(title)
-            .foregroundColor(foregroundColor)
+            .foregroundColor(foregroundColor ?? settingPrimaryColor)
             .fixedSize(horizontal: false, vertical: true)
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.vertical, verticalPadding)

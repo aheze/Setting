@@ -16,7 +16,7 @@ public struct SettingPage: Setting {
     public var title: String
     public var spacing = CGFloat(20)
     public var verticalPadding = CGFloat(6)
-    public var backgroundColor = SettingTheme.secondaryBackgroundColor
+    public var backgroundColor: Color?
     public var navigationTitleDisplayMode = NavigationTitleDisplayMode.automatic
     public var previewConfiguration = PreviewConfiguration()
     @SettingBuilder public var tuple: SettingTupleView
@@ -26,7 +26,7 @@ public struct SettingPage: Setting {
         title: String,
         spacing: CGFloat = CGFloat(20),
         verticalPadding: CGFloat = CGFloat(6),
-        backgroundColor: Color = SettingTheme.secondaryBackgroundColor,
+        backgroundColor: Color? = nil,
         navigationTitleDisplayMode: SettingPage.NavigationTitleDisplayMode = NavigationTitleDisplayMode.automatic,
         previewConfiguration: SettingPage.PreviewConfiguration = PreviewConfiguration(),
         @SettingBuilder tuple: () -> SettingTupleView
@@ -98,10 +98,12 @@ public extension SettingPage {
 }
 
 struct SettingPageView<Content>: View where Content: View {
+    @Environment(\.settingSecondaryBackgroundColor) var settingSecondaryBackgroundColor
+
     var title: String
     var spacing = CGFloat(20)
     var verticalPadding = CGFloat(12)
-    var backgroundColor = SettingTheme.secondaryBackgroundColor
+    var backgroundColor: Color?
     var navigationTitleDisplayMode = SettingPage.NavigationTitleDisplayMode.inline
     var isInitialPage = false
     @ViewBuilder var content: Content
@@ -151,16 +153,19 @@ struct SettingPageView<Content>: View where Content: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.vertical, verticalPadding)
             }
-            .background(backgroundColor)
+            .background(backgroundColor ?? settingSecondaryBackgroundColor)
             .navigationTitle(title)
         }
     }
 }
 
 public struct SettingPagePreviewView: View {
+    @Environment(\.settingSecondaryColor) var settingSecondaryColor
+
     public let title: String
     public var icon: SettingIcon?
     public var indicator = "chevron.forward"
+    public var iconForegroundColor: Color?
     public var horizontalSpacing = CGFloat(12)
     public var verticalPadding = CGFloat(14)
     public var horizontalPadding = CGFloat(16)
@@ -169,6 +174,7 @@ public struct SettingPagePreviewView: View {
         title: String,
         icon: SettingIcon? = nil,
         indicator: String = "chevron.forward",
+        iconForegroundColor: Color? = nil,
         horizontalSpacing: CGFloat = CGFloat(12),
         verticalPadding: CGFloat = CGFloat(14),
         horizontalPadding: CGFloat = CGFloat(16)
@@ -193,7 +199,7 @@ public struct SettingPagePreviewView: View {
                 .padding(.vertical, verticalPadding)
 
             Image(systemName: indicator)
-                .foregroundColor(SettingTheme.secondaryLabelColor)
+                .foregroundColor(iconForegroundColor ?? settingSecondaryColor)
         }
         .padding(.horizontal, horizontalPadding)
         .accessibilityElement(children: .combine)

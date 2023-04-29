@@ -11,6 +11,9 @@ import SwiftUI
  The main view for settings. Everything else goes in here.
  */
 public struct SettingStack: View {
+    @Environment(\.settingSecondaryColor) var settingSecondaryColor
+    @Environment(\.settingSecondaryBackgroundColor) var settingSecondaryBackgroundColor
+    
     /**
      The main page to display.
      */
@@ -23,6 +26,9 @@ public struct SettingStack: View {
      */
     public var customNoResultsView: AnyView?
 
+    /**
+     For handling internal state.
+     */
     @StateObject var settingViewModel = SettingViewModel()
 
     /**
@@ -102,9 +108,9 @@ public struct SettingStack: View {
                     customNoResultsView
                 } else {
                     Text("No results for '\(settingViewModel.searchText)'")
-                        .foregroundColor(SettingTheme.secondaryLabelColor)
+                        .foregroundColor(settingSecondaryColor)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .background(SettingTheme.secondaryBackgroundColor)
+                        .background(settingSecondaryBackgroundColor)
                 }
             }
         }

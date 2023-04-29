@@ -12,6 +12,8 @@ import SwiftUI
  A link to show in the search results, for jumping to specific page.
  */
 public struct SettingJumpLink: View {
+    @Environment(\.settingSecondaryColor) var settingSecondaryColor
+    
     public var path: SettingPath
     public var indicator = "chevron.forward"
     public var verticalSpacing = CGFloat(6)
@@ -90,7 +92,7 @@ public struct SettingJumpLink: View {
                         }
                     }
                     .font(.footnote)
-                    .foregroundColor(SettingTheme.secondaryLabelColor)
+                    .foregroundColor(settingSecondaryColor)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
@@ -98,7 +100,7 @@ public struct SettingJumpLink: View {
 
             if destinationPage != nil {
                 Image(systemName: indicator)
-                    .foregroundColor(SettingTheme.secondaryLabelColor)
+                    .foregroundColor(settingSecondaryColor)
             }
         }
         .padding(.horizontal, horizontalPadding)

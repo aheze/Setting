@@ -16,7 +16,7 @@ public struct SettingGroup: Setting {
     public var header: String?
     public var footer: String?
     public var horizontalPadding = CGFloat(16)
-    public var backgroundColor = SettingTheme.backgroundColor
+    public var backgroundColor: Color?
     public var backgroundCornerRadius = CGFloat(12)
     public var dividerLeadingMargin = CGFloat(16)
     public var dividerTrailingMargin = CGFloat(0)
@@ -28,7 +28,7 @@ public struct SettingGroup: Setting {
         header: String? = nil,
         footer: String? = nil,
         horizontalPadding: CGFloat = CGFloat(16),
-        backgroundColor: Color = SettingTheme.backgroundColor,
+        backgroundColor: Color? = nil,
         backgroundCornerRadius: CGFloat = CGFloat(12),
         dividerLeadingMargin: CGFloat = CGFloat(16),
         dividerTrailingMargin: CGFloat = CGFloat(0),
@@ -49,11 +49,15 @@ public struct SettingGroup: Setting {
 }
 
 public struct SettingGroupView<Content: View>: View {
+    @Environment(\.settingBackgroundColor) var settingBackgroundColor
+    @Environment(\.settingSecondaryColor) var settingSecondaryColor
+
     public var icon: SettingIcon?
     public var header: String?
     public var footer: String?
     public var horizontalPadding = CGFloat(16)
-    public var backgroundColor = SettingTheme.backgroundColor
+    public var foregroundColor: Color?
+    public var backgroundColor: Color?
     public var backgroundCornerRadius = CGFloat(12)
     public var dividerLeadingMargin = CGFloat(16)
     public var dividerTrailingMargin = CGFloat(0)
@@ -65,7 +69,8 @@ public struct SettingGroupView<Content: View>: View {
         header: String? = nil,
         footer: String? = nil,
         horizontalPadding: CGFloat = CGFloat(16),
-        backgroundColor: Color = SettingTheme.backgroundColor,
+        foregroundColor: Color? = nil,
+        backgroundColor: Color? = nil,
         backgroundCornerRadius: CGFloat = CGFloat(12),
         dividerLeadingMargin: CGFloat = CGFloat(16),
         dividerTrailingMargin: CGFloat = CGFloat(0),
@@ -76,6 +81,7 @@ public struct SettingGroupView<Content: View>: View {
         self.header = header
         self.footer = footer
         self.horizontalPadding = horizontalPadding
+        self.foregroundColor = foregroundColor
         self.backgroundColor = backgroundColor
         self.backgroundCornerRadius = backgroundCornerRadius
         self.dividerLeadingMargin = dividerLeadingMargin
@@ -97,7 +103,7 @@ public struct SettingGroupView<Content: View>: View {
                         Text(header)
                             .textCase(.uppercase)
                             .font(.system(.subheadline))
-                            .foregroundColor(SettingTheme.secondaryLabelColor)
+                            .foregroundColor(foregroundColor ?? settingSecondaryColor)
                     }
                 }
                 .padding(.horizontal, backgroundCornerRadius)
@@ -111,7 +117,7 @@ public struct SettingGroupView<Content: View>: View {
             ) {
                 content()
             }
-            .background(backgroundColor)
+            .background(backgroundColor ?? settingBackgroundColor)
             .cornerRadius(backgroundCornerRadius)
 
             if let footer {
@@ -119,7 +125,7 @@ public struct SettingGroupView<Content: View>: View {
                     .fixedSize(horizontal: false, vertical: true)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.system(.subheadline))
-                    .foregroundColor(SettingTheme.secondaryLabelColor)
+                    .foregroundColor(foregroundColor ?? settingSecondaryColor)
                     .padding(.horizontal, backgroundCornerRadius)
                     .padding(.top, 8)
             }

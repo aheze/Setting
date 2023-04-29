@@ -51,6 +51,8 @@ public struct SettingButton: View, Setting {
 }
 
 struct SettingButtonView: View {
+    @Environment(\.settingSecondaryColor) var settingSecondaryColor
+    
     let title: String
     var indicator: String? = "arrow.up.forward"
     var horizontalSpacing = CGFloat(12)
@@ -68,7 +70,7 @@ struct SettingButtonView: View {
 
                 if let indicator {
                     Image(systemName: indicator)
-                        .foregroundColor(SettingTheme.secondaryLabelColor)
+                        .foregroundColor(settingSecondaryColor)
                 }
             }
             .padding(.horizontal, horizontalPadding)
