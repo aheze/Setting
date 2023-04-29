@@ -225,45 +225,23 @@ struct PreferencesView: View {
                     }
                     .previewIcon(icon: .system(icon: "paintbrush.fill", backgroundColor: Color(hex: model.color)))
 
-                    SettingPage(
-                        title: "Mode",
-                        selectedChoice: "Normal",
-                        previewConfiguration: .init(
-                            icon: .system(icon: "paintbrush.fill", backgroundColor: Color(hex: model.color))
-                        )
-                    ) {
-                        SettingCustomView(id: "Color Picker Preview") {
-                            VStack {
-                                if #available(iOS 16.0, macOS 13.0, *) {
-                                    Rectangle()
-                                        .fill(Color(hex: model.color).gradient)
-                                } else {
-                                    Rectangle()
-                                        .fill(Color(hex: model.color))
-                                }
-                            }
-                            .frame(height: 100)
-                            .cornerRadius(12)
-                            .shadow(color: .black.opacity(0.25), radius: 12, x: 0, y: 6)
-                            .padding(.horizontal, 16)
-                        }
-
+                    SettingPage(title: "Extras", selectedChoice: "Hello, world!") {
                         SettingGroup {
-                            SettingText(title: "Choose a Color")
-
-                            SettingCustomView(id: "Color Picker") {
-                                let binding = Binding {
-                                    Color(hex: model.color)
-                                } set: { newValue in
-                                    model.color = Int(newValue.hex)
-                                }
-
-                                ColorPicker("Color", selection: binding)
-                                    .padding(.horizontal, 16)
-                                    .padding(.vertical, 10)
+                            SettingButton(title: "Hello, world!") {
+                                print("Hello world pressed!")
                             }
+                            .icon(icon: .system(icon: "ellipsis", backgroundColor: Color.teal))
+                        }
+                        
+                        SettingGroup {
+                            SettingButton(title: ":)") {
+                                print(":) pressed!")
+                            }
+                            .icon(icon: .system(icon: "sparkles", backgroundColor: Color.pink))
+                            .indicator("face.smiling")
                         }
                     }
+                    .previewIcon(icon: .system(icon: "ellipsis", backgroundColor: Color.teal))
                 }
 
                 SettingGroup {

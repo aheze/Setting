@@ -89,3 +89,29 @@ struct SettingButtonView: View {
         .buttonStyle(.row)
     }
 }
+
+public extension SettingButton {
+    func icon(_ icon: String, color: Color = .blue) -> SettingButton {
+        var button = self
+        button.icon = .system(icon: icon, backgroundColor: color)
+        return button
+    }
+
+    func icon(_ icon: String, foregroundColor: Color = .white, backgroundColor: Color = .blue) -> SettingButton {
+        var button = self
+        button.icon = .system(icon: icon, foregroundColor: foregroundColor, backgroundColor: backgroundColor)
+        return button
+    }
+
+    func icon(icon: SettingIcon) -> SettingButton {
+        var button = self
+        button.icon = icon
+        return button
+    }
+
+    func indicator(_ indicator: String) -> SettingButton {
+        var button = self
+        button.indicator = indicator
+        return button
+    }
+}
