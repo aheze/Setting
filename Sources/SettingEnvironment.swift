@@ -20,22 +20,22 @@ private struct AccentColorKey: EnvironmentKey {
     static let defaultValue = Color.accentColor
 }
 
-private struct SecondaryBackgroundColorKey: EnvironmentKey {
-    static let defaultValue: Color = {
-        #if os(iOS)
-            return Color(uiColor: .secondarySystemGroupedBackground)
-        #else
-            return Color(nsColor: .textBackgroundColor)
-        #endif
-    }()
-}
-
 private struct BackgroundColorKey: EnvironmentKey {
     static let defaultValue: Color = {
         #if os(iOS)
             return Color(uiColor: .systemGroupedBackground)
         #else
             return Color(nsColor: .windowBackgroundColor)
+        #endif
+    }()
+}
+
+private struct SecondaryBackgroundColorKey: EnvironmentKey {
+    static let defaultValue: Color = {
+        #if os(iOS)
+            return Color(uiColor: .secondarySystemGroupedBackground)
+        #else
+            return Color(nsColor: .textBackgroundColor)
         #endif
     }()
 }
@@ -60,44 +60,43 @@ extension EnvironmentValues {
     }
 
     /// For outer views.
-    var settingSecondaryBackgroundColor: Color {
-        get { self[SecondaryBackgroundColorKey.self] }
-        set { self[SecondaryBackgroundColorKey.self] = newValue }
-    }
-
-    /// For inner views.
     var settingBackgroundColor: Color {
         get { self[BackgroundColorKey.self] }
         set { self[BackgroundColorKey.self] = newValue }
     }
+
+    /// For inner views.
+    var settingSecondaryBackgroundColor: Color {
+        get { self[SecondaryBackgroundColorKey.self] }
+        set { self[SecondaryBackgroundColorKey.self] = newValue }
+    }
 }
 
-
-//var settingPrimaryColor: Color {
+// var settingPrimaryColor: Color {
 //    get { self[PrimaryColorKey.self] }
 //    set { self[PrimaryColorKey.self] = newValue }
-//}
+// }
 //
 ///// For secondary labels.
-//var settingSecondaryColor: Color {
+// var settingSecondaryColor: Color {
 //    get { self[SecondaryColorKey.self] }
 //    set { self[SecondaryColorKey.self] = newValue }
-//}
+// }
 //
 ///// For buttons.
-//var settingAccentColor: Color {
+// var settingAccentColor: Color {
 //    get { self[AccentColorKey.self] }
 //    set { self[AccentColorKey.self] = newValue }
-//}
+// }
 //
 ///// For outer views.
-//var settingSecondaryBackgroundColor: Color {
+// var settingSecondaryBackgroundColor: Color {
 //    get { self[SecondaryBackgroundColorKey.self] }
 //    set { self[SecondaryBackgroundColorKey.self] = newValue }
-//}
+// }
 //
 ///// For inner views.
-//var settingBackgroundColor: Color {
+// var settingBackgroundColor: Color {
 //    get { self[BackgroundColorKey.self] }
 //    set { self[BackgroundColorKey.self] = newValue }
-//}
+// }

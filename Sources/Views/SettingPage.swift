@@ -98,7 +98,7 @@ public extension SettingPage {
 }
 
 struct SettingPageView<Content>: View where Content: View {
-    @Environment(\.settingSecondaryBackgroundColor) var settingSecondaryBackgroundColor
+    @Environment(\.settingBackgroundColor) var settingBackgroundColor
 
     var title: String
     var spacing = CGFloat(20)
@@ -143,7 +143,7 @@ struct SettingPageView<Content>: View where Content: View {
                 .padding(.vertical, verticalPadding)
             }
             .scrollDismissesKeyboard(.interactively)
-            .background(backgroundColor)
+            .background(backgroundColor ?? settingBackgroundColor)
             .navigationTitle(title)
         } else {
             ScrollView {
@@ -153,7 +153,7 @@ struct SettingPageView<Content>: View where Content: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.vertical, verticalPadding)
             }
-            .background(backgroundColor ?? settingSecondaryBackgroundColor)
+            .background(backgroundColor ?? settingBackgroundColor)
             .navigationTitle(title)
         }
     }

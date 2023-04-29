@@ -49,7 +49,7 @@ public struct SettingGroup: Setting {
 }
 
 public struct SettingGroupView<Content: View>: View {
-    @Environment(\.settingBackgroundColor) var settingBackgroundColor
+    @Environment(\.settingSecondaryBackgroundColor) var settingSecondaryBackgroundColor
     @Environment(\.settingSecondaryColor) var settingSecondaryColor
 
     public var icon: SettingIcon?
@@ -117,7 +117,7 @@ public struct SettingGroupView<Content: View>: View {
             ) {
                 content()
             }
-            .background(backgroundColor ?? settingBackgroundColor)
+            .background(backgroundColor ?? settingSecondaryBackgroundColor)
             .cornerRadius(backgroundCornerRadius)
 
             if let footer {
