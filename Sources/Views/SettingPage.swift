@@ -162,7 +162,7 @@ struct SettingPageView<Content>: View where Content: View {
     }
 }
 
-struct SettingPagePreviewView: View {
+public struct SettingPagePreviewView: View {
     @Environment(\.settingSecondaryColor) var settingSecondaryColor
 
     let title: String
@@ -175,7 +175,7 @@ struct SettingPagePreviewView: View {
 
     public init(
         title: String,
-        selectedChoice: String?,
+        selectedChoice: String? = nil,
         icon: SettingIcon? = nil,
         indicator: String = "chevron.forward",
         iconForegroundColor: Color? = nil,
