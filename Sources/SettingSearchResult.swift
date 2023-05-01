@@ -23,7 +23,7 @@ public struct SettingSearchResult {
 }
 
 public struct SettingSearchResultView: View {
-    @Environment(\.settingSecondaryBackgroundColor) var settingSecondaryBackgroundColor
+    @Environment(\.settingBackgroundColor) var settingBackgroundColor
     
     public var searchResult: SettingSearchResult
     public var spacing = CGFloat(20)
@@ -52,7 +52,7 @@ public struct SettingSearchResultView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.vertical, verticalPadding)
         }
-        .background(backgroundColor ?? settingSecondaryBackgroundColor)
+        .background(backgroundColor ?? settingBackgroundColor)
     }
 
     @ViewBuilder func content(section: SettingSearchResult.Section) -> some View {
