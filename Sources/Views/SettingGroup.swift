@@ -106,6 +106,7 @@ public struct SettingGroupView<Content: View>: View {
                             .foregroundColor(foregroundColor ?? settingSecondaryColor)
                     }
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, backgroundCornerRadius)
                 .padding(.bottom, 6)
             }
