@@ -18,7 +18,7 @@ public struct SettingButton: View, Setting {
     public var indicator: String? = "arrow.up.forward"
     public var horizontalSpacing = CGFloat(12)
     public var verticalPadding = CGFloat(14)
-    public var horizontalPadding = CGFloat(16)
+    public var horizontalPadding: CGFloat? = nil
     public var action: () -> Void
 
     public init(
@@ -28,7 +28,7 @@ public struct SettingButton: View, Setting {
         indicator: String? = "arrow.up.forward",
         horizontalSpacing: CGFloat = CGFloat(12),
         verticalPadding: CGFloat = CGFloat(14),
-        horizontalPadding: CGFloat = CGFloat(16),
+        horizontalPadding: CGFloat? = nil,
         action: @escaping () -> Void
     ) {
         self.id = id
@@ -55,6 +55,7 @@ public struct SettingButton: View, Setting {
 }
 
 struct SettingButtonView: View {
+    @Environment(\.edgePadding) var edgePadding
     @Environment(\.settingSecondaryColor) var settingSecondaryColor
 
     var icon: SettingIcon?
@@ -62,7 +63,7 @@ struct SettingButtonView: View {
     var indicator: String? = "arrow.up.forward"
     var horizontalSpacing = CGFloat(12)
     var verticalPadding = CGFloat(14)
-    var horizontalPadding = CGFloat(16)
+    var horizontalPadding: CGFloat? = nil
     var action: () -> Void
 
     var body: some View {
@@ -82,7 +83,7 @@ struct SettingButtonView: View {
                         .foregroundColor(settingSecondaryColor)
                 }
             }
-            .padding(.horizontal, horizontalPadding)
+            .padding(.horizontal, horizontalPadding ?? edgePadding)
             .accessibilityElement(children: .combine)
         }
         .buttonStyle(.row)

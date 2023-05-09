@@ -13,13 +13,14 @@ import SwiftUI
  */
 public struct SettingJumpLink: View {
     @Environment(\.settingSecondaryColor) var settingSecondaryColor
+    @Environment(\.edgePadding) var edgePadding
     
     public var path: SettingPath
     public var indicator = "chevron.forward"
     public var verticalSpacing = CGFloat(6)
     public var horizontalSpacing = CGFloat(12)
     public var verticalPadding = CGFloat(14)
-    public var horizontalPadding = CGFloat(16)
+    public var horizontalPadding: CGFloat? = nil
 
     @EnvironmentObject var settingViewModel: SettingViewModel
     @State var isActive = false
@@ -30,7 +31,7 @@ public struct SettingJumpLink: View {
         verticalSpacing: CGFloat = CGFloat(6),
         horizontalSpacing: CGFloat = CGFloat(12),
         verticalPadding: CGFloat = CGFloat(14),
-        horizontalPadding: CGFloat = CGFloat(16)
+        horizontalPadding: CGFloat? = nil
     ) {
         self.path = path
         self.indicator = indicator
@@ -103,7 +104,7 @@ public struct SettingJumpLink: View {
                     .foregroundColor(settingSecondaryColor)
             }
         }
-        .padding(.horizontal, horizontalPadding)
+        .padding(.horizontal, horizontalPadding ?? edgePadding)
         .accessibilityElement(children: .combine)
     }
 

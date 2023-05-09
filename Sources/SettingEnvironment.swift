@@ -8,6 +8,11 @@
 
 import SwiftUI
 
+
+private struct EdgePaddingKey: EnvironmentKey {
+    static let defaultValue = CGFloat(20)
+}
+
 private struct PrimaryColorKey: EnvironmentKey {
     static let defaultValue = Color.primary
 }
@@ -41,6 +46,12 @@ private struct SecondaryBackgroundColorKey: EnvironmentKey {
 }
 
 public extension EnvironmentValues {
+    /// Padding to line up with the navigation title.
+    var edgePadding: CGFloat {
+        get { self[EdgePaddingKey.self] }
+        set { self[EdgePaddingKey.self] = newValue }
+    }
+
     /// For text.
     var settingPrimaryColor: Color {
         get { self[PrimaryColorKey.self] }

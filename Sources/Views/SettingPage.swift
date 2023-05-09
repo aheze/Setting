@@ -49,14 +49,14 @@ public struct SettingPage: Setting {
         public var indicator = "chevron.forward"
         public var horizontalSpacing = CGFloat(12)
         public var verticalPadding = CGFloat(14)
-        public var horizontalPadding = CGFloat(16)
+        public var horizontalPadding: CGFloat? = nil
 
         public init(
             icon: SettingIcon? = nil,
             indicator: String = "chevron.forward",
             horizontalSpacing: CGFloat = CGFloat(12),
             verticalPadding: CGFloat = CGFloat(14),
-            horizontalPadding: CGFloat = CGFloat(16)
+            horizontalPadding: CGFloat? = nil
         ) {
             self.icon = icon
             self.indicator = indicator
@@ -163,6 +163,7 @@ struct SettingPageView<Content>: View where Content: View {
 }
 
 public struct SettingPagePreviewView: View {
+    @Environment(\.edgePadding) var edgePadding
     @Environment(\.settingSecondaryColor) var settingSecondaryColor
 
     let title: String
@@ -171,7 +172,7 @@ public struct SettingPagePreviewView: View {
     var indicator = "chevron.forward"
     var horizontalSpacing = CGFloat(12)
     var verticalPadding = CGFloat(14)
-    var horizontalPadding = CGFloat(16)
+    var horizontalPadding: CGFloat? = nil
 
     public init(
         title: String,
@@ -181,7 +182,7 @@ public struct SettingPagePreviewView: View {
         iconForegroundColor: Color? = nil,
         horizontalSpacing: CGFloat = CGFloat(12),
         verticalPadding: CGFloat = CGFloat(14),
-        horizontalPadding: CGFloat = CGFloat(16)
+        horizontalPadding: CGFloat? = nil
     ) {
         self.title = title
         self.selectedChoice = selectedChoice
@@ -211,7 +212,7 @@ public struct SettingPagePreviewView: View {
             Image(systemName: indicator)
                 .foregroundColor(settingSecondaryColor)
         }
-        .padding(.horizontal, horizontalPadding)
+        .padding(.horizontal, horizontalPadding ?? edgePadding)
         .accessibilityElement(children: .combine)
     }
 }

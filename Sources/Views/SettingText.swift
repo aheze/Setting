@@ -17,7 +17,7 @@ public struct SettingText: View, Setting {
     public var foregroundColor: Color?
     public var horizontalSpacing = CGFloat(12)
     public var verticalPadding = CGFloat(14)
-    public var horizontalPadding = CGFloat(16)
+    public var horizontalPadding: CGFloat? = nil
 
     public init(
         id: AnyHashable? = nil,
@@ -25,7 +25,7 @@ public struct SettingText: View, Setting {
         foregroundColor: Color? = nil,
         horizontalSpacing: CGFloat = CGFloat(12),
         verticalPadding: CGFloat = CGFloat(14),
-        horizontalPadding: CGFloat = CGFloat(16)
+        horizontalPadding: CGFloat? = nil
     ) {
         self.id = id
         self.title = title
@@ -47,13 +47,14 @@ public struct SettingText: View, Setting {
 }
 
 struct SettingTextView: View {
+    @Environment(\.edgePadding) var edgePadding
     @Environment(\.settingPrimaryColor) var settingPrimaryColor
 
     let title: String
     var foregroundColor: Color?
     var horizontalSpacing = CGFloat(12)
     var verticalPadding = CGFloat(14)
-    var horizontalPadding = CGFloat(16)
+    var horizontalPadding: CGFloat? = nil
 
     var body: some View {
         Text(title)
@@ -61,6 +62,6 @@ struct SettingTextView: View {
             .fixedSize(horizontal: false, vertical: true)
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.vertical, verticalPadding)
-            .padding(.horizontal, horizontalPadding)
+            .padding(.horizontal, horizontalPadding ?? edgePadding)
     }
 }

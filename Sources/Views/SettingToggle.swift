@@ -17,7 +17,7 @@ public struct SettingToggle: View, Setting {
     @Binding public var isOn: Bool
     public var horizontalSpacing = CGFloat(12)
     public var verticalPadding = CGFloat(14)
-    public var horizontalPadding = CGFloat(16)
+    public var horizontalPadding: CGFloat? = nil
 
     public init(
         id: AnyHashable? = nil,
@@ -25,7 +25,7 @@ public struct SettingToggle: View, Setting {
         isOn: Binding<Bool>,
         horizontalSpacing: CGFloat = CGFloat(12),
         verticalPadding: CGFloat = CGFloat(14),
-        horizontalPadding: CGFloat = CGFloat(16)
+        horizontalPadding: CGFloat? = nil
     ) {
         self.id = id
         self.title = title
@@ -47,12 +47,14 @@ public struct SettingToggle: View, Setting {
 }
 
 struct SettingToggleView: View {
+    @Environment(\.edgePadding) var edgePadding
+    
     let title: String
     @Binding var isOn: Bool
 
     var horizontalSpacing = CGFloat(12)
     var verticalPadding = CGFloat(14)
-    var horizontalPadding = CGFloat(16)
+    var horizontalPadding: CGFloat? = nil
 
     var body: some View {
         HStack(spacing: horizontalSpacing) {
@@ -64,7 +66,7 @@ struct SettingToggleView: View {
             Toggle("", isOn: $isOn)
                 .labelsHidden()
         }
-        .padding(.horizontal, horizontalPadding)
+        .padding(.horizontal, horizontalPadding ?? edgePadding)
         .accessibilityElement(children: .combine)
     }
 }

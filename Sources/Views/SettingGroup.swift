@@ -15,7 +15,7 @@ public struct SettingGroup: Setting {
     public var id: AnyHashable?
     public var header: String?
     public var footer: String?
-    public var horizontalPadding = CGFloat(16)
+    public var horizontalPadding: CGFloat? = nil
     public var backgroundColor: Color?
     public var backgroundCornerRadius = CGFloat(12)
     public var dividerLeadingMargin = CGFloat(16)
@@ -27,7 +27,7 @@ public struct SettingGroup: Setting {
         id: AnyHashable? = nil,
         header: String? = nil,
         footer: String? = nil,
-        horizontalPadding: CGFloat = CGFloat(16),
+        horizontalPadding: CGFloat? = nil,
         backgroundColor: Color? = nil,
         backgroundCornerRadius: CGFloat = CGFloat(12),
         dividerLeadingMargin: CGFloat = CGFloat(16),
@@ -49,13 +49,14 @@ public struct SettingGroup: Setting {
 }
 
 public struct SettingGroupView<Content: View>: View {
+    @Environment(\.edgePadding) var edgePadding
     @Environment(\.settingSecondaryBackgroundColor) var settingSecondaryBackgroundColor
     @Environment(\.settingSecondaryColor) var settingSecondaryColor
 
     public var icon: SettingIcon?
     public var header: String?
     public var footer: String?
-    public var horizontalPadding = CGFloat(16)
+    public var horizontalPadding: CGFloat? = nil
     public var foregroundColor: Color?
     public var backgroundColor: Color?
     public var backgroundCornerRadius = CGFloat(12)
@@ -68,7 +69,7 @@ public struct SettingGroupView<Content: View>: View {
         icon: SettingIcon? = nil,
         header: String? = nil,
         footer: String? = nil,
-        horizontalPadding: CGFloat = CGFloat(16),
+        horizontalPadding: CGFloat? = nil,
         foregroundColor: Color? = nil,
         backgroundColor: Color? = nil,
         backgroundCornerRadius: CGFloat = CGFloat(12),
@@ -131,6 +132,6 @@ public struct SettingGroupView<Content: View>: View {
                     .padding(.top, 8)
             }
         }
-        .padding(.horizontal, horizontalPadding)
+        .padding(.horizontal, horizontalPadding ?? edgePadding)
     }
 }

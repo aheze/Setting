@@ -16,14 +16,14 @@ public struct SettingTextField: View, Setting {
     public var placeholder: String
     @Binding public var text: String
     public var verticalPadding = CGFloat(14)
-    public var horizontalPadding = CGFloat(16)
+    public var horizontalPadding: CGFloat? = nil
 
     public init(
         id: AnyHashable? = nil,
         placeholder: String,
         text: Binding<String>,
         verticalPadding: CGFloat = CGFloat(14),
-        horizontalPadding: CGFloat = CGFloat(16)
+        horizontalPadding: CGFloat? = nil
     ) {
         self.id = id
         self.placeholder = placeholder
@@ -43,17 +43,19 @@ public struct SettingTextField: View, Setting {
 }
 
 struct SettingTextFieldView: View {
+    @Environment(\.edgePadding) var edgePadding
+    
     let placeholder: String
     @Binding var text: String
 
     var verticalPadding = CGFloat(14)
-    var horizontalPadding = CGFloat(16)
+    var horizontalPadding: CGFloat? = nil
 
     var body: some View {
         TextField(placeholder, text: $text)
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.vertical, verticalPadding)
-            .padding(.horizontal, horizontalPadding)
+            .padding(.horizontal, horizontalPadding ?? edgePadding)
             .accessibilityElement(children: .combine)
     }
 }

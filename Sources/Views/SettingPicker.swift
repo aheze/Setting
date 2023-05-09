@@ -20,7 +20,7 @@ public struct SettingPicker: View, Setting {
     public var foregroundColor: Color?
     public var horizontalSpacing = CGFloat(12)
     public var verticalPadding = CGFloat(14)
-    public var horizontalPadding = CGFloat(16)
+    public var horizontalPadding: CGFloat?
     public var choicesConfiguration = ChoicesConfiguration()
 
     public init(
@@ -32,7 +32,7 @@ public struct SettingPicker: View, Setting {
         foregroundColor: Color? = nil,
         horizontalSpacing: CGFloat = CGFloat(12),
         verticalPadding: CGFloat = CGFloat(14),
-        horizontalPadding: CGFloat = CGFloat(16),
+        horizontalPadding: CGFloat? = nil,
         choicesConfiguration: ChoicesConfiguration = ChoicesConfiguration()
     ) {
         self.id = id
@@ -55,12 +55,12 @@ public struct SettingPicker: View, Setting {
 
     public struct ChoicesConfiguration {
         public var verticalPadding = CGFloat(14)
-        public var horizontalPadding = CGFloat(16)
+        public var horizontalPadding: CGFloat?
         public var pageNavigationTitleDisplayMode = SettingPage.NavigationTitleDisplayMode.inline
         public var pickerDisplayMode = PickerDisplayMode.navigation
         public var groupHeader: String?
         public var groupFooter: String?
-        public var groupHorizontalPadding = CGFloat(16)
+        public var groupHorizontalPadding: CGFloat?
         public var groupBackgroundColor: Color?
         public var groupBackgroundCornerRadius = CGFloat(12)
         public var groupDividerLeadingMargin = CGFloat(16)
@@ -69,12 +69,12 @@ public struct SettingPicker: View, Setting {
 
         public init(
             verticalPadding: CGFloat = CGFloat(14),
-            horizontalPadding: CGFloat = CGFloat(16),
+            horizontalPadding: CGFloat? = nil,
             pageNavigationTitleDisplayMode: SettingPage.NavigationTitleDisplayMode = SettingPage.NavigationTitleDisplayMode.inline,
             pickerDisplayMode: PickerDisplayMode = PickerDisplayMode.navigation,
             groupHeader: String? = nil,
             groupFooter: String? = nil,
-            groupHorizontalPadding: CGFloat = CGFloat(16),
+            groupHorizontalPadding: CGFloat? = nil,
             groupBackgroundColor: Color? = nil,
             groupBackgroundCornerRadius: CGFloat = CGFloat(12),
             groupDividerLeadingMargin: CGFloat = CGFloat(16),
@@ -121,7 +121,9 @@ public extension SettingPicker {
 }
 
 struct SettingPickerView: View {
+    @Environment(\.edgePadding) var edgePadding
     @Environment(\.settingSecondaryColor) var settingSecondaryColor
+
     var icon: SettingIcon?
     let title: String
     var choices: [String]
@@ -129,7 +131,7 @@ struct SettingPickerView: View {
     var foregroundColor: Color?
     var horizontalSpacing = CGFloat(12)
     var verticalPadding = CGFloat(14)
-    var horizontalPadding = CGFloat(16)
+    var horizontalPadding: CGFloat? = nil
     var choicesConfiguration = SettingPicker.ChoicesConfiguration()
 
     @State var isActive = false
@@ -160,7 +162,7 @@ struct SettingPickerView: View {
                     Image(systemName: "chevron.forward")
                         .foregroundColor(foregroundColor ?? settingSecondaryColor)
                 }
-                .padding(.horizontal, horizontalPadding)
+                .padding(.horizontal, horizontalPadding ?? edgePadding)
                 .accessibilityElement(children: .combine)
             }
             .buttonStyle(.row)
@@ -192,13 +194,13 @@ struct SettingPickerView: View {
                 }
                 .pickerStyle(.menu)
                 #if os(iOS)
-                    .padding(.trailing, -horizontalPadding + 2)
+                    .padding(.trailing, -edgePadding + 2)
                 #else
                     .padding(.trailing, -2)
                 #endif
                     .tint(foregroundColor ?? settingSecondaryColor)
             }
-            .padding(.horizontal, horizontalPadding)
+            .padding(.horizontal, horizontalPadding ?? edgePadding)
             .accessibilityElement(children: .combine)
         case .inline:
             ForEach(Array(zip(choices.indices, choices)), id: \.1) { index, choice in

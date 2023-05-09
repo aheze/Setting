@@ -41,6 +41,9 @@ public struct SettingStack: View {
      For handling internal state.
      */
     @StateObject var settingViewModel = SettingViewModel()
+    
+    /// Window size for calculating edge padding.
+    @State var windowSize = CGSize(width: 414, height: 896)
 
     /**
      Create a new Settings view from a `SettingPage`. The default "no results" view will be used.
@@ -127,6 +130,22 @@ public struct SettingStack: View {
         .onReceive(settingViewModel.regeneratePaths) { _ in
             let paths = settingPage.generatePaths()
             settingViewModel.paths = paths
+        }
+        .readSize { size in
+            windowSize = size
+        }
+        .environment(\.edgePadding, edgePadding)
+    }
+
+    /// Padding to line up with the navigation title.
+    var edgePadding: Double {
+        /// Leading margin stays the same, whether in horizontal or vertical
+        let narrowEdge = min(windowSize.width, windowSize.height)
+
+        if narrowEdge > 400 {
+            return 20
+        } else {
+            return 16
         }
     }
 }

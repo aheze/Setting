@@ -19,7 +19,7 @@ public struct SettingSlider: View, Setting {
     public var minimumImage: Image?
     public var maximumImage: Image?
     public var verticalPadding = CGFloat(8)
-    public var horizontalPadding = CGFloat(16)
+    public var horizontalPadding: CGFloat? = nil
 
     public init(
         id: AnyHashable? = nil,
@@ -29,7 +29,7 @@ public struct SettingSlider: View, Setting {
         minimumImage: Image? = nil,
         maximumImage: Image? = nil,
         verticalPadding: CGFloat = CGFloat(8),
-        horizontalPadding: CGFloat = CGFloat(16)
+        horizontalPadding: CGFloat? = nil
     ) {
         self.id = id
         self._value = value
@@ -55,13 +55,15 @@ public struct SettingSlider: View, Setting {
 }
 
 struct SettingSliderView: View {
+    @Environment(\.edgePadding) var edgePadding
+    
     @Binding var value: Double
     var range: ClosedRange<Double>
     var step: Double.Stride = 1
     var minimumImage: Image?
     var maximumImage: Image?
     var verticalPadding = CGFloat(8)
-    var horizontalPadding = CGFloat(16)
+    var horizontalPadding: CGFloat? = nil
 
     var body: some View {
         Slider(
@@ -81,6 +83,6 @@ struct SettingSliderView: View {
         }
         .accessibilityElement(children: .combine)
         .padding(.vertical, verticalPadding)
-        .padding(.horizontal, horizontalPadding)
+        .padding(.horizontal, horizontalPadding ?? edgePadding)
     }
 }

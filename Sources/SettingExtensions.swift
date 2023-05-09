@@ -35,3 +35,30 @@ extension StringProtocol {
         return result
     }
 }
+
+/**
+ Read a view's size. The closure is called whenever the size itself changes.
+
+ From https://stackoverflow.com/a/66822461/14351818
+ */
+extension View {
+    func readSize(size: @escaping (CGSize) -> Void) -> some View {
+        return background(
+            GeometryReader { geometry in
+                Color.clear
+                    .preference(key: ContentSizeReaderPreferenceKey.self, value: geometry.size)
+                    .onPreferenceChange(ContentSizeReaderPreferenceKey.self) { newValue in
+                        DispatchQueue.main.async {
+                            size(newValue)
+                        }
+                    }
+            }
+            .hidden()
+        )
+    }
+}
+
+struct ContentSizeReaderPreferenceKey: PreferenceKey {
+    static var defaultValue: CGSize { return CGSize() }
+    static func reduce(value: inout CGSize, nextValue: () -> CGSize) { value = nextValue() }
+}
