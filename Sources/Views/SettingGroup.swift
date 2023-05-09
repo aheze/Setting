@@ -15,7 +15,7 @@ public struct SettingGroup: Setting {
     public var id: AnyHashable?
     public var header: String?
     public var footer: String?
-    public var horizontalPadding: CGFloat? = nil
+    public var horizontalPadding: CGFloat?
     public var backgroundColor: Color?
     public var backgroundCornerRadius = CGFloat(12)
     public var dividerLeadingMargin = CGFloat(16)
@@ -56,7 +56,7 @@ public struct SettingGroupView<Content: View>: View {
     public var icon: SettingIcon?
     public var header: String?
     public var footer: String?
-    public var horizontalPadding: CGFloat? = nil
+    public var horizontalPadding: CGFloat?
     public var foregroundColor: Color?
     public var backgroundColor: Color?
     public var backgroundCornerRadius = CGFloat(12)
@@ -120,7 +120,9 @@ public struct SettingGroupView<Content: View>: View {
                 content()
             }
             .background(backgroundColor ?? settingSecondaryBackgroundColor)
-            .cornerRadius(backgroundCornerRadius)
+            .mask {
+                RoundedRectangle(cornerRadius: backgroundCornerRadius, style: .continuous)
+            }
 
             if let footer {
                 Text(footer)
