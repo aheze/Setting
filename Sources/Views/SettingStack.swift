@@ -41,9 +41,6 @@ public struct SettingStack: View {
      For handling internal state.
      */
     @StateObject var settingViewModel = SettingViewModel()
-    
-    /// Window size for calculating edge padding.
-    @State var windowSize = CGSize(width: 414, height: 896)
 
     /**
      Create a new Settings view from a `SettingPage`. The default "no results" view will be used.
@@ -84,16 +81,36 @@ public struct SettingStack: View {
     }
 
     public var body: some View {
-        if !embedInNavigationStack {
-            main
-        } else if #available(iOS 16.0, macOS 13.0, *) {
-            NavigationStack {
-                main
+        GeometryReader { geometry in
+            /// Padding to line up with the navigation title.
+            let edgePadding: Double = {
+                /// Window size for calculating edge padding.
+                let windowSize = geometry.size
+
+                /// Leading margin stays the same, whether in horizontal or vertical
+                let narrowEdge = min(windowSize.width, windowSize.height)
+
+                if narrowEdge > 400 {
+                    return 20
+                } else {
+                    return 16
+                }
+            }()
+
+            VStack {
+                if !embedInNavigationStack {
+                    main
+                } else if #available(iOS 16.0, macOS 13.0, *) {
+                    NavigationStack {
+                        main
+                    }
+                } else {
+                    NavigationView {
+                        main
+                    }
+                }
             }
-        } else {
-            NavigationView {
-                main
-            }
+            .environment(\.edgePadding, edgePadding)
         }
     }
 
@@ -130,22 +147,6 @@ public struct SettingStack: View {
         .onReceive(settingViewModel.regeneratePaths) { _ in
             let paths = settingPage.generatePaths()
             settingViewModel.paths = paths
-        }
-        .readSize { size in
-            windowSize = size
-        }
-        .environment(\.edgePadding, edgePadding)
-    }
-
-    /// Padding to line up with the navigation title.
-    var edgePadding: Double {
-        /// Leading margin stays the same, whether in horizontal or vertical
-        let narrowEdge = min(windowSize.width, windowSize.height)
-
-        if narrowEdge > 400 {
-            return 20
-        } else {
-            return 16
         }
     }
 }
