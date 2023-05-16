@@ -125,7 +125,7 @@ public struct SettingGroupView<Content: View>: View {
             }
 
             if let footer {
-                Text(footer)
+                Text(.init(footer)) /// Support markdown
                     .fixedSize(horizontal: false, vertical: true)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.system(.subheadline))
