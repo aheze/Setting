@@ -8,14 +8,20 @@
 
 import SwiftUI
 
-struct SettingView: View {
-    var setting: Setting
-    var isInitialPage = false
-    var isPagePreview = true
+public struct SettingView: View {
+    public var setting: Setting
+    public var isInitialPage = false
+    public var isPagePreview = true
 
     @State var isActive = false
 
-    var body: some View {
+    public init(setting: Setting, isInitialPage: Bool = false, isPagePreview: Bool = true) {
+        self.setting = setting
+        self.isInitialPage = isInitialPage
+        self.isPagePreview = isPagePreview
+    }
+
+    public var body: some View {
         switch setting {
         case let text as SettingText:
             text
