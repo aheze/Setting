@@ -267,6 +267,33 @@ SettingCustomView {
 }
 ```
 
+- Want to split up a Setting into multiple variables/files? Just use `@SettingBuilder`.
+
+```swift
+struct ContentView: View {
+    var body: some View {
+        SettingStack {
+            SettingPage(title: "Settings") {
+                general
+                misc
+            }
+        }
+    }
+    
+    @SettingBuilder var general: some Setting {
+        SettingPage(title: "General") {
+            SettingText(title: "General Settings")
+        }
+    }
+    
+    @SettingBuilder var misc: some Setting {
+        SettingPage(title: "Misc") {
+            SettingText(title: "Misc Settings")
+        }
+    }
+}
+```
+
 - Need to store custom structs in `AppStorage`? Check out @IanKeen's awesome [gist](https://gist.github.com/IanKeen/4d29b48519dca125b21675eeb7623d60)!
 
 - You can pass in a custom `SettingViewModel` instance for finer control.
