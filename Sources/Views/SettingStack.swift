@@ -100,11 +100,13 @@ public struct SettingStack: View {
             VStack {
                 if !embedInNavigationStack {
                     main
-                } else if #available(iOS 16.0, macOS 13.0, *) {
+                }
+                else if #available(iOS 16.0, macOS 13.0, *) {
                     NavigationStack {
                         main
                     }
-                } else {
+                }
+                else {
                     NavigationView {
                         main
                     }
