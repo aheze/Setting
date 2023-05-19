@@ -79,6 +79,7 @@ public struct SettingView: View {
             SettingGroupView(
                 header: group.header,
                 footer: group.footer,
+                allowAttributedFooter: group.allowAttributedFooter,
                 horizontalPadding: group.horizontalPadding,
                 backgroundColor: group.backgroundColor,
                 backgroundCornerRadius: group.backgroundCornerRadius,
