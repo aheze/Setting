@@ -15,7 +15,7 @@ public struct SettingSlider: View, Setting {
     public var id: AnyHashable?
     @Binding public var value: Double
     public var range: ClosedRange<Double>
-    public var step: Double.Stride = 1
+    public var step: Double.Stride = 0.1
     public var minimumImage: Image?
     public var maximumImage: Image?
     public var verticalPadding = CGFloat(8)
@@ -25,7 +25,7 @@ public struct SettingSlider: View, Setting {
         id: AnyHashable? = nil,
         value: Binding<Double>,
         range: ClosedRange<Double>,
-        step: Double.Stride = 1,
+        step: Double.Stride = 0.1,
         minimumImage: Image? = nil,
         maximumImage: Image? = nil,
         verticalPadding: CGFloat = CGFloat(8),
@@ -59,7 +59,7 @@ struct SettingSliderView: View {
     
     @Binding var value: Double
     var range: ClosedRange<Double>
-    var step: Double.Stride = 1
+    var step: Double.Stride = 0.1
     var minimumImage: Image?
     var maximumImage: Image?
     var verticalPadding = CGFloat(8)
