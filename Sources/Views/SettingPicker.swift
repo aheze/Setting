@@ -233,7 +233,7 @@ struct SettingPickerChoicesView: View {
 
     var body: some View {
         SettingPageView(title: title, navigationTitleDisplayMode: choicesConfiguration.pageNavigationTitleDisplayMode) {
-            SettingGroupView(
+            let settingGroupView = SettingGroupView(
                 header: choicesConfiguration.groupHeader,
                 footer: choicesConfiguration.groupFooter,
                 horizontalPadding: choicesConfiguration.groupHorizontalPadding,
@@ -262,6 +262,14 @@ struct SettingPickerChoicesView: View {
                     .buttonStyle(.row)
                 }
             }
+            #if os(iOS)
+                if #available(iOS 16.0, *) {
+                    settingGroupView.toolbar(.hidden, for: .tabBar)
+                } else {
+                    settingGroupView
+                }
+            #endif
+                settingGroupView
         }
     }
 }
