@@ -37,7 +37,7 @@ public struct SettingIconView: View {
                 .font(.footnote)
                 .frame(width: 28, height: 28)
                 .background(backgroundColor)
-                .cornerRadius(6)
+                .clipShape(RoundedRectangle(cornerRadius: 6))
 
         case .image(let name, let inset, let foregroundColor, let backgroundColor):
             if let foregroundColor {
@@ -49,7 +49,7 @@ public struct SettingIconView: View {
                     .padding(inset)
                     .frame(width: 28, height: 28)
                     .background(backgroundColor)
-                    .cornerRadius(6)
+                    .clipShape(RoundedRectangle(cornerRadius: 6))
             } else {
                 Image(name)
                     .resizable()
@@ -57,7 +57,7 @@ public struct SettingIconView: View {
                     .padding(inset)
                     .frame(width: 28, height: 28)
                     .background(backgroundColor)
-                    .cornerRadius(6)
+                    .clipShape(RoundedRectangle(cornerRadius: 6))
             }
 
         case .custom(let anyView):
