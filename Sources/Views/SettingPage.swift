@@ -21,7 +21,7 @@ public struct SettingPage: Setting {
     public var navigationTitleDisplayMode = NavigationTitleDisplayMode.automatic
     public var previewConfiguration = PreviewConfiguration()
     @SettingBuilder public var tuple: SettingTupleView
-
+    
     public init(
         id: AnyHashable? = nil,
         title: String,
@@ -43,14 +43,14 @@ public struct SettingPage: Setting {
         self.previewConfiguration = previewConfiguration
         self.tuple = tuple()
     }
-
+    
     public struct PreviewConfiguration {
         public var icon: SettingIcon?
         public var indicator = "chevron.forward"
         public var horizontalSpacing = CGFloat(12)
         public var verticalPadding = CGFloat(14)
         public var horizontalPadding: CGFloat? = nil
-
+        
         public init(
             icon: SettingIcon? = nil,
             indicator: String = "chevron.forward",
@@ -65,7 +65,7 @@ public struct SettingPage: Setting {
             self.horizontalPadding = horizontalPadding
         }
     }
-
+    
     public enum NavigationTitleDisplayMode {
         case automatic
         case inline
@@ -80,19 +80,19 @@ public extension SettingPage {
         page.previewConfiguration.icon = .system(icon: icon, backgroundColor: color)
         return page
     }
-
+    
     func previewIcon(_ icon: String, foregroundColor: Color = .white, backgroundColor: Color = .blue) -> SettingPage {
         var page = self
         page.previewConfiguration.icon = .system(icon: icon, foregroundColor: foregroundColor, backgroundColor: backgroundColor)
         return page
     }
-
+    
     func previewIcon(icon: SettingIcon) -> SettingPage {
         var page = self
         page.previewConfiguration.icon = icon
         return page
     }
-
+    
     func previewIndicator(_ indicator: String) -> SettingPage {
         var page = self
         page.previewConfiguration.indicator = indicator
@@ -102,7 +102,7 @@ public extension SettingPage {
 
 struct SettingPageView<Content>: View where Content: View {
     @Environment(\.settingBackgroundColor) var settingBackgroundColor
-
+    
     var title: String
     var spacing = CGFloat(20)
     var verticalPadding = CGFloat(12)
@@ -110,10 +110,9 @@ struct SettingPageView<Content>: View where Content: View {
     var navigationTitleDisplayMode = SettingPage.NavigationTitleDisplayMode.inline
     var isInitialPage = false
     @ViewBuilder var content: Content
-
+    
     var body: some View {
-        #if os(iOS)
-
+#if os(iOS)
         let navigationBarTitleDisplayMode: NavigationBarItem.TitleDisplayMode = {
             switch navigationTitleDisplayMode {
             case .automatic:
@@ -128,44 +127,44 @@ struct SettingPageView<Content>: View where Content: View {
                 return .large
             }
         }()
-
+        
         main
             .navigationBarTitleDisplayMode(navigationBarTitleDisplayMode)
-        #else
+#else
         main
-        #endif
+#endif
     }
-
+    
     @ViewBuilder var main: some View {
+#if os(visionOS)
+        mainSettings
+#else
         if #available(iOS 16.0, macOS 13.0, *) {
-            ScrollView {
-                VStack(alignment: .leading, spacing: spacing) {
-                    content
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.vertical, verticalPadding)
-            }
-            .scrollDismissesKeyboard(.interactively)
-            .background(backgroundColor ?? settingBackgroundColor)
-            .navigationTitle(title)
+            mainSettings
+                .scrollDismissesKeyboard(.interactively)
         } else {
-            ScrollView {
-                VStack(alignment: .leading, spacing: spacing) {
-                    content
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.vertical, verticalPadding)
-            }
-            .background(backgroundColor ?? settingBackgroundColor)
-            .navigationTitle(title)
+            mainSettings
         }
+#endif
+    }
+    
+    var mainSettings: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: spacing) {
+                content
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.vertical, verticalPadding)
+        }
+        .background(backgroundColor ?? settingBackgroundColor)
+        .navigationTitle(title)
     }
 }
 
 public struct SettingPagePreviewView: View {
     @Environment(\.edgePadding) var edgePadding
     @Environment(\.settingSecondaryColor) var settingSecondaryColor
-
+    
     let title: String
     var selectedChoice: String?
     var icon: SettingIcon?
@@ -173,7 +172,7 @@ public struct SettingPagePreviewView: View {
     var horizontalSpacing = CGFloat(12)
     var verticalPadding = CGFloat(14)
     var horizontalPadding: CGFloat? = nil
-
+    
     public init(
         title: String,
         selectedChoice: String? = nil,
@@ -192,23 +191,23 @@ public struct SettingPagePreviewView: View {
         self.verticalPadding = verticalPadding
         self.horizontalPadding = horizontalPadding
     }
-
+    
     public var body: some View {
         HStack(spacing: horizontalSpacing) {
             if let icon {
                 SettingIconView(icon: icon)
             }
-
+            
             Text(title)
                 .fixedSize(horizontal: false, vertical: true)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.vertical, verticalPadding)
-
+            
             if let selectedChoice {
                 Text(selectedChoice)
                     .foregroundColor(settingSecondaryColor)
             }
-
+            
             Image(systemName: indicator)
                 .foregroundColor(settingSecondaryColor)
         }
@@ -221,24 +220,24 @@ extension SettingPage {
     /// generate all possibile paths
     func generatePaths() -> [SettingPath] {
         var paths = [SettingPath]()
-
+        
         for setting in tuple.flattened {
             let initialItemPath = SettingPath(settings: [setting])
             let recursivePaths = generateRecursivePaths(for: initialItemPath)
             paths += recursivePaths
         }
-
+        
         return paths
     }
-
+    
     /// `path` - a path of rows whose last element is the row to generate
     func generateRecursivePaths(for path: SettingPath) -> [SettingPath] {
         /// include the current setting as a path
         var paths = [path]
-
+        
         /// get the last setting, possibly a page
         guard let lastItem = path.settings.last else { return [] }
-
+        
         /// If the last setting is a page, travel through the page's subpages.
         if let page = lastItem as? SettingPage {
             for setting in page.tuple.flattened {
@@ -254,7 +253,7 @@ extension SettingPage {
                 }
             }
         }
-
+        
         return paths
     }
 }

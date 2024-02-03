@@ -29,6 +29,8 @@ private struct BackgroundColorKey: EnvironmentKey {
     static let defaultValue: Color = {
         #if os(iOS)
             return Color(uiColor: .systemGroupedBackground)
+        #elseif os(visionOS)
+            return Color.clear
         #else
             return Color(nsColor: .windowBackgroundColor)
         #endif
@@ -39,6 +41,8 @@ private struct SecondaryBackgroundColorKey: EnvironmentKey {
     static let defaultValue: Color = {
         #if os(iOS)
             return Color(uiColor: .secondarySystemGroupedBackground)
+        #elseif os(visionOS)
+            return Color.clear
         #else
             return Color(nsColor: .textBackgroundColor)
         #endif
