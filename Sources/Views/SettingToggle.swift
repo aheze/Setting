@@ -15,12 +15,14 @@ public struct SettingToggle: View, Setting {
     public var id: AnyHashable?
     public var title: String
     @Binding public var isOn: Bool
+    public var icon: SettingIcon?
     public var horizontalSpacing = CGFloat(12)
     public var verticalPadding = CGFloat(14)
     public var horizontalPadding: CGFloat? = nil
 
     public init(
         id: AnyHashable? = nil,
+        icon: SettingIcon? = nil,
         title: String,
         isOn: Binding<Bool>,
         horizontalSpacing: CGFloat = CGFloat(12),
@@ -28,6 +30,7 @@ public struct SettingToggle: View, Setting {
         horizontalPadding: CGFloat? = nil
     ) {
         self.id = id
+        self.icon = icon
         self.title = title
         self._isOn = isOn
         self.horizontalSpacing = horizontalSpacing
@@ -37,6 +40,7 @@ public struct SettingToggle: View, Setting {
 
     public var body: some View {
         SettingToggleView(
+            icon: icon,
             title: title,
             isOn: $isOn,
             horizontalSpacing: horizontalSpacing,
@@ -49,6 +53,7 @@ public struct SettingToggle: View, Setting {
 struct SettingToggleView: View {
     @Environment(\.edgePadding) var edgePadding
     
+    let icon: SettingIcon?
     let title: String
     @Binding var isOn: Bool
 
@@ -58,6 +63,9 @@ struct SettingToggleView: View {
 
     var body: some View {
         HStack(spacing: horizontalSpacing) {
+            if let icon {
+              SettingIconView(icon: icon)
+            }
             Text(title)
                 .fixedSize(horizontal: false, vertical: true)
                 .frame(maxWidth: .infinity, alignment: .leading)
