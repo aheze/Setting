@@ -268,8 +268,9 @@ struct SettingPickerChoicesView: View {
                 } else {
                     settingGroupView
                 }
-            #endif
+            #else
                 settingGroupView
+            #endif
         }
     }
 }
